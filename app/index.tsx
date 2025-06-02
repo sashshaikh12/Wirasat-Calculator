@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 
 // Reusable menu button component
 const MenuButton = ({ title, onPress }: { title: string, onPress?: () => void }) => (
@@ -37,8 +37,9 @@ export default function Index() {
           {/* Menu Buttons */}
           <MenuButton 
             title="Shares And Money Distribution" 
-            onPress={() => router.push('/shares')}
+            onPress={() => router.push('shares')}
           />
+          <MenuButton title="Rules" />
           <MenuButton title="Munaskha" />
           <MenuButton title="Learning" />
           <MenuButton title="Language" />
