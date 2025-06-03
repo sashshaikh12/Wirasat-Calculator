@@ -64,7 +64,7 @@ export default function Shares() {
 
   return (
     <SafeAreaView className="flex-1 bg-slate-900">
-      <ScrollView className='flex-1' contentContainerStyle={{ paddingBottom: 40 }}>
+      <ScrollView className='flex-1' >
         <LinearGradient 
           colors={['#0F172A', '#1E293B', '#334155']} 
           className="flex-1 p-6"

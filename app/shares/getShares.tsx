@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams } from 'expo-router';
-import { SafeAreaView, Text, View } from 'react-native';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { SafeAreaView, Text, View , ScrollView} from 'react-native';
 
 export default function GetShares() {
   const params = useLocalSearchParams();
@@ -1017,23 +1017,28 @@ useEffect(() => {
     getCollectiveShares();
 
     console.log("lcm = ", Lcm);
+
+    console.log("--------------------------------------End--------------------------------------");
     
   }, []);
+
+  const headers = ['ShareHolder', 'Fraction', 'Share'];
+
+const data = Array.from({ length: 20 }, (_, i) => ({
+  name: `User ${i + 1}`,
+  age: 20 + (i % 10),
+  role: i % 2 === 0 ? 'Admin' : 'User',
+}));
 
   
   return (
     <SafeAreaView className='flex-1'>
       <LinearGradient 
-              colors={['#0F172A', '#1E293B', '#334155']} 
-              className="flex-1 justify-center items-center px-6"
-            >
-        <View>
-          <Text>Get Shares Screen</Text>
-          <Text>Total Amount: {params.totalAmount}</Text>
-          <Text>Biwi: {params.biwi}</Text>
-          <Text>Baap: {params.baap}</Text>
-        </View>
-      </LinearGradient>
+          colors={['#0F172A', '#1E293B', '#334155']} 
+          className="flex-1 p-6"
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        ></LinearGradient>
       
         
     </SafeAreaView>

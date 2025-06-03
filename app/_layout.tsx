@@ -8,10 +8,10 @@ export default function RootLayout() {
         {title: "Home"}
       } /> 
       <Stack.Screen name = "shares/index" options={
-        {title: "Home"}
+        {title: "Shares"}
       } /> 
       <Stack.Screen name = "shares/getShares" options={
-        {title: "Home"}
+        {title: "Shares"}
       } /> 
     </Stack>
   );
