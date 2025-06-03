@@ -48,7 +48,7 @@ export default function Shares() {
     'nani': { value: nani, setter: setNani },
     'haqeeqibehen': { value: haqeeqibehen, setter: setHaqeeqibehen },
     'maa': { value: maa, setter: setMaa },
-    'Beti': { value: Beti, setter: setBeti },
+    'beti': { value: Beti, setter: setBeti },
     'biwi': { value: biwi, setter: setBiwi },
     'beta': { value: beta, setter: setBeta },
     'pota': { value: pota, setter: setPota },
@@ -114,7 +114,7 @@ export default function Shares() {
                   'nani',
                   'haqeeqibehen',
                   'maa',
-                  'Beti',
+                  'beti',
                   'biwi',
                   'beta',
                   'pota',
@@ -152,7 +152,7 @@ export default function Shares() {
 
                 const familyData = {};
                 Object.keys(personStateMap).forEach(person => {
-                  familyData[person] = personStateMap[person].value;
+                  familyData[person] = Number(personStateMap[person].value);
                 });
                 
                 router.push({
