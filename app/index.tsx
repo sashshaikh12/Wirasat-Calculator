@@ -40,11 +40,11 @@ const MenuButton = ({
 
 export default function Index() {
   return (
-    <SafeAreaView className="flex-1">
-      <LinearGradient
+    <LinearGradient
         colors={['#0F172A', '#1E293B', '#334155']}
-        className="flex-1 justify-center items-center px-6"
+        className="flex-1 px-6"
       >
+    <SafeAreaView className="flex-1 justify-center items-center">
         <View className="bg-white/10 rounded-3xl p-8 w-full max-w-md 
                          shadow-xl border border-white/20">
           {/* App Header */}
@@ -64,7 +64,7 @@ export default function Index() {
           <MenuButton title="Learning" iconName="book-open" />
           <MenuButton title="Language" iconName="globe" />
         </View>
-      </LinearGradient>
     </SafeAreaView>
+      </LinearGradient>
   );
 }

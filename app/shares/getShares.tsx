@@ -1033,12 +1033,7 @@ const data = Array.from({ length: 20 }, (_, i) => ({
   
   return (
     <SafeAreaView className='flex-1'>
-      <LinearGradient 
-          colors={['#0F172A', '#1E293B', '#334155']} 
-          className="flex-1 p-6"
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-        ></LinearGradient>
+      
       
         
     </SafeAreaView>
