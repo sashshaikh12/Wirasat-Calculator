@@ -57,8 +57,7 @@ export default function Shares() {
     'allatibhai': { value: allatibhai, setter: setAllatibhai },
     'haqeeqibhateeja': { value: haqeeqibhateeja, setter: setHaqeeqibhateeja },
     'allatibhateeja': { value: allatibhateeja, setter: setAllatibhateeja },
-    'chacha': { value: chacha, setter: setChacha },
-    'chacha ka beta': { value: chachaKeBeta, setter: setChachaKeBeta }
+    'chacha': { value: chacha, setter: setChacha }
   };
 
 
@@ -70,7 +69,7 @@ export default function Shares() {
     end={{ x: 1, y: 1 }}
   >
     <SafeAreaView className="flex-1">
-      <ScrollView className="flex-1 p-6">
+      <ScrollView className="flex-1 p-6"  >
         <View className="mt-4 mb-8">
           <Text className="text-white text-3xl font-bold mb-2 text-center">
             Islamic Inheritance Shares
@@ -123,7 +122,6 @@ export default function Shares() {
                 'haqeeqibhateeja',
                 'allatibhateeja',
                 'chacha',
-                'chacha ka beta'
               ].map((person) => (
                 <View key={person} className="bg-slate-800/40 rounded-xl p-4 shadow">
                   <Text className="text-white text-lg font-medium mb-3 capitalize">

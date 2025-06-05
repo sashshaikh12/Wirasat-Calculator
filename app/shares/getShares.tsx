@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { SafeAreaView, Text, View , ScrollView} from 'react-native';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 
 export default function GetShares() {
   const params = useLocalSearchParams();
@@ -18,6 +18,8 @@ export default function GetShares() {
   let notasaba = ["baap", "dada", "shohar", "akhyafibhai", "akhyafibehen", "allatibehen", "poti", "dadi", "nani", "haqeeqibehen", "maa", "beti", "biwi"];
   let asaba = ["beta", "pota", "padpota", "baap", "dada", "paddada", "haqeeqibhai", "allatibhai", "haqeeqibhateeja", "allatibhateeja", "chacha"];
   let Lcm, remaining, sec_Lcm, Lcm_leftOver; 
+
+  const [finalList, setFinalList] = useState([]);
 
 
   
@@ -441,6 +443,7 @@ function solve() {
     }
 
     for (const it of asaba_present) {
+        shares.set(it, [-1, -1]); // Initialize shares for asaba present
         if (it === main_asaba) {
             if (
                 it === "baap" &&
@@ -964,10 +967,13 @@ function printFractions() {
     let output = `${key}: `;
     if (value[0] === -1 && value[1] === -1) {
       output += "A";
+      setFinalList(prevList => [...prevList, { name: key, Fraction: "Asaba"}]);
     } else if (value[0] === 0 && value[1] === 0) {
       output += "M";
+      setFinalList(prevList => [...prevList, { name: key, Fraction: "Marhoom" }]);
     } else {
       output += `${value[0]}/${value[1]}`;
+        setFinalList(prevList => [...prevList, { name: key, Fraction: `${value[0]}/${value[1]}` }]);
     }
     console.log(output);
   }
@@ -976,13 +982,62 @@ function printFractions() {
     let output = `{ ${parsedKey.join(" ")} }: `;
     if (value[0] === -1 && value[1] === -1) {
       output += "A";
+        setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: "Asaba" }]);
+        setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Asaba" }]);
     } else if (value[0] === 0 && value[1] === 0) {
       output += "M";
+        setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: "Marhoom" }]);
+        setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Marhoom" }]);
     } else {
       output += `${value[0]}/${value[1]}`;
+        setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: `${value[0]}/${value[1]}` }]);
+        setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: `${value[0]}/${value[1]}` }]);
     }
     console.log(output);
   }
+}
+
+function Final()
+{
+    setFinalList(prevList => {
+        return prevList.map(item => {
+            if (sharesActual.has(item.name)) {
+                const numerator = personCount.get(item.name);
+                const denominator = sharesActual.get(item.name);
+                return {
+                    ...item,
+                    share: denominator / numerator, // Add calculated share
+                };
+            }
+            return item; // Keep the item unchanged if no share is found
+        });
+    });
+
+}
+
+function FinalCollective() {
+    setFinalList(prevList => {
+        return prevList.map(item => {
+            for (const [key, value] of sharesActual_collective.entries()) {
+                const parsedKey = JSON.parse(key); // Parse the collective key
+                if (parsedKey.includes(item.name)) {
+                    const sum = parsedKey.reduce((acc, name) => {
+                        return acc + (name === "beta" || name === "haqeeqibhai" || name === "allatibhai" || name === "pota"
+                            ? 2 * personCount.get(name)
+                            : personCount.get(name));
+                    }, 0);
+                    const shareValue = item.name === "beta" || item.name === "haqeeqibhai" || item.name === "allatibhai" || item.name === "pota"
+                        ? 2 * value / sum
+                        : value / sum;
+                    return {
+                        ...item,
+                        share: shareValue, // Add calculated share
+                    };
+                }
+            }
+            return item; // Keep the item unchanged if no share is found
+        });
+    });
 }
 
 useEffect(() => {
@@ -1016,27 +1071,64 @@ useEffect(() => {
 
     getCollectiveShares();
 
+    Final();
+
+    FinalCollective();
+
     console.log("lcm = ", Lcm);
 
     console.log("--------------------------------------End--------------------------------------");
     
   }, []);
 
-  const headers = ['ShareHolder', 'Fraction', 'Share'];
-
-const data = Array.from({ length: 20 }, (_, i) => ({
-  name: `User ${i + 1}`,
-  age: 20 + (i % 10),
-  role: i % 2 === 0 ? 'Admin' : 'User',
-}));
 
   
-  return (
-    <SafeAreaView className='flex-1'>
-      
-      
-        
-    </SafeAreaView>
-    
-  );
+    return (
+    <LinearGradient
+        colors={['#0F172A', '#334155']}
+        className="flex-1"
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+    >
+        <SafeAreaView className="flex-1">
+        <ScrollView className="flex-1 px-4">
+            <View className="py-6 mb-4">
+                <Text className="text-white text-4xl font-extrabold text-center mb-2">
+                    Share Distribution
+                </Text>
+                <View className="h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-8" />
+            </View>
+            
+            <View className="flex-1 p-2 flex-wrap flex-row justify-between">
+            {finalList.map((item, index) => (
+                <View
+                key={index}
+                className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full sm:w-[48%] md:w-[48%] lg:w-[32%] xl:w-[23%]"
+                style={{
+                    elevation: 8,
+                    shadowColor: '#3b82f6'
+                }}
+                >
+                <View className="mb-3">
+                    <Text className="text-white text-2xl font-black text-center tracking-tight">
+                        {item.name}
+                    </Text>
+                    <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
+                </View>
+                
+                <View className="bg-white/10 rounded-lg p-3">
+                    <Text className="text-blue-100 text-lg font-semibold text-center">
+                        Share: <Text className="text-white font-bold">{item.share}</Text>
+                    </Text>
+                    <Text className="text-blue-200 text-base text-center mt-1">
+                        Fraction: <Text className="text-white font-medium">{item.Fraction}</Text>
+                    </Text>
+                </View>
+                </View>
+            ))}
+            </View>
+        </ScrollView>
+        </SafeAreaView>
+    </LinearGradient>
+);
 }
