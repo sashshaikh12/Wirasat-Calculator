@@ -20,6 +20,9 @@ export default function GetShares() {
   let Lcm, remaining, sec_Lcm, Lcm_leftOver; 
 
   const [finalList, setFinalList] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [finalLcm, setFinalLcm] = useState(0);
+  const [loading, setLoading] = useState(true);
 
 
   
@@ -983,15 +986,15 @@ function printFractions() {
     if (value[0] === -1 && value[1] === -1) {
       output += "A";
         setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: "Asaba" }]);
-        setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Asaba" }]);
+        if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Asaba" }]);
     } else if (value[0] === 0 && value[1] === 0) {
       output += "M";
         setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: "Marhoom" }]);
-        setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Marhoom" }]);
+        if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Marhoom" }]);
     } else {
       output += `${value[0]}/${value[1]}`;
         setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: `${value[0]}/${value[1]}` }]);
-        setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: `${value[0]}/${value[1]}` }]);
+        if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: `${value[0]}/${value[1]}` }]);
     }
     console.log(output);
   }
@@ -1049,6 +1052,10 @@ useEffect(() => {
         person.push(key);
         personCount.set(key, Number(value));
       }
+      else if( key === "totalAmount")
+      {
+        setTotalAmount(Number(value));
+      }
     }
     console.log('Person:', person);
     console.log('Person Count:', personCount);
@@ -1076,11 +1083,31 @@ useEffect(() => {
     FinalCollective();
 
     console.log("lcm = ", Lcm);
+    setFinalLcm(Lcm);
 
     console.log("--------------------------------------End--------------------------------------");
     
   }, []);
 
+
+    if(loading)
+    {
+        if(finalList.length > 0 && finalLcm > 0 && totalAmount >= 0)
+        {
+            console.log("Final List:", finalList);
+            setLoading(false);
+        }
+        return (
+            <LinearGradient
+                colors={['#0F172A', '#334155']}
+                className="flex-1 items-center justify-center"
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+            >
+                <Text className="text-white text-2xl font-bold">Loading...</Text>
+            </LinearGradient>
+        );
+    }
 
   
     return (
@@ -1117,11 +1144,14 @@ useEffect(() => {
                 </View>
                 
                 <View className="bg-white/10 rounded-lg p-3">
+                    <Text className="text-blue-200 text-base text-center mt-1">
+                        Fraction: <Text className="text-white font-medium">{item.Fraction}</Text>
+                    </Text>
                     <Text className="text-blue-100 text-lg font-semibold text-center">
                         Share: <Text className="text-white font-bold">{item.share}</Text>
                     </Text>
                     <Text className="text-blue-200 text-base text-center mt-1">
-                        Fraction: <Text className="text-white font-medium">{item.Fraction}</Text>
+                        Money: <Text className="text-white font-medium">{(totalAmount * item.share) / finalLcm}</Text>
                     </Text>
                 </View>
                 </View>
