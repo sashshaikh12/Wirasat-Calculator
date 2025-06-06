@@ -6,7 +6,6 @@ import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 export default function GetShares() {
   const params = useLocalSearchParams();
   
-  console.log('Params:', params);
   
 
   let shares = new Map(); // Map<string, [number, number]>
@@ -22,6 +21,10 @@ export default function GetShares() {
   const [finalList, setFinalList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [finalLcm, setFinalLcm] = useState(0);
+  const [firstLcm, setFirstLcm] = useState(0);
+  const [Aul, setAul] = useState(0);
+  const [RaddValue ,setRadd] = useState(0);
+  const [TasheehValue, setTasheeh] = useState(0);
   const [loading, setLoading] = useState(true);
 
 
@@ -317,6 +320,7 @@ function solve() {
 
     let lcm_value = arr.length > 0 ? lcmMany(arr) : 1;
     remaining = lcm_value;
+    setFirstLcm(lcm_value);
 
 
     // Calculate actual shares
@@ -415,24 +419,29 @@ function solve() {
         const sum = lcm_value - remaining;
         lcm_value = sum;
         remaining = 0;
+        setAul(lcm_value);
     }
 
     if (shares_collective.has(JSON.stringify(["beti", "beta"]))) {
         sharesActual_collective.set(JSON.stringify(["beti", "beta"]), remaining);
         main_asaba = "";
         asaba_present.splice(asaba_present.indexOf("beta"), 1);
+        if(shares.has("beta")) shares.delete("beta");
     } else if (shares_collective.has(JSON.stringify(["poti", "pota"]))) {
         sharesActual_collective.set(JSON.stringify(["poti", "pota"]), remaining);
         main_asaba = "";
         asaba_present.splice(asaba_present.indexOf("pota"), 1);
+        if(shares.has("pota")) shares.delete("pota");
     } else if (shares_collective.has(JSON.stringify(["haqeeqibehen", "haqeeqibhai"]))) {
         sharesActual_collective.set(JSON.stringify(["haqeeqibehen", "haqeeqibhai"]), remaining);
         main_asaba = "";
         asaba_present.splice(asaba_present.indexOf("haqeeqibhai"), 1);
+        if(shares.has("haqeeqibhai")) shares.delete("haqeeqibhai");
     } else if (shares_collective.has(JSON.stringify(["allatibehen", "allatibhai"]))) {
         sharesActual_collective.set(JSON.stringify(["allatibehen", "allatibhai"]), remaining);
         main_asaba = "";
         asaba_present.splice(asaba_present.indexOf("allatibhai"), 1);
+        if(shares.has("allatibhai")) shares.delete("allatibhai");
     } else if (shares.has("haqeeqibehen")) {
         if (shares.get("haqeeqibehen")[0] === -1 && shares.get("haqeeqibehen")[1] === -1) {
             asaba_present.push("haqeeqibehen");
@@ -964,8 +973,10 @@ function Radd() {
     }
 }
 
-function printFractions() {
+function getFractions() {
   console.log("Shares distribution in fractions:");
+  console.log("sharesmap:", shares);
+  console.log("shares_collectiveMAp:", shares_collective);
   for (const [key, value] of shares.entries()) {
     let output = `${key}: `;
     if (value[0] === -1 && value[1] === -1) {
@@ -973,7 +984,7 @@ function printFractions() {
       setFinalList(prevList => [...prevList, { name: key, Fraction: "Asaba"}]);
     } else if (value[0] === 0 && value[1] === 0) {
       output += "M";
-      setFinalList(prevList => [...prevList, { name: key, Fraction: "Marhoom" }]);
+      setFinalList(prevList => [...prevList, { name: key, Fraction: "Mahroom" }]);
     } else {
       output += `${value[0]}/${value[1]}`;
         setFinalList(prevList => [...prevList, { name: key, Fraction: `${value[0]}/${value[1]}` }]);
@@ -989,7 +1000,7 @@ function printFractions() {
         if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Asaba" }]);
     } else if (value[0] === 0 && value[1] === 0) {
       output += "M";
-        setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: "Marhoom" }]);
+        setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: "Mahroom" }]);
         if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Marhoom" }]);
     } else {
       output += `${value[0]}/${value[1]}`;
@@ -1002,6 +1013,7 @@ function printFractions() {
 
 function Final()
 {
+    console.log(sharesActual);
     setFinalList(prevList => {
         return prevList.map(item => {
             if (sharesActual.has(item.name)) {
@@ -1019,6 +1031,7 @@ function Final()
 }
 
 function FinalCollective() {
+    console.log(sharesActual_collective);
     setFinalList(prevList => {
         return prevList.map(item => {
             for (const [key, value] of sharesActual_collective.entries()) {
@@ -1044,6 +1057,9 @@ function FinalCollective() {
 }
 
 useEffect(() => {
+
+    let raddDone = false;
+    let tasheehDone = false;
     
     for (const [key, value] of Object.entries(params)) 
     {
@@ -1062,13 +1078,23 @@ useEffect(() => {
 
     solve();
 
-    printFractions();
+    getFractions();
 
 
-    if(isRaddNeeded()) Radd();
+    if(isRaddNeeded()) 
+    {
+        Radd();
+        raddDone = true;
+        setRadd(Lcm);
+    }
 
     
-    if(isTasheehNeeded()) Tasheeh();
+    if(isTasheehNeeded()) 
+    {
+        Tasheeh();
+        tasheehDone = true;
+        setTasheeh(Lcm);
+    }
 
     printShares();
 
@@ -1083,6 +1109,7 @@ useEffect(() => {
     FinalCollective();
 
     console.log("lcm = ", Lcm);
+    
     setFinalLcm(Lcm);
 
     console.log("--------------------------------------End--------------------------------------");
@@ -1120,13 +1147,20 @@ useEffect(() => {
         <SafeAreaView className="flex-1">
         <ScrollView className="flex-1 px-4">
             <View className="py-6 mb-4">
-                <Text className="text-white text-4xl font-extrabold text-center mb-2">
+                <Text className="text-white text-4xl font-semibold text-center mb-2 mt-4" >
                     Share Distribution
                 </Text>
                 <View className="h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-8" />
             </View>
             
             <View className="flex-1 p-2 flex-wrap flex-row justify-between">
+                <View className='flex-1 flex-col items-start'>
+                    <Text className='text-white text-lg font-bold text-left mb-4 mt-4'>Makhraj = {firstLcm}</Text>
+                    {Aul > 0 && <Text className='text-white text-lg font-bold text-left mb-4'>Aul = {Aul}</Text>}
+                    {RaddValue > 0 && <Text className='text-white text-lg font-bold text-left mb-4'>Radd = {RaddValue}</Text>}
+                    {TasheehValue > 0 && <Text className='text-white text-lg font-bold text-left mb-4'>Tasheeh = {TasheehValue}</Text>}
+                </View>
+                
             {finalList.map((item, index) => (
                 <View
                 key={index}
@@ -1137,7 +1171,7 @@ useEffect(() => {
                 }}
                 >
                 <View className="mb-3">
-                    <Text className="text-white text-2xl font-black text-center tracking-tight">
+                    <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
                         {item.name}
                     </Text>
                     <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />

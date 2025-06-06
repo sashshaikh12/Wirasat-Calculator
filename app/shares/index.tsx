@@ -151,12 +151,12 @@ export default function Shares() {
                 familyData[person] = Number(personStateMap[person].value);
               });
 
-              router.push({
+              router.replace({
                 pathname: 'shares/getShares',
                 params: {
                   totalAmount,
                   ...familyData
-                }
+                },
               });
             }}
           >
