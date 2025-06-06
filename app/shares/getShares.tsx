@@ -617,82 +617,82 @@ function getSingleShares() {
     }
 }
 
-function getCollectiveShares() {
-    for (const [key, value] of sharesActual_collective.entries()) {
+// function getCollectiveShares() {
+//     for (const [key, value] of sharesActual_collective.entries()) {
         
-        if ((key) === JSON.stringify(["akhyafibhai", "akhyafibehen"])) {
-            const sum = personCount.get("akhyafibhai") + personCount.get("akhyafibehen");
-            console.log(`akhyafibhai: ${value / sum} shares`);
-            console.log(`akhyafibehen: ${value / sum} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["akhyafibhai"])) {
-            console.log(`akhyafibhai: ${value / personCount.get("akhyafibhai")} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["akhyafibehen"])) {
-            console.log(`akhyafibehen: ${value / personCount.get("akhyafibehen")} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["beti", "beta"])) {
-            const sum = personCount.get("beti") + 2 * personCount.get("beta");
-            const numBeta = 2 * value;
-            const numBeti = value;
-            console.log(`beti: ${numBeti / sum} shares`);
-            console.log(`beta: ${numBeta / sum} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["nani", "dadi"])) {
-            const sum = personCount.get("nani") + personCount.get("dadi");
-            console.log(`nani: ${value / sum} shares`);
-            console.log(`dadi: ${value / sum} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["nani"])) {
-            console.log(`nani: ${value / personCount.get("nani")} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["dadi"])) {
-            console.log(`dadi: ${value / personCount.get("dadi")} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["haqeeqibehen", "haqeeqibhai"])) {
-            const sum = personCount.get("haqeeqibehen") + 2 * personCount.get("haqeeqibhai");
-            const numBhai = 2 * value;
-            const numBehen = value;
-            console.log(`haqeeqibehen: ${numBehen / sum} shares`);
-            console.log(`haqeeqibhai: ${numBhai / sum} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["allatibehen", "allatibhai"])) {
-            const sum = personCount.get("allatibehen") + 2 * personCount.get("allatibhai");
-            const numBhai = 2 * value;
-            const numBehen = value;
-            console.log(`allatibehen: ${numBehen / sum} shares`);
-            console.log(`allatibhai: ${numBhai / sum} shares`);
-            continue;
-        }
-        if ((key) === JSON.stringify(["poti", "pota"])) {
-            const sum = personCount.get("poti") + 2 * personCount.get("pota");
-            const numPota = 2 * value;
-            const numPoti = value;
-            console.log(`poti: ${numPoti / sum} shares`);
-            console.log(`pota: ${numPota / sum} shares`);
-            continue;
-        }
-    }
-}
+//         if ((key) === JSON.stringify(["akhyafibhai", "akhyafibehen"])) {
+//             const sum = personCount.get("akhyafibhai") + personCount.get("akhyafibehen");
+//             console.log(`akhyafibhai: ${value / sum} shares`);
+//             console.log(`akhyafibehen: ${value / sum} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["akhyafibhai"])) {
+//             console.log(`akhyafibhai: ${value / personCount.get("akhyafibhai")} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["akhyafibehen"])) {
+//             console.log(`akhyafibehen: ${value / personCount.get("akhyafibehen")} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["beti", "beta"])) {
+//             const sum = personCount.get("beti") + 2 * personCount.get("beta");
+//             const numBeta = 2 * value;
+//             const numBeti = value;
+//             console.log(`beti: ${numBeti / sum} shares`);
+//             console.log(`beta: ${numBeta / sum} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["nani", "dadi"])) {
+//             const sum = personCount.get("nani") + personCount.get("dadi");
+//             console.log(`nani: ${value / sum} shares`);
+//             console.log(`dadi: ${value / sum} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["nani"])) {
+//             console.log(`nani: ${value / personCount.get("nani")} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["dadi"])) {
+//             console.log(`dadi: ${value / personCount.get("dadi")} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["haqeeqibehen", "haqeeqibhai"])) {
+//             const sum = personCount.get("haqeeqibehen") + 2 * personCount.get("haqeeqibhai");
+//             const numBhai = 2 * value;
+//             const numBehen = value;
+//             console.log(`haqeeqibehen: ${numBehen / sum} shares`);
+//             console.log(`haqeeqibhai: ${numBhai / sum} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["allatibehen", "allatibhai"])) {
+//             const sum = personCount.get("allatibehen") + 2 * personCount.get("allatibhai");
+//             const numBhai = 2 * value;
+//             const numBehen = value;
+//             console.log(`allatibehen: ${numBehen / sum} shares`);
+//             console.log(`allatibhai: ${numBhai / sum} shares`);
+//             continue;
+//         }
+//         if ((key) === JSON.stringify(["poti", "pota"])) {
+//             const sum = personCount.get("poti") + 2 * personCount.get("pota");
+//             const numPota = 2 * value;
+//             const numPoti = value;
+//             console.log(`poti: ${numPoti / sum} shares`);
+//             console.log(`pota: ${numPota / sum} shares`);
+//             continue;
+//         }
+//     }
+// }
 
-function printShares() {
-    console.log("Shares distribution:");
-    for (const [key, value] of sharesActual.entries()) {
-        console.log(`${key}: ${value}`);
-    }
-    for (const [key, value] of sharesActual_collective.entries()) {
-        const parsedKey = JSON.parse(key); // Convert stringified key back to an array
-        console.log(`${parsedKey.join(" ")}: ${value}`);
-    }
-}
+// function printShares() {
+//     console.log("Shares distribution:");
+//     for (const [key, value] of sharesActual.entries()) {
+//         console.log(`${key}: ${value}`);
+//     }
+//     for (const [key, value] of sharesActual_collective.entries()) {
+//         const parsedKey = JSON.parse(key); // Convert stringified key back to an array
+//         console.log(`${parsedKey.join(" ")}: ${value}`);
+//     }
+// }
 
 function isOneZawilFurooz() {
     person.sort(); // Sort the person array
@@ -974,9 +974,7 @@ function Radd() {
 }
 
 function getFractions() {
-  console.log("Shares distribution in fractions:");
-  console.log("sharesmap:", shares);
-  console.log("shares_collectiveMAp:", shares_collective);
+  
   for (const [key, value] of shares.entries()) {
     let output = `${key}: `;
     if (value[0] === -1 && value[1] === -1) {
@@ -989,7 +987,7 @@ function getFractions() {
       output += `${value[0]}/${value[1]}`;
         setFinalList(prevList => [...prevList, { name: key, Fraction: `${value[0]}/${value[1]}` }]);
     }
-    console.log(output);
+    //console.log(output);
   }
   for (const [key, value] of shares_collective.entries()) {
     let parsedKey = JSON.parse(key);
@@ -1007,13 +1005,13 @@ function getFractions() {
         setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: `${value[0]}/${value[1]}` }]);
         if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: `${value[0]}/${value[1]}` }]);
     }
-    console.log(output);
+    //console.log(output);
   }
 }
 
 function Final()
 {
-    console.log(sharesActual);
+    
     setFinalList(prevList => {
         return prevList.map(item => {
             if (sharesActual.has(item.name)) {
@@ -1031,7 +1029,7 @@ function Final()
 }
 
 function FinalCollective() {
-    console.log(sharesActual_collective);
+    
     setFinalList(prevList => {
         return prevList.map(item => {
             for (const [key, value] of sharesActual_collective.entries()) {
@@ -1096,13 +1094,13 @@ useEffect(() => {
         setTasheeh(Lcm);
     }
 
-    printShares();
+    //printShares();
 
     console.log("per person distribution:");
 
-    getSingleShares();
+    //getSingleShares();
 
-    getCollectiveShares();
+    //getCollectiveShares();
 
     Final();
 
@@ -1153,18 +1151,18 @@ useEffect(() => {
                 <View className="h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-8" />
             </View>
             
-            <View className="flex-1 p-2 flex-wrap flex-row justify-between">
-                <View className='flex-1 flex-col items-start'>
-                    <Text className='text-white text-lg font-bold text-left mb-4 mt-4'>Makhraj = {firstLcm}</Text>
-                    {Aul > 0 && <Text className='text-white text-lg font-bold text-left mb-4'>Aul = {Aul}</Text>}
-                    {RaddValue > 0 && <Text className='text-white text-lg font-bold text-left mb-4'>Radd = {RaddValue}</Text>}
-                    {TasheehValue > 0 && <Text className='text-white text-lg font-bold text-left mb-4'>Tasheeh = {TasheehValue}</Text>}
+            <View className="flex-1 p-2  flex-col justify-between items-center">
+                <View className='flex-1 items-start w-full mb-4'>
+                    <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>Makhraj = {firstLcm}</Text>
+                    {Aul > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Aul = {Aul}</Text>}
+                    {RaddValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Radd = {RaddValue}</Text>}
+                    {TasheehValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Tasheeh = {TasheehValue}</Text>}
                 </View>
                 
             {finalList.map((item, index) => (
                 <View
                 key={index}
-                className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full sm:w-[48%] md:w-[48%] lg:w-[32%] xl:w-[23%]"
+                className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full"
                 style={{
                     elevation: 8,
                     shadowColor: '#3b82f6'
