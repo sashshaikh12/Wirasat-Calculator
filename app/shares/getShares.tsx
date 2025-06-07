@@ -1152,7 +1152,7 @@ useEffect(() => {
             </View>
             
             <View className="flex-1 p-2  flex-col justify-between items-center">
-                <View className='flex-1 items-start w-full mb-4'>
+                <View className="flex-1 w-full mb-6 bg-gray-800/90 rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm">
                     <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>Makhraj = {firstLcm}</Text>
                     {Aul > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Aul = {Aul}</Text>}
                     {RaddValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Radd = {RaddValue}</Text>}
