@@ -1,6 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { useState } from 'react';
+import { MaterialIcons } from '@expo/vector-icons';
 import {
   SafeAreaView,
   ScrollView,
@@ -78,24 +79,38 @@ export default function Shares() {
             Calculate according to Sharia law
           </Text>
 
-          {/* Total Amount Section */}
-          <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg">
-            <Text className="text-white text-lg font-semibold mb-3">
-              Total Estate Amount
+          {/* Gender Section */}
+          <View className="mb-8 px-4 mt-10">
+            <Text className="text-white text-2xl font-bold mb-6 text-center">
+              Gender Of The Deceased
             </Text>
-            <TextInput
-              className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
-                text-white text-lg shadow-sm"
-              placeholder="0"
-              placeholderTextColor="#94a3b8" 
-              value={totalAmount}
-              onChangeText={setTotalAmount}
-              keyboardType="numeric"
-            />
+            
+            <View className="flex-row justify-center space-x-4 md:space-x-6">
+              {/* Male Button */}
+              <TouchableOpacity 
+                className="bg-blue-600/80 rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md active:bg-blue-700"
+              >
+                <MaterialIcons name="male" size={20} color="white" />
+                <Text className="text-white text-lg font-semibold">
+                  Male
+                </Text>
+              </TouchableOpacity>
+              
+              {/* Female Button */}
+              <TouchableOpacity 
+                className="bg-pink-600/80 rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md active:bg-pink-700"
+              >
+                <MaterialIcons name="female" size={20} color="white" />
+                <Text className="text-white text-lg font-semibold">
+                  Female
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
+          
 
           {/* Family Members Section */}
-          <View className="mb-8">
+          <View className="mb-8 mt-10">
             <Text className="text-white text-2xl font-bold mb-6 text-center">
               Family Members
             </Text>
