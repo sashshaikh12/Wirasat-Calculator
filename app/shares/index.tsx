@@ -34,7 +34,8 @@ export default function Shares() {
   const [haqeeqibhateeja, setHaqeeqibhateeja] = useState(0);
   const [allatibhateeja, setAllatibhateeja] = useState(0);  
   const [chacha, setChacha] = useState(0);
-  const [chachaKeBeta, setChachaKeBeta] = useState(0);
+  const [isMale, setisMale] = useState(true);
+  const [isFemale, setisFemale] = useState(false);
 
   // Create a mapping of person to their state setter
   const personStateMap = {
@@ -61,6 +62,48 @@ export default function Shares() {
     'chacha': { value: chacha, setter: setChacha }
   };
 
+  const maleList = ['baap',
+                'dada',
+                'akhyafibhai',
+                'akhyafibehen',
+                'allatibehen',
+                'poti',
+                'dadi',
+                'nani',
+                'haqeeqibehen',
+                'maa',
+                'beti',
+                'biwi',
+                'beta',
+                'pota',
+                'padpota',
+                'haqeeqibhai',
+                'allatibhai',
+                'haqeeqibhateeja',
+                'allatibhateeja',
+                'chacha',]
+  
+  const femaleList = ['baap',
+                'dada',
+                'shohar',
+                'akhyafibhai',
+                'akhyafibehen',
+                'allatibehen',
+                'poti',
+                'dadi',
+                'nani',
+                'haqeeqibehen',
+                'maa',
+                'beti',
+                'beta',
+                'pota',
+                'padpota',
+                'haqeeqibhai',
+                'allatibhai',
+                'haqeeqibhateeja',
+                'allatibhateeja',
+                'chacha',]
+
 
   return (
   <LinearGradient 
@@ -81,27 +124,41 @@ export default function Shares() {
 
           {/* Gender Section */}
           <View className="mb-8 px-4 mt-10">
-            <Text className="text-white text-2xl font-bold mb-6 text-center">
+            <Text className="text-white text-2xl font-bold mb-8 text-center">
               Gender Of The Deceased
             </Text>
             
-            <View className="flex-row justify-center space-x-4 md:space-x-6">
+            <View className="flex-row justify-between space-x-4 md:space-x-6">
               {/* Male Button */}
               <TouchableOpacity 
-                className="bg-blue-600/80 rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md active:bg-blue-700"
+                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md ${
+                  isMale ? 'bg-blue-400/50' : 'bg-blue-600/80 active:bg-blue-700'
+                }`}
+                onPress={() => {
+                  setisMale(true);
+                  setisFemale(false);
+                }}
+                disabled={isMale}
               >
-                <MaterialIcons name="male" size={20} color="white" />
-                <Text className="text-white text-lg font-semibold">
+                <MaterialIcons name="male" size={20} color={isMale ? "#d1d5db" : "white"} />
+                <Text className={`text-lg font-semibold ${isMale ? 'text-gray-400' : 'text-white'}`}>
                   Male
                 </Text>
               </TouchableOpacity>
               
               {/* Female Button */}
               <TouchableOpacity 
-                className="bg-pink-600/80 rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md active:bg-pink-700"
+                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md ${
+                  isFemale ? 'bg-pink-400/50' : 'bg-pink-600/80 active:bg-pink-700'
+                }`}
+                onPress={() => {
+                  setisMale(false);
+                  setisFemale(true);
+                }}
+                disabled={isFemale}
               >
-                <MaterialIcons name="female" size={20} color="white" />
-                <Text className="text-white text-lg font-semibold">
+                <MaterialIcons name="female" size={20} color={isFemale ? "#d1d5db" : "white"} />
+                <Text className={`text-lg font-semibold ${isFemale ? 'text-gray-400' : 'text-white'}`}>
                   Female
                 </Text>
               </TouchableOpacity>
@@ -115,29 +172,7 @@ export default function Shares() {
               Family Members
             </Text>
             <View className="space-y-5">
-              {[
-                'baap',
-                'dada',
-                'shohar',
-                'akhyafibhai',
-                'akhyafibehen',
-                'allatibehen',
-                'poti',
-                'dadi',
-                'nani',
-                'haqeeqibehen',
-                'maa',
-                'beti',
-                'biwi',
-                'beta',
-                'pota',
-                'padpota',
-                'haqeeqibhai',
-                'allatibhai',
-                'haqeeqibhateeja',
-                'allatibhateeja',
-                'chacha',
-              ].map((person) => (
+              {(isMale ? maleList : femaleList).map((person) => (
                 <View key={person} className="bg-slate-800/40 rounded-xl p-4 shadow">
                   <Text className="text-white text-lg font-medium mb-3 capitalize">
                     {person}
