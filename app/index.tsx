@@ -58,7 +58,7 @@ export default function Index() {
           </View>
 
           {/* Menu Buttons */}
-          <MenuButton title="Shares And Money Distribution" iconName="divide-square" onPress={() => router.push('shares')} />
+          <MenuButton title="Shares And Money Distribution" iconName="divide-square" onPress={() => router.push('shares/landing')} />
           <MenuButton title="Rules" iconName="book" />
           <MenuButton title="Munaskha" iconName="file-text" />
           <MenuButton title="Learning" iconName="book-open" />

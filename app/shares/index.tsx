@@ -103,6 +103,7 @@ export default function Shares() {
                 'haqeeqibhateeja',
                 'allatibhateeja',
                 'chacha',]
+                
 
 
   return (
