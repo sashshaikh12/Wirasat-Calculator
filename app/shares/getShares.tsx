@@ -1007,6 +1007,69 @@ function getFractions() {
     }
     //console.log(output);
   }
+
+    if (
+        Exists("baap") &&
+        !Exists("beta") &&
+        !Exists("pota") &&
+        !Exists("padpota") &&
+        (Exists("beti") || Exists("poti") || Exists("padpoti"))
+    ) {
+    setFinalList(prevList =>
+        prevList.map(item =>
+        item.name === "baap"
+            ? { ...item, Fraction: "1/6 + Asaba" } // Update the fraction for "baap"
+            : item // Keep other items unchanged
+        )
+    );
+    }
+    
+    if (
+        Exists("dada") &&
+        !Exists("baap") &&
+        !Exists("beta") &&
+        !Exists("pota") &&
+        !Exists("padpota") &&
+        (Exists("beti") || Exists("poti") || Exists("padpoti"))
+    ) {
+    setFinalList(prevList =>
+        prevList.map(item =>
+        item.name === "dada"
+            ? { ...item, Fraction: "1/6 + Asaba" } // Update the fraction for "baap"
+            : item // Keep other items unchanged
+        )
+    );
+    }
+
+    if (
+        (Exists("shohar") || Exists("biwi")) &&
+        Exists("baap") &&
+        Exists("maa") &&
+        !(
+            Exists("beta") ||
+            Exists("pota") ||
+            Exists("padpota") ||
+            Exists("beti") ||
+            Exists("poti") ||
+            Exists("padpoti") ||
+            ((personCount.has("haqeeqibhai") ? personCount.get("haqeeqibhai") : 0) +
+            (personCount.has("allatibhai") ? personCount.get("allatibhai") : 0) +
+            (personCount.has("akhyafibhai") ? personCount.get("akhyafibhai") : 0) +
+            (personCount.has("haqeeqibehen") ? personCount.get("haqeeqibehen") : 0) +
+            (personCount.has("allatibehen") ? personCount.get("allatibehen") : 0) +
+            (personCount.has("akhyafibehen") ? personCount.get("akhyafibehen") : 0)) >= 2
+        )
+    )
+    {
+        setFinalList(prevList =>
+            prevList.map(item =>
+            item.name === "maa"
+                ? { ...item, Fraction: "Sulus Maa Baqiyah" } // Update the fraction for "baap"
+                : item // Keep other items unchanged
+            )
+        );
+    }
+
 }
 
 function Final()
