@@ -1,17 +1,32 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
   Text,
   TextInput,
-  View,
   TouchableOpacity,
+  View,
 } from 'react-native';
-import { router } from 'expo-router';
 
 export default function Shares() {
-const [totalAmount, setTotalAmount] = useState('0');
+const [totalAmount, setTotalAmount] = useState(0);
+const [tajheez, setTajheez] = useState(0);
+const [qarza, setQarza] = useState(0);
+const [wasiyat, setWasiyat] = useState(0);
+
+function HandleData(){
+  const remainingAmount = totalAmount - (tajheez + qarza + Math.min(wasiyat, totalAmount / 3));
+  if(remainingAmount <= 0)
+  {
+    router.push('shares/message');
+  }
+  else 
+  {
+    router.push('shares')
+  }
+};
 
 
   return (
@@ -54,8 +69,8 @@ const [totalAmount, setTotalAmount] = useState('0');
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
-              value={totalAmount}
-              onChangeText={setTotalAmount}
+              value={tajheez}
+              onChangeText={setTajheez}
               keyboardType="numeric"
             />
 
@@ -67,8 +82,8 @@ const [totalAmount, setTotalAmount] = useState('0');
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
-              value={totalAmount}
-              onChangeText={setTotalAmount}
+              value={qarza}
+              onChangeText={setQarza}
               keyboardType="numeric"
             />
 
@@ -80,8 +95,8 @@ const [totalAmount, setTotalAmount] = useState('0');
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
-              value={totalAmount}
-              onChangeText={setTotalAmount}
+              value={wasiyat}
+              onChangeText={setWasiyat}
               keyboardType="numeric"
             />
           </View>
@@ -89,15 +104,11 @@ const [totalAmount, setTotalAmount] = useState('0');
                       className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl mb-16"
                       activeOpacity={0.8}
                       onPress={() => {
-      
-          
-                        router.replace({
-                          pathname: 'shares',
-                        });
+                        HandleData();
                       }}
                     >
-                      <Text className="text-white text-center font-semibold text-lg">
-                        Calculate Shares
+                      <Text className="text-white text-center font-semibold text-xl">
+                        Tarkha
                       </Text>
                     </TouchableOpacity>
         </View>

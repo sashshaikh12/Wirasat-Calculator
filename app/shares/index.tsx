@@ -1,7 +1,7 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
 import {
   SafeAreaView,
   ScrollView,
@@ -202,7 +202,7 @@ export default function Shares() {
                 familyData[person] = Number(personStateMap[person].value);
               });
 
-              router.replace({
+              router.push({
                 pathname: 'shares/getShares',
                 params: {
                   totalAmount,
