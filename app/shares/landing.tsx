@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 
-export default function Shares() {
+export default function landing() {
 const [totalAmount, setTotalAmount] = useState(0);
 const [tajheez, setTajheez] = useState(0);
 const [qarza, setQarza] = useState(0);

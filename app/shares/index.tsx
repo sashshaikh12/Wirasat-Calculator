@@ -183,7 +183,7 @@ export default function Shares() {
             <View className="space-y-5">
               {(isMale ? maleList : femaleList).map((person) => (
                 <View key={person} className="bg-slate-800/40 rounded-xl p-4 shadow">
-                  <Text className="text-white text-lg font-medium mb-3 capitalize">
+                  <Text className="text-white text-lg font-medium mb-3">
                     {person}
                   </Text>
                   <TextInput

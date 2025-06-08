@@ -19,6 +19,9 @@ export default function RootLayout() {
       <Stack.Screen name = "shares/message" options={
         {title: "Shares"}
       } /> 
+      <Stack.Screen name = "munaskha/index" options={
+        {title: "munaskha"}
+      } /> 
     </Stack>
   );
 }

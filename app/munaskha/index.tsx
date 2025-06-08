@@ -1,14 +1,23 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { useState, useEffect } from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
-export default function GetShares() {
-  const params = useLocalSearchParams();
-  
-  
 
-  let shares = new Map(); // Map<string, [number, number]>
+export default function munaskha() {
+
+
+let dead = new Map(); // Map<number, Array<number>>
+let batans = []; // Array<Array<{ name: string, value: number }>>
+let batanShares = new Map();
+ let shares = new Map(); // Map<string, [number, number]>
   let shares_collective = new Map(); // Map<Array<string>, [number, number]>
   let personCount = new Map(); // Map<string, number>
   let sharesActual = new Map(); // Map<string, number>
@@ -16,7 +25,7 @@ export default function GetShares() {
   let person = []; // Array<string>
   let notasaba = ["baap", "dada", "shohar", "akhyafibhai", "akhyafibehen", "allatibehen", "poti", "dadi", "nani", "haqeeqibehen", "maa", "beti", "biwi"];
   let asaba = ["beta", "pota", "padpota", "baap", "dada", "paddada", "haqeeqibhai", "allatibhai", "haqeeqibhateeja", "allatibhateeja", "chacha"];
-  let Lcm, remaining, sec_Lcm, Lcm_leftOver; 
+  let Lcm, remaining, sec_Lcm, Lcm_leftOver, topLcm, prev_index, prev_level; 
 
   const [finalList, setFinalList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -26,6 +35,7 @@ export default function GetShares() {
   const [RaddValue ,setRadd] = useState(0);
   const [TasheehValue, setTasheeh] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [num_batans, setNumBatans] = useState(0);
 
 
   
@@ -284,7 +294,7 @@ function AllatiBehenShares() {
     }
 }
 
-function solve(calledByRadd = false) {
+function solve() {
     // Process each person
     for (let i = 0; i < person.length; i++) {
         const s = person[i];
@@ -320,7 +330,7 @@ function solve(calledByRadd = false) {
 
     let lcm_value = arr.length > 0 ? lcmMany(arr) : 1;
     remaining = lcm_value;
-    if(!calledByRadd) setFirstLcm(lcm_value);
+    setFirstLcm(lcm_value);
 
 
     // Calculate actual shares
@@ -766,7 +776,7 @@ function Radd() {
             sharesActual.clear();
             sharesActual_collective.clear();
             personCount.delete("shohar");
-            solve(true);
+            solve();
             personCount.set("shohar", shoharCount);
 
             let sum = 0;
@@ -857,7 +867,7 @@ function Radd() {
             sharesActual.clear();
             sharesActual_collective.clear();
             personCount.delete("biwi");
-            solve(true);
+            solve();
             personCount.set("biwi", biwiCount);
 
             let sum = 0;
@@ -1026,128 +1036,110 @@ function FinalCollective() {
     });
 }
 
-useEffect(() => {
+// useEffect(() => {
 
     
-    for (const [key, value] of Object.entries(params)) 
-    {
-      if(value !== "0" && key !== "totalAmount") 
-      {
-        person.push(key);
-        personCount.set(key, Number(value));
-      }
-      else if( key === "totalAmount")
-      {
-        setTotalAmount(Number(value));
-      }
-    }
+//     for (const [key, value] of Object.entries(params)) 
+//     {
+//       if(value !== "0" && key !== "totalAmount") 
+//       {
+//         person.push(key);
+//         personCount.set(key, Number(value));
+//       }
+//     }
 
+//     solve();
+
+//     getFractions();
+
+
+//     if(isRaddNeeded()) 
+//     {
+//         Radd();
+//         setRadd(Lcm);
+//     }
+
+    
+//     if(isTasheehNeeded()) 
+//     {
+//         Tasheeh();
+//         setTasheeh(Lcm);
+//     }
+
+//     Final();
+
+//     FinalCollective();
+
+//     setFinalLcm(Lcm);
+
+    
+//   }, []);
+
+function solveBatan()
+{
     solve();
-
-    getFractions();
-
-
-    if(isRaddNeeded()) 
-    {
-        Radd();
-        setRadd(Lcm);
-    }
-
-    
-    if(isTasheehNeeded()) 
-    {
-        Tasheeh();
-        setTasheeh(Lcm);
-    }
-
-   
-
+    if(isRaddNeeded()) Radd();
+    if(isTasheehNeeded()) Tasheeh();
     Final();
-
     FinalCollective();
-
-    setFinalLcm(Lcm);
-
-    
-  }, []);
+}
 
 
-    if(loading)
-    {
-        if(finalList.length > 0 && finalLcm > 0 && totalAmount >= 0)
-        {
-            console.log("Final List:", finalList);
-            setLoading(false);
+function getMaff(index, level) {
+    let maff = 0;
+    for (let i = level; i < batans.length; ++i) {
+        const n = batans[i].length;
+        if (index < n) {
+            maff += batans[i][index].value;
         }
-        return (
-            <LinearGradient
-                colors={['#0F172A', '#334155']}
-                className="flex-1 items-center justify-center"
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-            >
-                <Text className="text-white text-2xl font-bold">Loading...</Text>
-            </LinearGradient>
-        );
     }
+    return maff;
+}
 
-  
-    return (
-    <LinearGradient
-        colors={['#0F172A', '#334155']}
-        className="flex-1"
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-    >
-        <SafeAreaView className="flex-1">
-        <ScrollView className="flex-1 px-4">
-            <View className="py-6 mb-4">
-                <Text className="text-white text-4xl font-semibold text-center mb-2 mt-4" >
-                    Share Distribution
+
+  return (
+  <LinearGradient 
+    colors={['#0F172A', '#1E293B', '#334155']} 
+    className="flex-1"
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 1 }}
+  >
+    <SafeAreaView className="flex-1">
+      <ScrollView className="flex-1 p-6"  >
+
+      <View className="mt-4 mb-8">
+          <Text className="text-white text-3xl font-bold mb-2 text-center">
+            Islamic Inheritance Shares
+          </Text>
+          <Text className="text-slate-300 text-center mb-16">
+            Calculate according to Sharia law
+          </Text>
+
+          <Text className='text-white text-lg font-medium mb-3'>Enter the Number of Batans:</Text>
+          <TextInput
+                    className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 
+                      text-white"
+                    placeholder="0"
+                    placeholderTextColor="#94a3b8" 
+                    value={num_batans}
+                    onChangeText={setNumBatans}
+                    keyboardType="numeric"
+                  />
+
+            {Array.from({ length: num_batans }).map((_, i) => (
+                <View key={i} className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg">
+                <Text className="text-white text-lg font-medium mb-3">
+                    Enter the people in Batan {i + 1}:
                 </Text>
-                <View className="h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-8" />
-            </View>
-            
-            <View className="flex-1 p-2  flex-col justify-between items-center">
-                <View className="flex-1 w-full mb-6 bg-gray-800/90 rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm">
-                    <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>Makhraj = {firstLcm}</Text>
-                    {Aul > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Aul = {Aul}</Text>}
-                    {RaddValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Radd = {RaddValue}</Text>}
-                    {TasheehValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Tasheeh = {TasheehValue}</Text>}
-                </View>
                 
-            {finalList.map((item, index) => (
-                <View
-                key={index}
-                className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full"
-                style={{
-                    elevation: 8,
-                    shadowColor: '#3b82f6'
-                }}
-                >
-                <View className="mb-3">
-                    <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
-                        {item.name}
-                    </Text>
-                    <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
-                </View>
-                
-                <View className="bg-white/10 rounded-lg p-3">
-                    <Text className="text-blue-200 text-base text-center mt-1">
-                        Fraction: <Text className="text-white font-medium">{item.Fraction}</Text>
-                    </Text>
-                    <Text className="text-blue-100 text-lg font-semibold text-center">
-                        Share: <Text className="text-white font-bold">{item.share}</Text>
-                    </Text>
-                    <Text className="text-blue-200 text-base text-center mt-1">
-                        Money: <Text className="text-white font-medium">{(totalAmount * item.share) / finalLcm}</Text>
-                    </Text>
-                </View>
                 </View>
             ))}
-            </View>
-        </ScrollView>
-        </SafeAreaView>
-    </LinearGradient>
+
+        </View>
+
+
+      </ScrollView>
+    </SafeAreaView>
+  </LinearGradient>
 );
 }
