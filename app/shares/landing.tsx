@@ -17,14 +17,20 @@ const [qarza, setQarza] = useState(0);
 const [wasiyat, setWasiyat] = useState(0);
 
 function HandleData(){
-  const remainingAmount = totalAmount - (tajheez + qarza + Math.min(wasiyat, totalAmount / 3));
+  const remainingAmount = Number(totalAmount) - (Number(tajheez) + Number(qarza) + Math.min(Number(wasiyat), Number(totalAmount) / 3));
+
   if(remainingAmount <= 0)
   {
     router.push('shares/message');
   }
   else 
   {
-    router.push('shares')
+    router.push({
+      pathname: 'shares',
+      params: {
+        remainingAmount,
+      },
+    });
   }
 };
 
