@@ -609,90 +609,6 @@ function Tasheeh() {
     }
 }
 
-function getSingleShares() {
-    for (const [key, value] of sharesActual.entries()) {
-        const numerator = personCount.get(key);
-        const denominator = value;
-        console.log(`${key}: ${denominator / numerator} shares`);
-    }
-}
-
-// function getCollectiveShares() {
-//     for (const [key, value] of sharesActual_collective.entries()) {
-        
-//         if ((key) === JSON.stringify(["akhyafibhai", "akhyafibehen"])) {
-//             const sum = personCount.get("akhyafibhai") + personCount.get("akhyafibehen");
-//             console.log(`akhyafibhai: ${value / sum} shares`);
-//             console.log(`akhyafibehen: ${value / sum} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["akhyafibhai"])) {
-//             console.log(`akhyafibhai: ${value / personCount.get("akhyafibhai")} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["akhyafibehen"])) {
-//             console.log(`akhyafibehen: ${value / personCount.get("akhyafibehen")} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["beti", "beta"])) {
-//             const sum = personCount.get("beti") + 2 * personCount.get("beta");
-//             const numBeta = 2 * value;
-//             const numBeti = value;
-//             console.log(`beti: ${numBeti / sum} shares`);
-//             console.log(`beta: ${numBeta / sum} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["nani", "dadi"])) {
-//             const sum = personCount.get("nani") + personCount.get("dadi");
-//             console.log(`nani: ${value / sum} shares`);
-//             console.log(`dadi: ${value / sum} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["nani"])) {
-//             console.log(`nani: ${value / personCount.get("nani")} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["dadi"])) {
-//             console.log(`dadi: ${value / personCount.get("dadi")} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["haqeeqibehen", "haqeeqibhai"])) {
-//             const sum = personCount.get("haqeeqibehen") + 2 * personCount.get("haqeeqibhai");
-//             const numBhai = 2 * value;
-//             const numBehen = value;
-//             console.log(`haqeeqibehen: ${numBehen / sum} shares`);
-//             console.log(`haqeeqibhai: ${numBhai / sum} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["allatibehen", "allatibhai"])) {
-//             const sum = personCount.get("allatibehen") + 2 * personCount.get("allatibhai");
-//             const numBhai = 2 * value;
-//             const numBehen = value;
-//             console.log(`allatibehen: ${numBehen / sum} shares`);
-//             console.log(`allatibhai: ${numBhai / sum} shares`);
-//             continue;
-//         }
-//         if ((key) === JSON.stringify(["poti", "pota"])) {
-//             const sum = personCount.get("poti") + 2 * personCount.get("pota");
-//             const numPota = 2 * value;
-//             const numPoti = value;
-//             console.log(`poti: ${numPoti / sum} shares`);
-//             console.log(`pota: ${numPota / sum} shares`);
-//             continue;
-//         }
-//     }
-// }
-
-// function printShares() {
-//     console.log("Shares distribution:");
-//     for (const [key, value] of sharesActual.entries()) {
-//         console.log(`${key}: ${value}`);
-//     }
-//     for (const [key, value] of sharesActual_collective.entries()) {
-//         const parsedKey = JSON.parse(key); // Convert stringified key back to an array
-//         console.log(`${parsedKey.join(" ")}: ${value}`);
-//     }
-// }
 
 function isOneZawilFurooz() {
     person.sort(); // Sort the person array
@@ -976,36 +892,29 @@ function Radd() {
 function getFractions() {
   
   for (const [key, value] of shares.entries()) {
-    let output = `${key}: `;
     if (value[0] === -1 && value[1] === -1) {
-      output += "A";
       setFinalList(prevList => [...prevList, { name: key, Fraction: "Asaba"}]);
     } else if (value[0] === 0 && value[1] === 0) {
-      output += "M";
       setFinalList(prevList => [...prevList, { name: key, Fraction: "Mahroom" }]);
     } else {
-      output += `${value[0]}/${value[1]}`;
         setFinalList(prevList => [...prevList, { name: key, Fraction: `${value[0]}/${value[1]}` }]);
     }
-    //console.log(output);
+    
   }
   for (const [key, value] of shares_collective.entries()) {
     let parsedKey = JSON.parse(key);
-    let output = `{ ${parsedKey.join(" ")} }: `;
+    
     if (value[0] === -1 && value[1] === -1) {
-      output += "A";
         setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: "Asaba" }]);
         if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Asaba" }]);
     } else if (value[0] === 0 && value[1] === 0) {
-      output += "M";
         setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: "Mahroom" }]);
         if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: "Marhoom" }]);
     } else {
-      output += `${value[0]}/${value[1]}`;
         setFinalList(prevList => [...prevList, { name: parsedKey[0], Fraction: `${value[0]}/${value[1]}` }]);
         if(parsedKey.length === 2) setFinalList(prevList => [...prevList, { name: parsedKey[1], Fraction: `${value[0]}/${value[1]}` }]);
     }
-    //console.log(output);
+    
   }
 
     if (
@@ -1119,8 +1028,6 @@ function FinalCollective() {
 
 useEffect(() => {
 
-    let raddDone = false;
-    let tasheehDone = false;
     
     for (const [key, value] of Object.entries(params)) 
     {
@@ -1134,8 +1041,6 @@ useEffect(() => {
         setTotalAmount(Number(value));
       }
     }
-    console.log('Person:', person);
-    console.log('Person Count:', personCount);
 
     solve();
 
@@ -1145,7 +1050,6 @@ useEffect(() => {
     if(isRaddNeeded()) 
     {
         Radd();
-        raddDone = true;
         setRadd(Lcm);
     }
 
@@ -1153,27 +1057,21 @@ useEffect(() => {
     if(isTasheehNeeded()) 
     {
         Tasheeh();
-        tasheehDone = true;
         setTasheeh(Lcm);
     }
 
-    //printShares();
+  
 
     console.log("per person distribution:");
 
-    //getSingleShares();
-
-    //getCollectiveShares();
+   
 
     Final();
 
     FinalCollective();
 
-    console.log("lcm = ", Lcm);
-    
     setFinalLcm(Lcm);
 
-    console.log("--------------------------------------End--------------------------------------");
     
   }, []);
 

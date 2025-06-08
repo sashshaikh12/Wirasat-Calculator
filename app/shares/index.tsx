@@ -111,7 +111,6 @@ export default function Shares() {
       setTotalAmount(Number(params.remainingAmount));
   }, []);
 
-  console.log('Total Amount:', totalAmount);
                 
 
 

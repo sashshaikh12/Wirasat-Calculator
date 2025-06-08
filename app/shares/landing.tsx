@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 
+
 export default function Shares() {
 const [totalAmount, setTotalAmount] = useState(0);
 const [tajheez, setTajheez] = useState(0);
@@ -18,8 +19,8 @@ const [wasiyat, setWasiyat] = useState(0);
 
 function HandleData(){
   const remainingAmount = Number(totalAmount) - (Number(tajheez) + Number(qarza) + Math.min(Number(wasiyat), Number(totalAmount) / 3));
-
-  if(remainingAmount <= 0)
+  
+  if(remainingAmount < 0)
   {
     router.push('shares/message');
   }
