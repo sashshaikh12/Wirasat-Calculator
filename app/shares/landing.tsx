@@ -111,7 +111,7 @@ function HandleData(){
                       className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl mb-16"
                       activeOpacity={0.8}
                       onPress={() => {
-                        HandleData;
+                        HandleData();
                       }}
                     >
                       <Text className="text-white text-center font-semibold text-xl">
