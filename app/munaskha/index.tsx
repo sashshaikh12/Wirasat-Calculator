@@ -26,6 +26,27 @@ let batanShares = new Map();
   let notasaba = ["baap", "dada", "shohar", "akhyafibhai", "akhyafibehen", "allatibehen", "poti", "dadi", "nani", "haqeeqibehen", "maa", "beti", "biwi"];
   let asaba = ["beta", "pota", "padpota", "baap", "dada", "paddada", "haqeeqibhai", "allatibhai", "haqeeqibhateeja", "allatibhateeja", "chacha"];
   let Lcm, remaining, sec_Lcm, Lcm_leftOver, topLcm, prev_index, prev_level; 
+  const people = ['baap',
+                'dada',
+                'akhyafibhai',
+                'akhyafibehen',
+                'allatibehen',
+                'poti',
+                'dadi',
+                'nani',
+                'haqeeqibehen',
+                'maa',
+                'beti',
+                'biwi',
+                'beta',
+                'pota',
+                'padpota',
+                'haqeeqibhai',
+                'allatibhai',
+                'haqeeqibhateeja',
+                'allatibhateeja',
+                'chacha',
+                'shohar'];
 
   const [finalList, setFinalList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -36,6 +57,8 @@ let batanShares = new Map();
   const [TasheehValue, setTasheeh] = useState(0);
   const [loading, setLoading] = useState(true);
   const [num_batans, setNumBatans] = useState(0);
+  const [currentBatanIndex, setCurrentBatanIndex] = useState(-1);
+  const [batan, setBatan] = useState([]);
 
 
   
@@ -294,7 +317,7 @@ function AllatiBehenShares() {
     }
 }
 
-function solve() {
+function solve(calledByRadd = false) {
     // Process each person
     for (let i = 0; i < person.length; i++) {
         const s = person[i];
@@ -330,7 +353,7 @@ function solve() {
 
     let lcm_value = arr.length > 0 ? lcmMany(arr) : 1;
     remaining = lcm_value;
-    setFirstLcm(lcm_value);
+    if(!calledByRadd) setFirstLcm(lcm_value);
 
 
     // Calculate actual shares
@@ -776,7 +799,7 @@ function Radd() {
             sharesActual.clear();
             sharesActual_collective.clear();
             personCount.delete("shohar");
-            solve();
+            solve(true);
             personCount.set("shohar", shoharCount);
 
             let sum = 0;
@@ -867,7 +890,7 @@ function Radd() {
             sharesActual.clear();
             sharesActual_collective.clear();
             personCount.delete("biwi");
-            solve();
+            solve(true);
             personCount.set("biwi", biwiCount);
 
             let sum = 0;
@@ -1096,6 +1119,12 @@ function getMaff(index, level) {
     return maff;
 }
 
+function handleFinalizeBatan() 
+{
+    setCurrentBatanIndex((prevIndex) =>  prevIndex + 1);
+    setBatan([]); // Clear the batan for the next input
+}
+
 
   return (
   <LinearGradient 
@@ -1115,25 +1144,70 @@ function getMaff(index, level) {
             Calculate according to Sharia law
           </Text>
 
-          <Text className='text-white text-lg font-medium mb-3'>Enter the Number of Batans:</Text>
-          <TextInput
-                    className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 
-                      text-white"
-                    placeholder="0"
-                    placeholderTextColor="#94a3b8" 
-                    value={num_batans}
-                    onChangeText={setNumBatans}
-                    keyboardType="numeric"
-                  />
+          {/* Input for Number of Batans */}
+        {currentBatanIndex === -1 && (
+          <>
+            <Text className="text-white text-lg font-medium mb-3">Enter the Number of Batans:</Text>
+            <TextInput
+              className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
+              placeholder="0"
+              placeholderTextColor="#94a3b8"
+              value={num_batans}
+              onChangeText={(text) => setNumBatans(Number(text))}
+              keyboardType="numeric"
+            />
+            <TouchableOpacity
+              className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl"
+              onPress={() => num_batans > 0 ? setCurrentBatanIndex(0) : setCurrentBatanIndex(-1)} // Start entering batans
+            >
+              <Text className="text-white text-center font-semibold text-lg">Start Adding Batans</Text>
+            </TouchableOpacity>
+          </>
+        )}
 
-            {Array.from({ length: num_batans }).map((_, i) => (
-                <View key={i} className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg">
-                <Text className="text-white text-lg font-medium mb-3">
-                    Enter the people in Batan {i + 1}:
+        {/* Input for Current Batan */}
+        {currentBatanIndex >= 0 && currentBatanIndex < num_batans && (
+            <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg">
+                <Text className="text-white text-lg font-medium mb-6 text-center">
+                Enter the people in Batan {currentBatanIndex + 1}:
                 </Text>
-                
+
+                <View className="flex-row flex-wrap items-center justify-center mb-4 gap-3">
+                {people.map((p, index) => (
+                    <TouchableOpacity
+                    key={index}
+                    className="bg-purple-600 hover:bg-purple-700 active:bg-purple-800 rounded-full px-4 py-2 mr-2 mb-2 shadow-md"
+                    onPress={() => setBatan((prev) => [...prev, { name: p, value: 0 }])} // Replace with your logic
+                    >
+                    <Text className="text-white font-medium">{p}</Text>
+                    </TouchableOpacity>
+                ))}
                 </View>
-            ))}
+                <ScrollView horizontal>
+                    <View className="flex-row  items-center justify-start gap-4 mt-6">
+                        {batan.map((person, index) => (
+                            <View
+                            key={index}
+                            className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 shadow-md"
+                            >
+                            <Text className="text-white text-lg font-medium">{person.name}</Text>
+                            </View>
+                        ))}
+                    </View>
+                </ScrollView>
+
+                <TouchableOpacity
+                className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-10 shadow-lg"
+                onPress={() => {handleFinalizeBatan()}} // Replace with your logic
+                >
+                <Text className="text-white text-center font-semibold text-lg">
+                    Finalize Batan {currentBatanIndex + 1}
+                </Text>
+                </TouchableOpacity>
+            </View>
+            )}
+
+            
 
         </View>
 
