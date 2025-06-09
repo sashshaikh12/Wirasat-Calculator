@@ -66,6 +66,7 @@ let batanShares = new Map();
   const [level, setLevel] = useState("");
   const [index, setIndex] = useState("");
   const [askForDead, setAskForDead] = useState(false);
+  const [showPrevBatans, setShowPrevBatans] = useState(false);
 
   
 
@@ -1204,6 +1205,7 @@ function solveBatan()
     // FinalCollective();
     getSingleShares();
     getCollectiveShares();
+    setFinalLcm(Lcm);
 }
 
 
@@ -1318,7 +1320,7 @@ function handleFinalizeBatan()
                 ))}
                 </View>
 
-                {currentBatanIndex > 0 && (
+                {showPrevBatans && (
                     <>
                         <View className="flex-col gap-4">
                             {batans.map((level, i) => (
@@ -1426,21 +1428,32 @@ function handleFinalizeBatan()
                             {
                                 let maff = getMaff(prevIndex, prevLevel);
                                 let g = gcd(maff, finalLcm);
+                                let l = finalLcm;
                                 maff /= g;
-                                finalLcm /= g;
-                                batans[i].forEach((person) => {
+                                l /= g;
+                                batans[currentBatanIndex].forEach((person) => {
                                     person.value *= maff; // Multiply the value of each person in batans[i] by maff
                                     });
 
-                                    for (let j = 0; j < i; ++j) {
+                                    for (let j = 0; j < currentBatanIndex; ++j) {
                                     batans[j].forEach((person) => {
-                                        person.value *= Lcm; // Multiply the value of each person in batans[j] by Lcm
+                                        person.value *= l; // Multiply the value of each person in batans[j] by Lcm
                                     });
                                     }
-                                setTopLcm((prev) => prev * finalLcm); // Update the top LCM
+                                setTopLcm((prev) => prev * l); // Update the top LCM
                                 setPrevIndex(Number(index) - 1);
                                 setPrevLevel(Number(level) - 1);
                             }
+                            if(currentBatanIndex < Number(num_batans) - 1) 
+                            {
+                                setShowPrevBatans(true); // Show previous batans if there are more to add
+                            }
+                            else 
+                            {
+                                setShowPrevBatans(false); // Hide previous batans if this is the last one
+                            }
+                            setIndex("");
+                            setLevel("");
                         }} 
                         >
                         <Text className="text-white text-center font-semibold text-lg">
@@ -1467,7 +1480,7 @@ function handleFinalizeBatan()
                         for (let k = i; k < num_batans; ++k) {
                         sum += batans[k][j].value; // Calculate the sum of shares
                         }
-                        console.log(dead);
+                     
                         if (dead.has(i) && dead.get(i).includes(j)) {
                             return null; // Skip rendering if the element is in the dead map
                             }
