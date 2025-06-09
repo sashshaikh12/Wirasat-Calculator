@@ -1,13 +1,12 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { router } from 'expo-router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    SafeAreaView,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 
 
@@ -56,7 +55,7 @@ let batanShares = new Map();
   const [RaddValue ,setRadd] = useState(0);
   const [TasheehValue, setTasheeh] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [num_batans, setNumBatans] = useState(0);
+  const [num_batans, setNumBatans] = useState("");
   const [currentBatanIndex, setCurrentBatanIndex] = useState(-1);
   const [batan, setBatan] = useState([]);
   const [dead, setDead] = useState(new Map());
@@ -64,8 +63,8 @@ let batanShares = new Map();
   const [topLcm, setTopLcm] = useState(0);
   const [prevIndex, setPrevIndex] = useState(-1);
   const [prevLevel, setPrevLevel] = useState(0);
-  const [level, setLevel] = useState(0);
-  const [index, setIndex] = useState(0);
+  const [level, setLevel] = useState("");
+  const [index, setIndex] = useState("");
   const [askForDead, setAskForDead] = useState(false);
 
   
@@ -1221,8 +1220,6 @@ function getMaff(index, level) {
 
 function handleFinalizeBatan() 
 {
-    setCurrentBatanIndex((prevIndex) =>  prevIndex + 1);
-
     let m = new Map(); // Create a new Map to store counts
 
     batan.forEach((it) => {
@@ -1250,14 +1247,15 @@ function handleFinalizeBatan()
     sharesActual_collective.clear(); // Clear the actual collective shares Map for the next batan
     person = [];
     personCount.clear(); // Clear the personCount Map for the next batan
-    setBatan([]); // Clear the batan for the next input
 
-    if(currentBatanIndex < num_batans - 1) 
+    if(currentBatanIndex < Number(num_batans) - 1) 
     {
         setAskForDead(true); // Ask for the deceased batan number and position if there are more batans to add
     }
-
-
+    else
+    {
+        setCurrentBatanIndex((prevIndex) => prevIndex + 1); // Move to the next batan index
+    }
 
 }
 
@@ -1289,12 +1287,12 @@ function handleFinalizeBatan()
             placeholder="0"
             placeholderTextColor="#94a3b8"
             value={num_batans.toString()} // Ensure the value is a string for TextInput
-            onChangeText={(text) => setNumBatans(Number(text))} // Convert input to a number
+            onChangeText={(text) => setNumBatans(text)} // Convert input to a number
             keyboardType="numeric"
             />
             <TouchableOpacity
             className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl"
-            onPress={() => (num_batans > 0 ? setCurrentBatanIndex(0) : setCurrentBatanIndex(-1))} // Start entering batans
+            onPress={() => (Number(num_batans) > 0 ? setCurrentBatanIndex(0) : setCurrentBatanIndex(-1))} // Start entering batans
             >
             <Text className="text-white text-center font-semibold text-lg">Start Adding Batans</Text>
             </TouchableOpacity>
@@ -1302,7 +1300,7 @@ function handleFinalizeBatan()
         )}
 
         {/* Input for Current Batan */}
-        {currentBatanIndex >= 0 && currentBatanIndex < num_batans && (
+        {currentBatanIndex >= 0 && currentBatanIndex < Number(num_batans) && (
             <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg">
                 <Text className="text-white text-lg font-medium mb-6 text-center">
                 Enter the people in Batan {currentBatanIndex + 1}:
@@ -1319,6 +1317,38 @@ function handleFinalizeBatan()
                     </TouchableOpacity>
                 ))}
                 </View>
+
+                {currentBatanIndex > 0 && (
+                    <>
+                        <View className="flex-col gap-4">
+                            {batans.map((level, i) => (
+                            <ScrollView 
+                                horizontal 
+                                key={`batan-${i}`}
+                                className="mt-6" 
+                                contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}
+                                >
+                                <View className="bg-slate-800/50 rounded-xl p-4 shadow-lg">
+                                <Text className="text-white text-lg font-bold mb-3 text-left">
+                                    Batan {i + 1}
+                                </Text>
+                                <View className="flex-row items-center gap-4">
+                                    {level.map((person, j) => (
+                                    <View
+                                        key={j}
+                                        className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 shadow-md"
+                                    >
+                                        <Text className="text-white text-lg font-medium">{person.name}</Text>
+                                    </View>
+                                    ))}
+                                </View>
+                                </View>
+                            </ScrollView>
+                            ))}
+                        </View>
+                    </>
+                )}
+
                 <ScrollView horizontal>
                     <View className="flex-row  items-center justify-start gap-4 mt-6">
                         {batan.map((person, index) => (
@@ -1333,6 +1363,19 @@ function handleFinalizeBatan()
                 </ScrollView>
 
                 <TouchableOpacity
+                className="bg-red-600 hover:bg-red-700 active:bg-red-800 rounded-xl px-6 py-4 mt-10 shadow-lg"
+                onPress={() => {
+                    if (batan.length > 0) {
+                    setBatan((prev) => prev.slice(0, -1)); // Remove the last element from the array
+                    }
+                }} 
+                >
+                <Text className="text-white text-center font-semibold text-lg">
+                    Remove
+                </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
                 className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-10 shadow-lg"
                 onPress={() => {handleFinalizeBatan()}} // Replace with your logic
                 >
@@ -1342,42 +1385,120 @@ function handleFinalizeBatan()
                 </TouchableOpacity>
                  {askForDead && (
                     <View className="mt-8">
-                        <Text className="text-white text-lg font-medium mb-3">Enter Batan Number Of The Deceased:</Text>
+                        <Text className="text-white text-lg font-medium mb-6">Enter Batan Number Of The Deceased:</Text>
                         <TextInput
-                        className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
+                        className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white mb-7"
                         placeholder="enter batan number here"
                         placeholderTextColor="#94a3b8"
                         value={level.toString()} // Ensure the value is a string for TextInput
-                        onChangeText={(text) => setLevel(Number(text))} // Convert input to a number
+                        onChangeText={(text) => setLevel(text)} // Convert input to a number
                         keyboardType="numeric"
                         />
-                        <Text className="text-white text-lg font-medium mb-3">Enter Position Of The Deceased:</Text>
+                        <Text className="text-white text-lg font-medium mb-6">Enter Position Of The Deceased:</Text>
                         <TextInput
                         className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
                         placeholder="enter position here"
                         placeholderTextColor="#94a3b8"
                         value={index.toString()} // Ensure the value is a string for TextInput
-                        onChangeText={(text) => setIndex(Number(text))} // Convert input to a number
+                        onChangeText={(text) => setIndex(text)} // Convert input to a number
                         keyboardType="numeric"
                         />
                         <TouchableOpacity
                         className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-6 shadow-lg"
                         onPress={() => {
+                            setCurrentBatanIndex((prevIndex) =>  prevIndex + 1);
+                            setBatan([]); // Clear the batan for the next input
                             setAskForDead(false);
                             setDead((prevDead) => {
                                 const updatedDead = new Map(prevDead); // Create a copy of the current Map
-                                const levelArray = updatedDead.get(level - 1) || []; // Get the array for the level or initialize it
-                                levelArray.push(index - 1); // Add the new index to the array
-                                updatedDead.set(level - 1, levelArray); // Update the Map with the modified array
+                                const levelArray = updatedDead.get(Number(level) - 1) || []; // Get the array for the level or initialize it
+                                levelArray.push(Number(index) - 1); // Add the new index to the array
+                                updatedDead.set(Number(level) - 1, levelArray); // Update the Map with the modified array
                                 return updatedDead; // Return the updated Map
                                 });
+                            if(currentBatanIndex === 0)
+                            {
+                                setTopLcm(finalLcm);
+                                setPrevIndex(Number(index) - 1);
+                                setPrevLevel(Number(level) - 1);
+                            }
+                            if(currentBatanIndex > 0)
+                            {
+                                let maff = getMaff(prevIndex, prevLevel);
+                                let g = gcd(maff, finalLcm);
+                                maff /= g;
+                                finalLcm /= g;
+                                batans[i].forEach((person) => {
+                                    person.value *= maff; // Multiply the value of each person in batans[i] by maff
+                                    });
+
+                                    for (let j = 0; j < i; ++j) {
+                                    batans[j].forEach((person) => {
+                                        person.value *= Lcm; // Multiply the value of each person in batans[j] by Lcm
+                                    });
+                                    }
+                                setTopLcm((prev) => prev * finalLcm); // Update the top LCM
+                                setPrevIndex(Number(index) - 1);
+                                setPrevLevel(Number(level) - 1);
+                            }
                         }} 
-                        />
+                        >
+                        <Text className="text-white text-center font-semibold text-lg">
+                            Enter
+                        </Text>
+                </TouchableOpacity>
 
                     </View>
                     )}
             </View>
             )}
+
+        {currentBatanIndex >= Number(num_batans) && (
+            <>
+                {batans.map((level, i) => (
+                <View key={i} className="mb-6">
+                    <Text className="text-white text-2xl font-bold text-center mb-4">
+                    Batan {i + 1}:
+                    </Text>
+                    {level.map((person, j) => {
+                    const len = i !== 0 ? batans[i - 1].length : 0;
+                    if (j >= (i === 0 ? 0 : len)) {
+                        let sum = 0;
+                        for (let k = i; k < num_batans; ++k) {
+                        sum += batans[k][j].value; // Calculate the sum of shares
+                        }
+                        if (!dead[i]?.includes(j)) {
+                        return (
+                            <View
+                            key={j}
+                            className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full"
+                            style={{
+                                elevation: 8,
+                                shadowColor: '#3b82f6',
+                            }}
+                            >
+                            <View className="mb-3">
+                                <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
+                                {person.name}
+                                </Text>
+                                <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
+                            </View>
+                            <View className="bg-white/10 rounded-lg p-3">
+                                <Text className="text-blue-200 text-base text-center mt-1">
+                                Shares: <Text className="text-white font-medium">{sum}</Text>
+                                </Text>
+                            </View>
+                            </View>
+                        );
+                        }
+                    }
+                    return null;
+                    })}
+                </View>
+                ))}
+            </>
+            )}
+
 
             
 
