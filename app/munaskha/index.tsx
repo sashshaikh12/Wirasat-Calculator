@@ -1249,14 +1249,17 @@ function handleFinalizeBatan()
     sharesActual_collective.clear(); // Clear the actual collective shares Map for the next batan
     person = [];
     personCount.clear(); // Clear the personCount Map for the next batan
+    setBatan([]); // Clear the batan for the next input
 
     if(currentBatanIndex < Number(num_batans) - 1) 
     {
         setAskForDead(true); // Ask for the deceased batan number and position if there are more batans to add
+        setShowPrevBatans(true); // Show previous batans
     }
     else
     {
         setCurrentBatanIndex((prevIndex) => prevIndex + 1); // Move to the next batan index
+        setShowPrevBatans(false); // Hide previous batans
     }
 
 }
@@ -1409,7 +1412,6 @@ function handleFinalizeBatan()
                         className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-6 shadow-lg"
                         onPress={() => {
                             setCurrentBatanIndex((prevIndex) =>  prevIndex + 1);
-                            setBatan([]); // Clear the batan for the next input
                             setAskForDead(false);
                             setDead((prevDead) => {
                                 const updatedDead = new Map(prevDead); // Create a copy of the current Map
@@ -1444,14 +1446,14 @@ function handleFinalizeBatan()
                                 setPrevIndex(Number(index) - 1);
                                 setPrevLevel(Number(level) - 1);
                             }
-                            if(currentBatanIndex < Number(num_batans) - 1) 
-                            {
-                                setShowPrevBatans(true); // Show previous batans if there are more to add
-                            }
-                            else 
-                            {
-                                setShowPrevBatans(false); // Hide previous batans if this is the last one
-                            }
+                            // if(currentBatanIndex < Number(num_batans) - 1) 
+                            // {
+                            //     setShowPrevBatans(true); // Show previous batans if there are more to add
+                            // }
+                            // else 
+                            // {
+                            //     setShowPrevBatans(false); // Hide previous batans if this is the last one
+                            // }
                             setIndex("");
                             setLevel("");
                         }} 
