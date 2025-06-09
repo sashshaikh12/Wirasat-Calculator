@@ -1467,32 +1467,34 @@ function handleFinalizeBatan()
                         for (let k = i; k < num_batans; ++k) {
                         sum += batans[k][j].value; // Calculate the sum of shares
                         }
-                        if (!dead[i]?.includes(j)) {
-                        return (
+                        console.log(dead);
+                        if (dead.has(i) && dead.get(i).includes(j)) {
+                            return null; // Skip rendering if the element is in the dead map
+                            }
+                            return (
                             <View
-                            key={j}
-                            className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full"
-                            style={{
+                                key={j}
+                                className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full"
+                                style={{
                                 elevation: 8,
                                 shadowColor: '#3b82f6',
-                            }}
+                                }}
                             >
-                            <View className="mb-3">
+                                <View className="mb-3">
                                 <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
-                                {person.name}
+                                    {person.name}
                                 </Text>
                                 <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
-                            </View>
-                            <View className="bg-white/10 rounded-lg p-3">
+                                </View>
+                                <View className="bg-white/10 rounded-lg p-3">
                                 <Text className="text-blue-200 text-base text-center mt-1">
-                                Shares: <Text className="text-white font-medium">{sum}</Text>
+                                    Shares: <Text className="text-white font-medium">{sum}</Text>
                                 </Text>
+                                </View>
                             </View>
-                            </View>
-                        );
+                            );
                         }
-                    }
-                    return null;
+                        return null;
                     })}
                 </View>
                 ))}
