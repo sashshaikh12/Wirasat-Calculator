@@ -14,27 +14,27 @@ import {
 
 export default function Shares() {
   const [totalAmount, setTotalAmount] = useState(0);
-  const [baap, setBaap] = useState(0);
-  const [dada, setDada] = useState(0);
-  const [shohar, setShohar] = useState(0);
-  const [akhyafibhai, setAkhyafibhai] = useState(0);
-  const [akhyafibehen, setAkhyafibehen] = useState(0);
-  const [allatibehen, setAllatibehen] = useState(0);
-  const [poti, setPoti] = useState(0);
-  const [dadi, setDadi] = useState(0);
-  const [nani, setNani] = useState(0);
-  const [haqeeqibehen, setHaqeeqibehen] = useState(0);
-  const [maa, setMaa] = useState(0);
-  const [Beti, setBeti] = useState(0);
-  const [biwi, setBiwi] = useState(0);
-  const [beta, setBeta] = useState(0);
-  const [pota, setPota] = useState(0);
-  const [padpota, setPadpota] = useState(0);
-  const [haqeeqibhai, setHaqeeqibhai] = useState(0);
-  const [allatibhai, setAllatibhai] = useState(0);
-  const [haqeeqibhateeja, setHaqeeqibhateeja] = useState(0);
-  const [allatibhateeja, setAllatibhateeja] = useState(0);  
-  const [chacha, setChacha] = useState(0);
+  const [baap, setBaap] = useState("");
+  const [dada, setDada] = useState("");
+  const [shohar, setShohar] = useState("");
+  const [akhyafibhai, setAkhyafibhai] = useState("");
+  const [akhyafibehen, setAkhyafibehen] = useState("");
+  const [allatibehen, setAllatibehen] = useState("");
+  const [poti, setPoti] = useState("");
+  const [dadi, setDadi] = useState("");
+  const [nani, setNani] = useState("");
+  const [haqeeqibehen, setHaqeeqibehen] = useState("");
+  const [maa, setMaa] = useState("");
+  const [Beti, setBeti] = useState("");
+  const [biwi, setBiwi] = useState("");
+  const [beta, setBeta] = useState("");
+  const [pota, setPota] = useState("");
+  const [padpota, setPadpota] = useState("");
+  const [haqeeqibhai, setHaqeeqibhai] = useState("");
+  const [allatibhai, setAllatibhai] = useState("");
+  const [haqeeqibhateeja, setHaqeeqibhateeja] = useState("");
+  const [allatibhateeja, setAllatibhateeja] = useState("");  
+  const [chacha, setChacha] = useState("");
   const [isMale, setisMale] = useState(true);
   const [isFemale, setisFemale] = useState(false);
 
@@ -191,7 +191,7 @@ export default function Shares() {
                       text-white"
                     placeholder="0"
                     placeholderTextColor="#94a3b8" 
-                    value={personStateMap[person].value}
+                    value={personStateMap[person].value.toString()}
                     onChangeText={personStateMap[person].setter}
                     keyboardType="numeric"
                   />

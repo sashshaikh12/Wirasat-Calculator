@@ -14,8 +14,7 @@ import {
 export default function munaskha() {
 
 
-let dead = new Map(); // Map<number, Array<number>>
-let batans = []; // Array<Array<{ name: string, value: number }>>
+
 let batanShares = new Map();
  let shares = new Map(); // Map<string, [number, number]>
   let shares_collective = new Map(); // Map<Array<string>, [number, number]>
@@ -25,7 +24,7 @@ let batanShares = new Map();
   let person = []; // Array<string>
   let notasaba = ["baap", "dada", "shohar", "akhyafibhai", "akhyafibehen", "allatibehen", "poti", "dadi", "nani", "haqeeqibehen", "maa", "beti", "biwi"];
   let asaba = ["beta", "pota", "padpota", "baap", "dada", "paddada", "haqeeqibhai", "allatibhai", "haqeeqibhateeja", "allatibhateeja", "chacha"];
-  let Lcm, remaining, sec_Lcm, Lcm_leftOver, topLcm, prev_index, prev_level; 
+  let Lcm, remaining, sec_Lcm, Lcm_leftOver;
   const people = ['baap',
                 'dada',
                 'akhyafibhai',
@@ -46,7 +45,8 @@ let batanShares = new Map();
                 'haqeeqibhateeja',
                 'allatibhateeja',
                 'chacha',
-                'shohar'];
+                'shohar',
+                'other',];
 
   const [finalList, setFinalList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -59,7 +59,14 @@ let batanShares = new Map();
   const [num_batans, setNumBatans] = useState(0);
   const [currentBatanIndex, setCurrentBatanIndex] = useState(-1);
   const [batan, setBatan] = useState([]);
-
+  const [dead, setDead] = useState(new Map());
+  const [batans, setBatans] = useState([]);
+  const [topLcm, setTopLcm] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(-1);
+  const [prevLevel, setPrevLevel] = useState(0);
+  const [level, setLevel] = useState(0);
+  const [index, setIndex] = useState(0);
+  const [askForDead, setAskForDead] = useState(false);
 
   
 
@@ -1059,6 +1066,97 @@ function FinalCollective() {
     });
 }
 
+function getSingleShares() {
+    for (const [key, value] of sharesActual.entries()) {
+        const numerator = personCount.get(key);
+        const denominator = value;
+        // console.log(`${key}: ${denominator / numerator} shares`);
+        batanShares.set(key, denominator / numerator);
+    }
+}
+
+function getCollectiveShares() {
+    for (const [key, value] of sharesActual_collective.entries()) {
+        
+        if ((key) === JSON.stringify(["akhyafibhai", "akhyafibehen"])) {
+            const sum = personCount.get("akhyafibhai") + personCount.get("akhyafibehen");
+            console.log(`akhyafibhai: ${value / sum} shares`);
+            console.log(`akhyafibehen: ${value / sum} shares`);
+            batanShares.set("akhyafibhai", value / sum);
+            batanShares.set("akhyafibehen", value / sum);
+            continue;
+        }
+        if ((key) === JSON.stringify(["akhyafibhai"])) {
+            console.log(`akhyafibhai: ${value / personCount.get("akhyafibhai")} shares`);
+            batanShares.set("akhyafibhai", value / personCount.get("akhyafibhai"));
+            continue;
+        }
+        if ((key) === JSON.stringify(["akhyafibehen"])) {
+            console.log(`akhyafibehen: ${value / personCount.get("akhyafibehen")} shares`);
+            batanShares.set("akhyafibehen", value / personCount.get("akhyafibehen"));
+            continue;
+        }
+        if ((key) === JSON.stringify(["beti", "beta"])) {
+            const sum = personCount.get("beti") + 2 * personCount.get("beta");
+            const numBeta = 2 * value;
+            const numBeti = value;
+            console.log(`beti: ${numBeti / sum} shares`);
+            console.log(`beta: ${numBeta / sum} shares`);
+            batanShares.set("beti", numBeti / sum);
+            batanShares.set("beta", numBeta / sum);
+            continue;
+        }
+        if ((key) === JSON.stringify(["nani", "dadi"])) {
+            const sum = personCount.get("nani") + personCount.get("dadi");
+            console.log(`nani: ${value / sum} shares`);
+            console.log(`dadi: ${value / sum} shares`);
+            batanShares.set("nani", value / sum);
+            batanShares.set("dadi", value / sum);
+            continue;
+        }
+        if ((key) === JSON.stringify(["nani"])) {
+            console.log(`nani: ${value / personCount.get("nani")} shares`);
+            batanShares.set("nani", value / personCount.get("nani"));
+            continue;
+        }
+        if ((key) === JSON.stringify(["dadi"])) {
+            console.log(`dadi: ${value / personCount.get("dadi")} shares`);
+            batanShares.set("dadi", value / personCount.get("dadi"));
+            continue;
+        }
+        if ((key) === JSON.stringify(["haqeeqibehen", "haqeeqibhai"])) {
+            const sum = personCount.get("haqeeqibehen") + 2 * personCount.get("haqeeqibhai");
+            const numBhai = 2 * value;
+            const numBehen = value;
+            console.log(`haqeeqibehen: ${numBehen / sum} shares`);
+            console.log(`haqeeqibhai: ${numBhai / sum} shares`);
+            batanShares.set("haqeeqibehen", numBehen / sum);
+            batanShares.set("haqeeqibhai", numBhai / sum);
+            continue;
+        }
+        if ((key) === JSON.stringify(["allatibehen", "allatibhai"])) {
+            const sum = personCount.get("allatibehen") + 2 * personCount.get("allatibhai");
+            const numBhai = 2 * value;
+            const numBehen = value;
+            console.log(`allatibehen: ${numBehen / sum} shares`);
+            console.log(`allatibhai: ${numBhai / sum} shares`);
+            batanShares.set("allatibehen", numBehen / sum);
+            batanShares.set("allatibhai", numBhai / sum);
+            continue;
+        }
+        if ((key) === JSON.stringify(["poti", "pota"])) {
+            const sum = personCount.get("poti") + 2 * personCount.get("pota");
+            const numPota = 2 * value;
+            const numPoti = value;
+            console.log(`poti: ${numPoti / sum} shares`);
+            console.log(`pota: ${numPota / sum} shares`);
+            batanShares.set("poti", numPoti / sum);
+            batanShares.set("pota", numPota / sum);
+            continue;
+        }
+    }
+}
+
 // useEffect(() => {
 
     
@@ -1103,8 +1201,10 @@ function solveBatan()
     solve();
     if(isRaddNeeded()) Radd();
     if(isTasheehNeeded()) Tasheeh();
-    Final();
-    FinalCollective();
+    // Final();
+    // FinalCollective();
+    getSingleShares();
+    getCollectiveShares();
 }
 
 
@@ -1122,7 +1222,43 @@ function getMaff(index, level) {
 function handleFinalizeBatan() 
 {
     setCurrentBatanIndex((prevIndex) =>  prevIndex + 1);
+
+    let m = new Map(); // Create a new Map to store counts
+
+    batan.forEach((it) => {
+        person.push(it.name); // Push the name into the person array
+        m.set(it.name, (m.get(it.name) || 0) + 1); // Increment the count for the name
+    });
+
+    m.forEach((value, key) => {
+        personCount.set(key, value); // Set the count in personCount Map
+    });
+
+    solveBatan();
+
+    batan.forEach((person) => {
+        person.value = batanShares.get(person.name); // Update the value from batanShares Map
+    });
+
+    // batans.push([...batan]);
+    setBatans((prevBatans) => [...prevBatans, [...batan]]); // Add the finalized batan to batans array
+
+    batanShares.clear(); // Clear the batanShares Map for the next batan
+    shares.clear(); // Clear the shares Map for the next batan
+    shares_collective.clear(); // Clear the collective shares Map for the next batan
+    sharesActual.clear(); // Clear the actual shares Map for the next batan
+    sharesActual_collective.clear(); // Clear the actual collective shares Map for the next batan
+    person = [];
+    personCount.clear(); // Clear the personCount Map for the next batan
     setBatan([]); // Clear the batan for the next input
+
+    if(currentBatanIndex < num_batans - 1) 
+    {
+        setAskForDead(true); // Ask for the deceased batan number and position if there are more batans to add
+    }
+
+
+
 }
 
 
@@ -1146,23 +1282,23 @@ function handleFinalizeBatan()
 
           {/* Input for Number of Batans */}
         {currentBatanIndex === -1 && (
-          <>
+        <>
             <Text className="text-white text-lg font-medium mb-3">Enter the Number of Batans:</Text>
             <TextInput
-              className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
-              placeholder="0"
-              placeholderTextColor="#94a3b8"
-              value={num_batans}
-              onChangeText={(text) => setNumBatans(Number(text))}
-              keyboardType="numeric"
+            className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
+            placeholder="0"
+            placeholderTextColor="#94a3b8"
+            value={num_batans.toString()} // Ensure the value is a string for TextInput
+            onChangeText={(text) => setNumBatans(Number(text))} // Convert input to a number
+            keyboardType="numeric"
             />
             <TouchableOpacity
-              className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl"
-              onPress={() => num_batans > 0 ? setCurrentBatanIndex(0) : setCurrentBatanIndex(-1)} // Start entering batans
+            className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl"
+            onPress={() => (num_batans > 0 ? setCurrentBatanIndex(0) : setCurrentBatanIndex(-1))} // Start entering batans
             >
-              <Text className="text-white text-center font-semibold text-lg">Start Adding Batans</Text>
+            <Text className="text-white text-center font-semibold text-lg">Start Adding Batans</Text>
             </TouchableOpacity>
-          </>
+        </>
         )}
 
         {/* Input for Current Batan */}
@@ -1204,6 +1340,42 @@ function handleFinalizeBatan()
                     Finalize Batan {currentBatanIndex + 1}
                 </Text>
                 </TouchableOpacity>
+                 {askForDead && (
+                    <View className="mt-8">
+                        <Text className="text-white text-lg font-medium mb-3">Enter Batan Number Of The Deceased:</Text>
+                        <TextInput
+                        className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
+                        placeholder="enter batan number here"
+                        placeholderTextColor="#94a3b8"
+                        value={level.toString()} // Ensure the value is a string for TextInput
+                        onChangeText={(text) => setLevel(Number(text))} // Convert input to a number
+                        keyboardType="numeric"
+                        />
+                        <Text className="text-white text-lg font-medium mb-3">Enter Position Of The Deceased:</Text>
+                        <TextInput
+                        className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
+                        placeholder="enter position here"
+                        placeholderTextColor="#94a3b8"
+                        value={index.toString()} // Ensure the value is a string for TextInput
+                        onChangeText={(text) => setIndex(Number(text))} // Convert input to a number
+                        keyboardType="numeric"
+                        />
+                        <TouchableOpacity
+                        className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-6 shadow-lg"
+                        onPress={() => {
+                            setAskForDead(false);
+                            setDead((prevDead) => {
+                                const updatedDead = new Map(prevDead); // Create a copy of the current Map
+                                const levelArray = updatedDead.get(level - 1) || []; // Get the array for the level or initialize it
+                                levelArray.push(index - 1); // Add the new index to the array
+                                updatedDead.set(level - 1, levelArray); // Update the Map with the modified array
+                                return updatedDead; // Return the updated Map
+                                });
+                        }} 
+                        />
+
+                    </View>
+                    )}
             </View>
             )}
 

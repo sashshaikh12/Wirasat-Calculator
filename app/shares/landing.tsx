@@ -12,10 +12,10 @@ import {
 
 
 export default function landing() {
-const [totalAmount, setTotalAmount] = useState(0);
-const [tajheez, setTajheez] = useState(0);
-const [qarza, setQarza] = useState(0);
-const [wasiyat, setWasiyat] = useState(0);
+const [totalAmount, setTotalAmount] = useState("");
+const [tajheez, setTajheez] = useState("");
+const [qarza, setQarza] = useState("");
+const [wasiyat, setWasiyat] = useState("");
 
 function HandleData(){
   const remainingAmount = Number(totalAmount) - (Number(tajheez) + Number(qarza) + Math.min(Number(wasiyat), Number(totalAmount) / 3));
@@ -63,8 +63,8 @@ function HandleData(){
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
-              value={totalAmount}
-              onChangeText={setTotalAmount}
+              value={totalAmount.toString()}
+              onChangeText={(text) => setTotalAmount(text)} 
               keyboardType="numeric"
             />
 
@@ -76,8 +76,8 @@ function HandleData(){
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
-              value={tajheez}
-              onChangeText={setTajheez}
+              value={tajheez.toString()}
+              onChangeText={(text) => setTajheez(text)}
               keyboardType="numeric"
             />
 
@@ -89,8 +89,8 @@ function HandleData(){
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
-              value={qarza}
-              onChangeText={setQarza}
+              value={qarza.toString()}
+              onChangeText={(text) => setQarza(text)}
               keyboardType="numeric"
             />
 
@@ -102,8 +102,8 @@ function HandleData(){
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
-              value={wasiyat}
-              onChangeText={setWasiyat}
+              value={wasiyat.toString()}
+              onChangeText={(text) => setWasiyat(text)}
               keyboardType="numeric"
             />
           </View>
