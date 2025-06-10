@@ -67,6 +67,7 @@ let batanShares = new Map();
   const [index, setIndex] = useState("");
   const [askForDead, setAskForDead] = useState(false);
   const [showPrevBatans, setShowPrevBatans] = useState(false);
+  const [lastBatan, setLastBatan] = useState(false);
 
   
 
@@ -1168,7 +1169,7 @@ function getCollectiveShares() {
 //         personCount.set(key, Number(value));
 //       }
 //     }
-
+ 
 //     solve();
 
 //     getFractions();
@@ -1258,10 +1259,41 @@ function handleFinalizeBatan()
     }
     else
     {
-        setCurrentBatanIndex((prevIndex) => prevIndex + 1); // Move to the next batan index
+        setLastBatan(true); // Set lastBatan to true if this is the last batan
         setShowPrevBatans(false); // Hide previous batans
+        setAskForDead(false); // Stop asking for deceased batan number and position 
     }
 
+}
+
+if(lastBatan)
+{
+    setCurrentBatanIndex((prevIndex) => prevIndex + 1); // Move to the next batan index
+        if(currentBatanIndex === 0)
+        {
+            setTopLcm(finalLcm);
+        }
+        if(currentBatanIndex > 0)
+        {
+
+            let maff = getMaff(prevIndex, prevLevel);
+            let g = gcd(maff, finalLcm);
+            let l = finalLcm;
+            maff /= g;
+            l /= g;
+            batans[currentBatanIndex].forEach((person) => {
+                person.value *= maff; // Multiply the value of each person in batans[i] by maff
+                });
+
+                for (let j = 0; j < currentBatanIndex; ++j) {
+                batans[j].forEach((person) => {
+                    person.value *= l; // Multiply the value of each person in batans[j] by Lcm
+                });
+                }
+            setTopLcm((prev) => prev * l); // Update the top LCM
+        }
+        
+        setLastBatan(false); // Reset lastBatan state
 }
 
 
@@ -1411,6 +1443,7 @@ function handleFinalizeBatan()
                         <TouchableOpacity
                         className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-6 shadow-lg"
                         onPress={() => {
+                           
                             setCurrentBatanIndex((prevIndex) =>  prevIndex + 1);
                             setAskForDead(false);
                             setDead((prevDead) => {
@@ -1422,12 +1455,14 @@ function handleFinalizeBatan()
                                 });
                             if(currentBatanIndex === 0)
                             {
+                             
                                 setTopLcm(finalLcm);
                                 setPrevIndex(Number(index) - 1);
                                 setPrevLevel(Number(level) - 1);
                             }
                             if(currentBatanIndex > 0)
                             {
+
                                 let maff = getMaff(prevIndex, prevLevel);
                                 let g = gcd(maff, finalLcm);
                                 let l = finalLcm;
@@ -1446,14 +1481,7 @@ function handleFinalizeBatan()
                                 setPrevIndex(Number(index) - 1);
                                 setPrevLevel(Number(level) - 1);
                             }
-                            // if(currentBatanIndex < Number(num_batans) - 1) 
-                            // {
-                            //     setShowPrevBatans(true); // Show previous batans if there are more to add
-                            // }
-                            // else 
-                            // {
-                            //     setShowPrevBatans(false); // Hide previous batans if this is the last one
-                            // }
+                            
                             setIndex("");
                             setLevel("");
                         }} 
@@ -1482,8 +1510,9 @@ function handleFinalizeBatan()
                         for (let k = i; k < num_batans; ++k) {
                         sum += batans[k][j].value; // Calculate the sum of shares
                         }
+
                      
-                        if (dead.has(i) && dead.get(i).includes(j)) {
+                        if ((dead.has(i) && dead.get(i).includes(j)) || (person.name === "other")) {
                             return null; // Skip rendering if the element is in the dead map
                             }
                             return (
