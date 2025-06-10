@@ -1,7 +1,8 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-import { Feather } from '@expo/vector-icons'; // ✅ Feather is similar to Lucide and works with Expo
+import { SafeAreaView, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 // Reusable button with icon
 const MenuButton = ({
@@ -11,27 +12,21 @@ const MenuButton = ({
 }: {
   title: string;
   onPress?: () => void;
-  iconName: keyof typeof Feather.glyphMap;
+  iconName: keyof typeof FontAwesome.glyphMap;
 }) => (
   <TouchableOpacity
     onPress={onPress}
     activeOpacity={0.8}
-    className="mb-4 rounded-2xl overflow-hidden shadow-md"
+    className="mb-8 rounded-2xl overflow-hidden shadow-md"
   >
     <View
-      className="flex-row items-center justify-start px-6 py-4 bg-purple-700/90 border border-purple-400/20"
+      className="flex-row items-center justify-start px-6 py-4 bg-purple-700/90 border-b-8 border-b-purple-950 border-t-8 border-t-purple-500"
       style={{
-        gap: 12,
-        borderRadius: 20,
-        shadowColor: '#A855F7',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 6,
-        elevation: 5,
+        
       }}
     >
-      <Feather name={iconName} size={22} color="white" />
-      <Text className="text-white text-lg font-semibold ml-1">
+      <FontAwesome name={iconName} size={45} color="white" />
+      <Text className="text-white text-lg font-semibold ml-1 px-12 py-3">
         {title}
       </Text>
     </View>
@@ -44,9 +39,14 @@ export default function Index() {
         colors={['#0F172A', '#1E293B', '#334155']}
         className="flex-1 px-6"
       >
-    <SafeAreaView className="flex-1 justify-center items-center">
-        <View className="bg-white/10 rounded-3xl p-8 w-full max-w-md 
-                         shadow-xl border border-white/20">
+    <SafeAreaView className="flex-1">
+      <ScrollView className='flex-1' contentContainerStyle={{
+    justifyContent: 'center',
+    alignItems: 'center',
+  }}>
+          <View className=" p-8 w-full max-w-md 
+                          my-auto"
+                         >
           {/* App Header */}
           <View className="mb-8">
             <Text className="text-white text-4xl font-bold text-center mb-2">
@@ -58,12 +58,12 @@ export default function Index() {
           </View>
 
           {/* Menu Buttons */}
-          <MenuButton title="Shares And Money Distribution" iconName="divide-square" onPress={() => router.push('shares/landing')} />
+          <MenuButton title="Shares And Money Distribution" iconName="pie-chart" onPress={() => router.push('shares/landing')} />
           <MenuButton title="Rules" iconName="book" />
-          <MenuButton title="Munaskha" iconName="file-text" onPress={() => router.push('munaskha')} />
-          <MenuButton title="Practice" iconName="book-open" />
+          <MenuButton title="Munaskha" iconName="slideshare" onPress={() => router.push('munaskha')} />
           <MenuButton title="Language" iconName="globe" />
         </View>
+      </ScrollView>
     </SafeAreaView>
       </LinearGradient>
   );
