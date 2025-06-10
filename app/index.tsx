@@ -3,7 +3,8 @@ import { router } from 'expo-router';
 import { SafeAreaView, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 
 // Reusable button with icon
 const MenuButton = ({
@@ -36,10 +37,6 @@ const MenuButton = ({
 
 export default function Index() {
 
-  const { t, i18n } = useTranslation();
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
-  };
 
   return (
     <LinearGradient
@@ -58,18 +55,18 @@ export default function Index() {
           {/* App Header */}
           <View className="mb-8">
             <Text className="text-white text-4xl font-bold text-center mb-2">
-              Wirasat App
+              {t('wirasat_app')}
             </Text>
             <Text className="text-gray-200 text-base text-center">
-              Islamic Inheritance Calculator
+              {t('caption')}
             </Text>
           </View>
 
           {/* Menu Buttons */}
-          <MenuButton title="Shares And Money Distribution" iconName="pie-chart" onPress={() => router.push('shares/landing')} />
-          <MenuButton title="Rules" iconName="book" />
-          <MenuButton title="Munaskha" iconName="slideshare" onPress={() => router.push('munaskha')} />
-          <MenuButton title="Language" iconName="globe" onPress={() => router.push('selectLanguages')}/>
+          <MenuButton title={t('button1')} iconName="pie-chart" onPress={() => router.push('shares/landing')} />
+          <MenuButton title={t('button2')} iconName="book" />
+          <MenuButton title={t('button3')} iconName="slideshare" onPress={() => router.push('munaskha')} />
+          <MenuButton title={t('button4')} iconName="globe" onPress={() => router.push('selectLanguages')}/>
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -1,4 +1,9 @@
 {
     "select_language": "zaban mantakhab karin",
-    "wirasat_app": "Wirasat App"
+    "wirasat_app": "Wirasat App",
+    "caption": "Islami Virsa Calculator",
+    "button1": "Hissay Aur Raqam Ki Taqseem",
+    "button2": "Qawaid",
+    "button3": "Munasakha",
+    "button4": "Zabaan"
 }
