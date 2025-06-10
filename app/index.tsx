@@ -3,6 +3,7 @@ import { router } from 'expo-router';
 import { SafeAreaView, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useTranslation } from 'react-i18next';
 
 // Reusable button with icon
 const MenuButton = ({
@@ -34,6 +35,12 @@ const MenuButton = ({
 );
 
 export default function Index() {
+
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+
   return (
     <LinearGradient
         colors={['#0F172A', '#1E293B', '#334155']}
@@ -43,6 +50,7 @@ export default function Index() {
       <ScrollView className='flex-1' contentContainerStyle={{
     justifyContent: 'center',
     alignItems: 'center',
+    flexGrow: 1,
   }}>
           <View className=" p-8 w-full max-w-md 
                           my-auto"
@@ -61,7 +69,7 @@ export default function Index() {
           <MenuButton title="Shares And Money Distribution" iconName="pie-chart" onPress={() => router.push('shares/landing')} />
           <MenuButton title="Rules" iconName="book" />
           <MenuButton title="Munaskha" iconName="slideshare" onPress={() => router.push('munaskha')} />
-          <MenuButton title="Language" iconName="globe" />
+          <MenuButton title="Language" iconName="globe" onPress={() => router.push('selectLanguages')}/>
         </View>
       </ScrollView>
     </SafeAreaView>

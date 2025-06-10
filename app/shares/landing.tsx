@@ -9,13 +9,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import { useTranslation } from 'react-i18next';
 
 export default function landing() {
 const [totalAmount, setTotalAmount] = useState("");
 const [tajheez, setTajheez] = useState("");
 const [qarza, setQarza] = useState("");
 const [wasiyat, setWasiyat] = useState("");
+
+const { t } = useTranslation();
 
 function HandleData(){
   const remainingAmount = Number(totalAmount) - (Number(tajheez) + Number(qarza) + Math.min(Number(wasiyat), Number(totalAmount) / 3));

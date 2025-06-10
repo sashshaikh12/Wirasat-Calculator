@@ -1,3 +1,4 @@
+import '../i18n/i18n'
 import { Stack } from "expo-router";
 import "./globals.css";
 
@@ -21,6 +22,9 @@ export default function RootLayout() {
       } /> 
       <Stack.Screen name = "munaskha/index" options={
         {title: "munaskha"}
+      } /> 
+      <Stack.Screen name = "selectLanguages/index" options={
+        {title: "Languages"}
       } /> 
     </Stack>
   );
