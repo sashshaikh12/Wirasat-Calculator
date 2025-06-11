@@ -227,8 +227,56 @@ export default function Shares() {
                         position: 'top',
                         visibilityTime: 2000,
                         autoHide: true,
+                        topOffset: 40,             
+                      });
+                return;
+              }
+              if(familyData['baap'] > 1)
+              {
+                Toast.show({
+                        type: 'error',
+                        text1: 'Baap can only be 0 or 1',
+                        position: 'top',
+                        visibilityTime: 2000,
+                        autoHide: true,
                         topOffset: 40,
-                        
+                      });
+                return;
+              }
+
+              if(familyData['maa'] > 1)
+              {
+                Toast.show({
+                        type: 'error',
+                        text1: 'Maa can only be 0 or 1',
+                        position: 'top',
+                        visibilityTime: 2000,
+                        autoHide: true,
+                        topOffset: 40,
+                      });
+                return;
+              }
+              if(familyData['biwi'] > 4)
+              {
+                Toast.show({
+                        type: 'error',
+                        text1: 'Biwi can only be 0 to 4',
+                        position: 'top',
+                        visibilityTime: 2000,
+                        autoHide: true,
+                        topOffset: 40,
+                      });
+                return;
+              }
+              if(familyData['shohar'] > 1)
+              {
+                Toast.show({
+                        type: 'error',
+                        text1: 'Shohar can only be 0 or 1',
+                        position: 'top',
+                        visibilityTime: 2000,
+                        autoHide: true,
+                        topOffset: 40,
                       });
                 return;
               }
