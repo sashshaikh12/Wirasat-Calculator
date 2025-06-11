@@ -38,5 +38,18 @@
     "allatibhateeja": "maternal nephew",
     "chacha": "paternal uncle",
     "shohar": "husband",
-    "calculateShares": "Calculate Shares"
+    "other": "Other",
+    "calculateShares": "Calculate Shares",
+    "shareDistribution": "Share Distribution",
+    "makhraj": "Makhraj",
+    "aul": "Aul",
+    "tasheeh": "Tasheeh",
+    "radd": "Radd",
+    "fraction": "Fraction",
+    "share": "Share",
+    "money": "Money",
+    "asaba": "Asaba",
+    "mahroom": "Mahroom",
+    "Sulus Maa Baqiyah": "Sulus Maa Baqiyah",
+    "asabaBy6": "1/6 + Asaba"
 }

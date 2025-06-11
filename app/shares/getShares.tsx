@@ -2,10 +2,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function GetShares() {
   const params = useLocalSearchParams();
-  
+  const { t } = useTranslation();
   
 
   let shares = new Map(); // Map<string, [number, number]>
@@ -1103,17 +1104,17 @@ useEffect(() => {
         <ScrollView className="flex-1 px-4">
             <View className="py-6 mb-4">
                 <Text className="text-white text-4xl font-semibold text-center mb-2 mt-4" >
-                    Share Distribution
+                    {t('shareDistribution')}
                 </Text>
                 <View className="h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-8" />
             </View>
             
             <View className="flex-1 p-2  flex-col justify-between items-center">
                 <View className="flex-1 w-full mb-6 bg-gray-800/90 rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm">
-                    <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>Makhraj = {firstLcm}</Text>
-                    {Aul > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Aul = {Aul}</Text>}
-                    {RaddValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Radd = {RaddValue}</Text>}
-                    {TasheehValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>Tasheeh = {TasheehValue}</Text>}
+                    <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>{t('makhraj')} = {firstLcm}</Text>
+                    {Aul > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>{t('aul')} = {Aul}</Text>}
+                    {RaddValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>{t('radd')} = {RaddValue}</Text>}
+                    {TasheehValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>{t('tasheeh')} = {TasheehValue}</Text>}
                 </View>
                 
             {finalList.map((item, index) => (
@@ -1127,20 +1128,26 @@ useEffect(() => {
                 >
                 <View className="mb-3">
                     <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
-                        {item.name}
+                        {t(item.name)}
                     </Text>
                     <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
                 </View>
                 
                 <View className="bg-white/10 rounded-lg p-3">
                     <Text className="text-blue-200 text-base text-center mt-1">
-                        Fraction: <Text className="text-white font-medium">{item.Fraction}</Text>
+                        {t('fraction')}: <Text className="text-white font-medium">
+                            {item.Fraction === "Sulus Maa Baqiyah" ? t('Sulus Maa Baqiyah') :
+                            item.Fraction === "Mahroom" ? t('mahroom') :
+                            item.Fraction === "Asaba" ? t('asaba') :
+                            item.Fraction === "1/6 + Asaba" ? t('asabaBy6') :
+                            item.Fraction}
+                        </Text>
                     </Text>
                     <Text className="text-blue-100 text-lg font-semibold text-center">
-                        Share: <Text className="text-white font-bold">{item.share}</Text>
+                        {t('share')}: <Text className="text-white font-bold">{item.share}</Text>
                     </Text>
                     <Text className="text-blue-200 text-base text-center mt-1">
-                        Money: <Text className="text-white font-medium">{(totalAmount * item.share) / finalLcm}</Text>
+                        {t('money')}: <Text className="text-white font-medium">{(totalAmount * item.share) / finalLcm}</Text>
                     </Text>
                 </View>
                 </View>
