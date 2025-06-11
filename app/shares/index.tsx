@@ -12,6 +12,7 @@ import {
   View
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
 
 
 export default function Shares() {
@@ -209,10 +210,28 @@ export default function Shares() {
             className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl mb-16"
             activeOpacity={0.8}
             onPress={() => {
+              let entered = false;
               const familyData = {};
               Object.keys(personStateMap).forEach(person => {
                 familyData[person] = Number(personStateMap[person].value);
+                if (familyData[person] > 0) {
+                  entered = true;
+                }
               });
+
+              if(!entered)
+              {
+                Toast.show({
+                        type: 'error',
+                        text1: 'Please fill the fields',
+                        position: 'top',
+                        visibilityTime: 2000,
+                        autoHide: true,
+                        topOffset: 40,
+                        
+                      });
+                return;
+              }
 
               router.push({
                 pathname: 'shares/getShares',

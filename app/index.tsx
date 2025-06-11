@@ -1,9 +1,8 @@
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import { SafeAreaView, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { t } from 'i18next';
+import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 
 // Reusable button with icon
