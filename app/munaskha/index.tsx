@@ -8,9 +8,12 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 
 export default function munaskha() {
+
+    const { t } = useTranslation();
 
 
 
@@ -1309,16 +1312,16 @@ if(lastBatan)
 
       <View className="mt-4 mb-8">
           <Text className="text-white text-3xl font-bold mb-2 text-center">
-            Islamic Inheritance Shares
+            {t('islamic_inheritance_shares')}
           </Text>
           <Text className="text-slate-300 text-center mb-16">
-            Calculate according to Sharia law
+            {t('islamic_inheritance_shares_description')}
           </Text>
 
           {/* Input for Number of Batans */}
         {currentBatanIndex === -1 && (
         <>
-            <Text className="text-white text-lg font-medium mb-3">Enter the Number of Batans:</Text>
+            <Text className="text-white text-lg font-medium mb-3">{t('numBatans')}:</Text>
             <TextInput
             className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
             placeholder="0"
@@ -1331,7 +1334,7 @@ if(lastBatan)
             className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl"
             onPress={() => (Number(num_batans) > 0 ? setCurrentBatanIndex(0) : setCurrentBatanIndex(-1))} // Start entering batans
             >
-            <Text className="text-white text-center font-semibold text-lg">Start Adding Batans</Text>
+            <Text className="text-white text-center font-semibold text-lg"> {t('addingBatans')} </Text>
             </TouchableOpacity>
         </>
         )}
@@ -1340,7 +1343,7 @@ if(lastBatan)
         {currentBatanIndex >= 0 && currentBatanIndex < Number(num_batans) && (
             <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg">
                 <Text className="text-white text-lg font-medium mb-6 text-center">
-                Enter the people in Batan {currentBatanIndex + 1}:
+                {t('enterInBatan')} {currentBatanIndex + 1}:
                 </Text>
 
                 <View className="flex-row flex-wrap items-center justify-center mb-4 gap-3">
@@ -1350,7 +1353,7 @@ if(lastBatan)
                     className="bg-purple-600 hover:bg-purple-700 active:bg-purple-800 rounded-full px-4 py-2 mr-2 mb-2 shadow-md"
                     onPress={() => setBatan((prev) => [...prev, { name: p, value: 0 }])} // Replace with your logic
                     >
-                    <Text className="text-white font-medium">{p}</Text>
+                    <Text className="text-white font-medium">{t({p})}</Text>
                     </TouchableOpacity>
                 ))}
                 </View>
@@ -1367,7 +1370,7 @@ if(lastBatan)
                                 >
                                 <View className="bg-slate-800/50 rounded-xl p-4 shadow-lg">
                                 <Text className="text-white text-lg font-bold mb-3 text-left">
-                                    Batan {i + 1}
+                                    {t('batan')} {i + 1}
                                 </Text>
                                 <View className="flex-row items-center gap-4">
                                     {level.map((person, j) => (
@@ -1375,7 +1378,7 @@ if(lastBatan)
                                         key={j}
                                         className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 shadow-md"
                                     >
-                                        <Text className="text-white text-lg font-medium">{person.name}</Text>
+                                        <Text className="text-white text-lg font-medium">{t({person.name})}</Text>
                                     </View>
                                     ))}
                                 </View>
@@ -1393,7 +1396,7 @@ if(lastBatan)
                             key={index}
                             className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 shadow-md"
                             >
-                            <Text className="text-white text-lg font-medium">{person.name}</Text>
+                            <Text className="text-white text-lg font-medium">{t({person.name})}</Text>
                             </View>
                         ))}
                     </View>
@@ -1408,7 +1411,7 @@ if(lastBatan)
                 }} 
                 >
                 <Text className="text-white text-center font-semibold text-lg">
-                    Remove
+                    {t('remove')}
                 </Text>
                 </TouchableOpacity>
 
@@ -1417,24 +1420,24 @@ if(lastBatan)
                 onPress={() => {handleFinalizeBatan()}} // Replace with your logic
                 >
                 <Text className="text-white text-center font-semibold text-lg">
-                    Finalize Batan {currentBatanIndex + 1}
+                    {t('finalizeBatan')} {currentBatanIndex + 1}
                 </Text>
                 </TouchableOpacity>
                  {askForDead && (
                     <View className="mt-8">
-                        <Text className="text-white text-lg font-medium mb-6">Enter Batan Number Of The Deceased:</Text>
+                        <Text className="text-white text-lg font-medium mb-6">{t('deceasedno')}:</Text>
                         <TextInput
                         className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white mb-7"
-                        placeholder="enter batan number here"
+                        placeholder= {t('deceasedno')}
                         placeholderTextColor="#94a3b8"
                         value={level.toString()} // Ensure the value is a string for TextInput
                         onChangeText={(text) => setLevel(text)} // Convert input to a number
                         keyboardType="numeric"
                         />
-                        <Text className="text-white text-lg font-medium mb-6">Enter Position Of The Deceased:</Text>
+                        <Text className="text-white text-lg font-medium mb-6">{t('deceasedpos')}:</Text>
                         <TextInput
                         className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
-                        placeholder="enter position here"
+                        placeholder= {t('dexeasedpos')}
                         placeholderTextColor="#94a3b8"
                         value={index.toString()} // Ensure the value is a string for TextInput
                         onChangeText={(text) => setIndex(text)} // Convert input to a number
@@ -1487,7 +1490,7 @@ if(lastBatan)
                         }} 
                         >
                         <Text className="text-white text-center font-semibold text-lg">
-                            Enter
+                            {t('enter')}
                         </Text>
                 </TouchableOpacity>
 
@@ -1501,7 +1504,7 @@ if(lastBatan)
                 {batans.map((level, i) => (
                 <View key={i} className="mb-6">
                     <Text className="text-white text-2xl font-bold text-center mb-4">
-                    Batan {i + 1}:
+                    {t('batan')} {i + 1}:
                     </Text>
                     {level.map((person, j) => {
                     const len = i !== 0 ? batans[i - 1].length : 0;
@@ -1526,13 +1529,13 @@ if(lastBatan)
                             >
                                 <View className="mb-3">
                                 <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
-                                    {person.name}
+                                    {t({person.name})}
                                 </Text>
                                 <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
                                 </View>
                                 <View className="bg-white/10 rounded-lg p-3">
                                 <Text className="text-blue-200 text-base text-center mt-1">
-                                    Shares: <Text className="text-white font-medium">{sum}</Text>
+                                    {t('share')}: <Text className="text-white font-medium">{sum}</Text>
                                 </Text>
                                 </View>
                             </View>

@@ -51,5 +51,14 @@
     "asaba": "Asaba",
     "mahroom": "Mahroom",
     "Sulus Maa Baqiyah": "Sulus Maa Baqiyah",
-    "asabaBy6": "1/6 + Asaba"
+    "asabaBy6": "1/6 + Asaba",
+    "numBatans": "Batanon ki tadad darj karein",
+    "addingBatans": "Batan shuru karein",
+    "enterInBatan" : "Batan mein logon ka naam darj karein",
+    "batan": "Batan",
+    "remove": "Hatao",
+    "finalizeBatan": "Batan Mukammal Karen",
+    "deceasedno": "Marhoom ke Batan ki number darj karein",
+    "deceasedpos": "Marhoom ki position darj karein",
+    "enter": "Daakhil karein"
 }

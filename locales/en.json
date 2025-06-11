@@ -51,5 +51,14 @@
     "asaba": "Asaba",
     "mahroom": "Mahroom",
     "Sulus Maa Baqiyah": "Sulus Maa Baqiyah",
-    "asabaBy6": "1/6 + Asaba"
+    "asabaBy6": "1/6 + Asaba",
+    "numBatans": "Enter the number of Batans",
+    "addingBatans": "Start Adding Batans",
+    "enterInBatan" : "Enter the people in Batan",
+    "batan": "Batan",
+    "remove": "Remove",
+    "finalizeBatan": "Finalize Batan",
+    "deceasedno": "Enter Batan Number Of The Deceased",
+    "deceasedpos": "Enter Position Of The Deceased",
+    "enter": "Enter"
 }
