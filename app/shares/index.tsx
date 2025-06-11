@@ -151,6 +151,9 @@ export default function Shares() {
                 onPress={() => {
                   setisMale(true);
                   setisFemale(false);
+                  for (const person in personStateMap) {
+                    personStateMap[person].setter(""); // Reset all fields when switching
+                  }
                 }}
                 disabled={isMale}
               >
@@ -168,6 +171,9 @@ export default function Shares() {
                 onPress={() => {
                   setisMale(false);
                   setisFemale(true);
+                  for (const person in personStateMap) {
+                    personStateMap[person].setter(""); // Reset all fields when switching
+                  }
                 }}
                 disabled={isFemale}
               >
