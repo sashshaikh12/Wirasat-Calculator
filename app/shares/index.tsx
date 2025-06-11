@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 
 export default function Shares() {
   const [totalAmount, setTotalAmount] = useState(0);
@@ -37,6 +39,8 @@ export default function Shares() {
   const [chacha, setChacha] = useState("");
   const [isMale, setisMale] = useState(true);
   const [isFemale, setisFemale] = useState(false);
+
+  const { t } = useTranslation();
 
   // Create a mapping of person to their state setter
   const personStateMap = {
@@ -125,16 +129,16 @@ export default function Shares() {
       <ScrollView className="flex-1 p-6"  >
         <View className="mt-4 mb-8">
           <Text className="text-white text-3xl font-bold mb-2 text-center">
-            Islamic Inheritance Shares
+            {t('islamic_inheritance_shares')}
           </Text>
           <Text className="text-slate-300 text-center mb-6">
-            Calculate according to Sharia law
+            {t('islamic_inheritance_shares_description')}
           </Text>
 
           {/* Gender Section */}
           <View className="mb-8 px-4 mt-10">
             <Text className="text-white text-2xl font-bold mb-8 text-center">
-              Gender Of The Deceased
+              {t('gender')}
             </Text>
             
             <View className="flex-row justify-between space-x-4 md:space-x-6">
@@ -151,7 +155,7 @@ export default function Shares() {
               >
                 <MaterialIcons name="male" size={20} color={isMale ? "#d1d5db" : "white"} />
                 <Text className={`text-lg font-semibold ${isMale ? 'text-gray-400' : 'text-white'}`}>
-                  Male
+                  {t('male')}
                 </Text>
               </TouchableOpacity>
               
@@ -168,7 +172,7 @@ export default function Shares() {
               >
                 <MaterialIcons name="female" size={20} color={isFemale ? "#d1d5db" : "white"} />
                 <Text className={`text-lg font-semibold ${isFemale ? 'text-gray-400' : 'text-white'}`}>
-                  Female
+                  {t('female')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -178,13 +182,13 @@ export default function Shares() {
           {/* Family Members Section */}
           <View className="mb-8 mt-10">
             <Text className="text-white text-2xl font-bold mb-6 text-center">
-              Family Members
+              {t('familyMembers')}
             </Text>
             <View className="space-y-5">
               {(isMale ? maleList : femaleList).map((person) => (
                 <View key={person} className="bg-slate-800/40 rounded-xl p-4 shadow">
                   <Text className="text-white text-lg font-medium mb-3">
-                    {person}
+                    {t(person)}
                   </Text>
                   <TextInput
                     className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 
@@ -220,7 +224,7 @@ export default function Shares() {
             }}
           >
             <Text className="text-white text-center font-semibold text-lg">
-              Calculate Shares
+              {t('calculateShares')}
             </Text>
           </TouchableOpacity>
         </View>

@@ -49,16 +49,16 @@ function HandleData(){
       <ScrollView className="flex-1 p-6"  >
         <View className="mt-4 mb-8">
           <Text className="text-white text-3xl font-bold mb-2 text-center">
-            Islamic Inheritance Shares
+            {t('islamic_inheritance_shares')}
           </Text>
           <Text className="text-slate-300 text-center mb-16">
-            Calculate according to Sharia law
+            {t('islamic_inheritance_shares_description')}
           </Text>
 
           {/* Total Amount Section */}
           <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5">
             <Text className="text-white text-md font-semibold mb-3">
-              Total Amount Left:
+              {t('totalAmountLeft')}
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
@@ -71,7 +71,7 @@ function HandleData(){
             />
 
             <Text className="text-white text-md font-semibold mb-3">
-              Amount spent on Tajheez o Takfeen:
+              {t('tajheez')}
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
@@ -84,7 +84,7 @@ function HandleData(){
             />
 
             <Text className="text-white text-md font-semibold mb-3">
-              Amount spent on Qarza:
+              {t('qarza')}
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
@@ -97,7 +97,7 @@ function HandleData(){
             />
 
             <Text className="text-white text-md font-semibold mb-3">
-              Amount spent on Nifaz e Wasiyat:
+              {t('nifaz')}
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
@@ -117,7 +117,7 @@ function HandleData(){
                       }}
                     >
                       <Text className="text-white text-center font-semibold text-xl">
-                        Tarkha
+                        {t('tarkah')}
                       </Text>
                     </TouchableOpacity>
         </View>
