@@ -1353,7 +1353,7 @@ if(lastBatan)
                     className="bg-purple-600 hover:bg-purple-700 active:bg-purple-800 rounded-full px-4 py-2 mr-2 mb-2 shadow-md"
                     onPress={() => setBatan((prev) => [...prev, { name: p, value: 0 }])} // Replace with your logic
                     >
-                    <Text className="text-white font-medium">{t({p})}</Text>
+                    <Text className="text-white font-medium">{t(p)}</Text>
                     </TouchableOpacity>
                 ))}
                 </View>
@@ -1378,7 +1378,7 @@ if(lastBatan)
                                         key={j}
                                         className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 shadow-md"
                                     >
-                                        <Text className="text-white text-lg font-medium">{t({person.name})}</Text>
+                                        <Text className="text-white text-lg font-medium">{t(person.name)}</Text>
                                     </View>
                                     ))}
                                 </View>
@@ -1396,7 +1396,7 @@ if(lastBatan)
                             key={index}
                             className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 shadow-md"
                             >
-                            <Text className="text-white text-lg font-medium">{t({person.name})}</Text>
+                            <Text className="text-white text-lg font-medium">{t(person.name)}</Text>
                             </View>
                         ))}
                     </View>
@@ -1437,7 +1437,7 @@ if(lastBatan)
                         <Text className="text-white text-lg font-medium mb-6">{t('deceasedpos')}:</Text>
                         <TextInput
                         className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
-                        placeholder= {t('dexeasedpos')}
+                        placeholder= {t('deceasedpos')}
                         placeholderTextColor="#94a3b8"
                         value={index.toString()} // Ensure the value is a string for TextInput
                         onChangeText={(text) => setIndex(text)} // Convert input to a number
@@ -1529,7 +1529,7 @@ if(lastBatan)
                             >
                                 <View className="mb-3">
                                 <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
-                                    {t({person.name})}
+                                    {t(person.name)}
                                 </Text>
                                 <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
                                 </View>
