@@ -36,7 +36,7 @@ export default function RootLayout() {
       <Stack.Screen name = "shares/index" options={
         {
           headerStyle: {
-            backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient
+            backgroundColor: '#07142B', // Dark blue-gray background to match the app's gradient
           },
           headerShadowVisible: false, // Removes the shadow for a cleaner look
           headerLeft: () => (
@@ -45,13 +45,19 @@ export default function RootLayout() {
             style={{ width: 120, height: 45, resizeMode: 'contain' }} // Adjust dimensions as needed
             />
           ),
-          headerTitle: '' ,
+          headerTitle: () => (
+            <Image 
+            source={require('../assets/images/AppName.png')} // Path to your settings icon image
+            style={{ width: 120, height: 45, resizeMode: 'contain'}} // Adjust dimensions as needed
+            />
+          ),
+          headerTitleAlign: 'center' ,
         }
       } /> 
       <Stack.Screen name = "shares/getShares" options={
         {
           headerStyle: {
-            backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient
+            backgroundColor: '#07142B', // Dark blue-gray background to match the app's gradient
           },
           headerShadowVisible: false, // Removes the shadow for a cleaner look
           headerLeft: () => (
@@ -60,13 +66,19 @@ export default function RootLayout() {
             style={{ width: 120, height: 45, resizeMode: 'contain' }} // Adjust dimensions as needed
             />
           ),
-          headerTitle: '' ,
+          headerTitle: () => (
+            <Image 
+            source={require('../assets/images/AppName.png')} // Path to your settings icon image
+            style={{ width: 120, height: 45, resizeMode: 'contain'}} // Adjust dimensions as needed
+            />
+          ),
+          headerTitleAlign: 'center' ,
         }
       } /> 
       <Stack.Screen name = "shares/landing" options={
         {
           headerStyle: {
-            backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient
+            backgroundColor: '#07142B', // Dark blue-gray background to match the app's gradient
           },
           headerShadowVisible: false, // Removes the shadow for a cleaner look
           headerLeft: () => (
@@ -75,13 +87,19 @@ export default function RootLayout() {
             style={{ width: 120, height: 45, resizeMode: 'contain' }} // Adjust dimensions as needed
             />
           ),
-          headerTitle: '' ,
+          headerTitle: () => (
+            <Image 
+            source={require('../assets/images/AppName.png')} // Path to your settings icon image
+            style={{ width: 120, height: 45, resizeMode: 'contain'}} // Adjust dimensions as needed
+            />
+          ),
+          headerTitleAlign: 'center' ,
         }
       } /> 
       <Stack.Screen name = "shares/message" options={
         {
           headerStyle: {
-            backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient
+            backgroundColor: '#07142B', // Dark blue-gray background to match the app's gradient
           },
           headerShadowVisible: false, // Removes the shadow for a cleaner look
           headerLeft: () => (
@@ -90,13 +108,19 @@ export default function RootLayout() {
             style={{ width: 120, height: 45, resizeMode: 'contain' }} // Adjust dimensions as needed
             />
           ),
-          headerTitle: '' ,
+          headerTitle: () => (
+            <Image 
+            source={require('../assets/images/AppName.png')} // Path to your settings icon image
+            style={{ width: 120, height: 45, resizeMode: 'contain'}} // Adjust dimensions as needed
+            />
+          ),
+          headerTitleAlign: 'center' ,
         }
       } /> 
       <Stack.Screen name = "munaskha/index" options={
         {
           headerStyle: {
-            backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient
+            backgroundColor: '#07142B', // Dark blue-gray background to match the app's gradient
           },
           headerShadowVisible: false, // Removes the shadow for a cleaner look
           headerLeft: () => (
@@ -105,13 +129,19 @@ export default function RootLayout() {
             style={{ width: 120, height: 45, resizeMode: 'contain' }} // Adjust dimensions as needed
             />
           ),
-          headerTitle: '' ,
+          headerTitle: () => (
+            <Image 
+            source={require('../assets/images/AppName.png')} // Path to your settings icon image
+            style={{ width: 120, height: 45, resizeMode: 'contain'}} // Adjust dimensions as needed
+            />
+          ),
+          headerTitleAlign: 'center' ,
         }
       } /> 
       <Stack.Screen name = "selectLanguages/index" options={
         {
           headerStyle: {
-            backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient
+            backgroundColor: '#07142B', // Dark blue-gray background to match the app's gradient
           },
           headerShadowVisible: false, // Removes the shadow for a cleaner look
           headerLeft: () => (
@@ -120,13 +150,19 @@ export default function RootLayout() {
             style={{ width: 120, height: 45, resizeMode: 'contain' }} // Adjust dimensions as needed
             />
           ),
-          headerTitle: '' ,
+          headerTitle: () => (
+            <Image 
+            source={require('../assets/images/AppName.png')} // Path to your settings icon image
+            style={{ width: 120, height: 45, resizeMode: 'contain'}} // Adjust dimensions as needed
+            />
+          ),
+          headerTitleAlign: 'center' ,
         }
       } /> 
       <Stack.Screen name = "fidya/index" options={
         {
           headerStyle: {
-            backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient
+            backgroundColor: '#07142B', // Dark blue-gray background to match the app's gradient
           },
           headerShadowVisible: false, // Removes the shadow for a cleaner look
           headerLeft: () => (
@@ -135,7 +171,13 @@ export default function RootLayout() {
             style={{ width: 120, height: 45, resizeMode: 'contain' }} // Adjust dimensions as needed
             />
           ),
-          headerTitle: '' ,
+          headerTitle: () => (
+            <Image 
+            source={require('../assets/images/AppName.png')} // Path to your settings icon image
+            style={{ width: 120, height: 45, resizeMode: 'contain'}} // Adjust dimensions as needed
+            />
+          ),
+          headerTitleAlign: 'center' ,
         }
       } /> 
     </Stack>
