@@ -1228,6 +1228,30 @@ function getMaff(index, level) {
 
 function handleFinalizeBatan() 
 {
+    if(batan.length === 0)
+    {
+        Toast.show({
+            type: 'error',
+            text1: 'Please add at least one person to the batan',
+            position: 'top',
+            visibilityTime: 2000,
+            autoHide: true,
+            topOffset: 40,
+        });
+        return;
+    }
+    if(currentBatanIndex > 0 && batan.length < batans[currentBatanIndex - 1].length)
+    {
+        Toast.show({
+            type: 'error',
+            text1: 'Please ensure the number of people in the batan matches the previous batans',
+            position: 'top',
+            visibilityTime: 2000,
+            autoHide: true,
+            topOffset: 40,
+        });
+        return;
+    }
     setPressed(true);
     let m = new Map(); // Create a new Map to store counts
 
@@ -1490,7 +1514,50 @@ if(lastBatan)
                         <TouchableOpacity
                         className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-6 shadow-lg"
                         onPress={() => {
-                           
+                            if (level === "" || index === "") {
+                                Toast.show({
+                                    type: 'error',
+                                    text1: 'Please enter both level and index',
+                                    position: 'top',
+                                    visibilityTime: 2000,
+                                    autoHide: true,
+                                    topOffset: 40,
+                                });
+                                return;
+                            }
+                            if (Number(level) < 1 || Number(index) < 1 || Number(index) > batans[currentBatanIndex].length) {
+                                Toast.show({
+                                    type: 'error',
+                                    text1: 'Invalid level or index',
+                                    position: 'top',
+                                    visibilityTime: 2000,
+                                    autoHide: true,
+                                    topOffset: 40,
+                                });
+                                return;
+                            }
+                            if (Number(level) > batans.length) {
+                                Toast.show({
+                                    type: 'error',
+                                    text1: 'Level exceeds the number of batans',
+                                    position: 'top',
+                                    visibilityTime: 2000,
+                                    autoHide: true,
+                                    topOffset: 40,
+                                });
+                                return;
+                            }
+                            if(dead.has(Number(level) - 1) && dead.get(Number(level) - 1).includes(Number(index) - 1)) {
+                                Toast.show({
+                                    type: 'error',
+                                    text1: 'This person is already marked as deceased',
+                                    position: 'top',
+                                    visibilityTime: 2000,
+                                    autoHide: true,
+                                    topOffset: 40,
+                                });
+                                return;
+                            }
                             setCurrentBatanIndex((prevIndex) =>  prevIndex + 1);
                             setAskForDead(false);
                             setDead((prevDead) => {
@@ -1531,6 +1598,7 @@ if(lastBatan)
                             
                             setIndex("");
                             setLevel("");
+                            setPressed(false);
                         }} 
                         >
                         <Text className="text-white text-center font-semibold text-lg">
