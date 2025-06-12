@@ -15,7 +15,7 @@ export default function RootLayout() {
         name="index" 
         options={{
           headerStyle: {
-            backgroundColor: 'white', // Dark blue-gray background to match the app's gradient
+            backgroundColor: '#07142B', // Dark blue-gray background to match the app's gradient
           },
           headerShadowVisible: false, // Removes the shadow for a cleaner look
           headerLeft: () => (

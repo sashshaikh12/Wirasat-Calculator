@@ -21,9 +21,13 @@ const MenuButton = ({
     className="mb-8 rounded-2xl overflow-hidden shadow-md"
   >
     <View
-      className="flex-row items-center justify-start px-6 py-4 bg-purple-700/90 border-b-8 border-b-purple-950 border-t-8 border-t-purple-500"
+      className="flex-row items-center justify-start px-6 py-4  border-b-8 border-b-purple-950 border-t-8 border-t-purple-500"
       style={{
-        
+        backgroundColor: '#07142B', // Set the background color here
+        borderBottomWidth: 8,
+        borderBottomColor: '#000009', 
+        borderTopWidth: 8,
+        borderTopColor: '#123456',
       }}
     >
       <FontAwesome name={iconName} size={45} color="white" />
@@ -54,10 +58,10 @@ export default function Index() {
                          >
           {/* App Header */}
           <View className="mb-8">
-            <Text className="text-white text-4xl font-bold text-center mb-2">
+            <Text className="text-white text-4xl font-bold text-center mb-4 mt-4">
               {t('wirasat_app')}
             </Text>
-            <Text className="text-gray-200 text-base text-center">
+            <Text className="text-gray-200 text-base text-center mb-6">
               {t('caption')}
             </Text>
           </View>
@@ -65,10 +69,14 @@ export default function Index() {
           {/* Menu Buttons */}
           <MenuButton title={t('button1')} iconName="pie-chart" onPress={() => router.push('shares/landing')} />
           <MenuButton title={t('button2')} iconName="book" />
-          <MenuButton title={t('button3')} iconName="slideshare" onPress={() => router.push('munaskha')} />
-          <MenuButton title={t('button4')} iconName="globe" onPress={() => router.push('selectLanguages')}/>
-          <MenuButton title="Fidya" iconName="envelope" onPress={() => router.push('fidya')} />
-          <MenuButton title="Books" iconName="envelope" />
+          <MenuButton title={t('button3')} iconName="sitemap" onPress={() => router.push('munaskha')} />
+          <MenuButton title={t('button4')} iconName="language" onPress={() => router.push('selectLanguages')}/>
+          <MenuButton title={t('button5')} iconName="user-circle-o" />
+          <MenuButton title={t('button6')} iconName="heart" />
+          <MenuButton title={t('button7')} iconName="phone-square" />
+          <MenuButton title={t('button8')} iconName="calculator" onPress={() => router.push('fidya')} />
+          <MenuButton title={t('button9')} iconName="slideshare" />
+          <MenuButton title={t('button10')} iconName="thumbs-o-up" />
         </View>
       </ScrollView>
     </SafeAreaView>
