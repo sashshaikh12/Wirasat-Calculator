@@ -7,23 +7,6 @@ import { useEffect } from "react";
 
 export default function RootLayout() {
 
-  useEffect(() => {
-    // Hide the splash screen after the app has loaded
-    const hideSplashScreen = async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate loading time
-      Toast.show({
-        type: 'success',
-        text1: 'AssalamuAlaikum 🤲',
-        position: 'top',
-        visibilityTime: 2000,
-        autoHide: true,
-        topOffset: 40,
-        
-      });
-    };
-
-    hideSplashScreen();
-  }, []);
 
   return (
   <>
@@ -126,6 +109,21 @@ export default function RootLayout() {
         }
       } /> 
       <Stack.Screen name = "selectLanguages/index" options={
+        {
+          headerStyle: {
+            backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient
+          },
+          headerShadowVisible: false, // Removes the shadow for a cleaner look
+          headerLeft: () => (
+            <Image 
+            source={require('../assets/images/AppLogo.png')} // Path to your logo image
+            style={{ width: 120, height: 45, resizeMode: 'contain' }} // Adjust dimensions as needed
+            />
+          ),
+          headerTitle: '' ,
+        }
+      } /> 
+      <Stack.Screen name = "fidya/index" options={
         {
           headerStyle: {
             backgroundColor: '#1E293B', // Dark blue-gray background to match the app's gradient

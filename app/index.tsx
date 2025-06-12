@@ -43,7 +43,8 @@ export default function Index() {
         className="flex-1 px-6"
       >
     <SafeAreaView className="flex-1">
-      <ScrollView className='flex-1' contentContainerStyle={{
+      <ScrollView className='flex-1' showsVerticalScrollIndicator={false} // Hides the vertical scrollbar
+  showsHorizontalScrollIndicator={false} contentContainerStyle={{
     justifyContent: 'center',
     alignItems: 'center',
     flexGrow: 1,
@@ -66,6 +67,8 @@ export default function Index() {
           <MenuButton title={t('button2')} iconName="book" />
           <MenuButton title={t('button3')} iconName="slideshare" onPress={() => router.push('munaskha')} />
           <MenuButton title={t('button4')} iconName="globe" onPress={() => router.push('selectLanguages')}/>
+          <MenuButton title="Fidya" iconName="envelope" onPress={() => router.push('fidya')} />
+          <MenuButton title="Books" iconName="envelope" />
         </View>
       </ScrollView>
     </SafeAreaView>
