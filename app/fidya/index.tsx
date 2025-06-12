@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function fidya() {
 
@@ -19,6 +20,8 @@ export default function fidya() {
     const [TotalAmount, setTotalAmount] = useState(0);
     const [TotalRoza, setTotalRoza] = useState(0);
     const [showResult, setShowResult] = useState(false);
+    const [isMale, setisMale] = useState(true);
+    const [isFemale, setisFemale] = useState(false);
 
 const { t } = useTranslation();
 
@@ -70,7 +73,7 @@ function HandleData()
     }
     
     const amountValue = Number(amount);
-    const yearsValue = Number(years);
+    const yearsValue = Number(years) - (isMale ? 12 : 9);
     
     if (isNaN(amountValue) || isNaN(yearsValue)) {
         Toast.show({
@@ -111,10 +114,52 @@ function HandleData()
             {t('islamic_inheritance_shares_description')}
           </Text>
 
+              <Text className="text-white text-2xl font-bold mb-8 text-center">
+              {t('gender')}
+            </Text>
+          <View className="flex-row justify-between space-x-4 md:space-x-6 mb-10">
+
+              {/* Male Button */}
+              <TouchableOpacity 
+                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md ${
+                  isMale ? 'bg-blue-400/50' : 'bg-blue-600/80 active:bg-blue-700'
+                }`}
+                onPress={() => {
+                  setisMale(true);
+                  setisFemale(false);
+                  
+                }}
+                disabled={isMale}
+              >
+                <MaterialIcons name="male" size={20} color={isMale ? "#d1d5db" : "white"} />
+                <Text className={`text-lg font-semibold ${isMale ? 'text-gray-400' : 'text-white'}`}>
+                  {t('male')}
+                </Text>
+              </TouchableOpacity>
+              
+              {/* Female Button */}
+              <TouchableOpacity 
+                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md ${
+                  isFemale ? 'bg-pink-400/50' : 'bg-pink-600/80 active:bg-pink-700'
+                }`}
+                onPress={() => {
+                  setisMale(false);
+                  setisFemale(true);
+                  
+                }}
+                disabled={isFemale}
+              >
+                <MaterialIcons name="female" size={20} color={isFemale ? "#d1d5db" : "white"} />
+                <Text className={`text-lg font-semibold ${isFemale ? 'text-gray-400' : 'text-white'}`}>
+                  {t('female')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+
           {/* Total Amount Section */}
           <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5">
             <Text className="text-white text-md font-semibold mb-3">
-              Enter The Amount To Be Taken
+              Enter The Amount
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
@@ -126,7 +171,7 @@ function HandleData()
             />
 
             <Text className="text-white text-md font-semibold mb-3">
-              Enter The number of years
+              Enter The Age
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
