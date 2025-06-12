@@ -31,10 +31,10 @@ function HandleData()
         });
         return;
     }
-    if(amount.includes(',') || years.includes(',')) {
+    if(amount.includes(',') || years.includes(',') || amount.includes(' ') || years.includes(' ') || amount.includes('-') || years.includes('-')) {
         Toast.show({
         type: 'error',
-        text1: "Please enter valid numbers without commas",
+        text1: "Please enter valid numbers",
         });
         return;
     }
@@ -69,8 +69,8 @@ function HandleData()
         return;
     }
     
-    const amountValue = parseFloat(amount);
-    const yearsValue = parseInt(years, 10);
+    const amountValue = Number(amount);
+    const yearsValue = Number(years);
     
     if (isNaN(amountValue) || isNaN(yearsValue)) {
         Toast.show({
