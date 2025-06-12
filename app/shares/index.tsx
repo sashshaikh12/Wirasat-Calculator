@@ -217,13 +217,30 @@ export default function Shares() {
             activeOpacity={0.8}
             onPress={() => {
               let entered = false;
+              let wrong = false;
               const familyData = {};
               Object.keys(personStateMap).forEach(person => {
+                if(personStateMap[person].value.includes('.') || personStateMap[person].value.includes('-') || personStateMap[person].value.includes(',') || personStateMap[person].value.includes(' ')) {
+                  wrong = true;
+                }
                 familyData[person] = Number(personStateMap[person].value);
                 if (familyData[person] > 0) {
                   entered = true;
                 }
               });
+
+              if(wrong)
+              {
+                Toast.show({
+                        type: 'error',
+                        text1: 'Please enter valid numbers',
+                        position: 'top',
+                        visibilityTime: 2000,
+                        autoHide: true,
+                        topOffset: 40,             
+                      });
+                return;
+              }
 
               if(!entered)
               {

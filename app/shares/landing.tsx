@@ -33,10 +33,10 @@ function CountDots(s)
 
 function HandleData(){
 
-  if(totalAmount.includes(',') || tajheez.includes(',') || qarza.includes(',') || wasiyat.includes(',') || totalAmount.includes('-') || tajheez.includes('-') || qarza.includes('-') || wasiyat.includes('-')){
+  if(totalAmount.includes(',') || tajheez.includes(',') || qarza.includes(',') || wasiyat.includes(',') || totalAmount.includes('-') || tajheez.includes('-') || qarza.includes('-') || wasiyat.includes('-') || totalAmount.includes(' ') || tajheez.includes(' ') || qarza.includes(' ') || wasiyat.includes(' ')) {
     Toast.show({
       type: 'error',
-      text1: "Please remove commas or minus from the input values.",
+      text1: "Please remove commas,space,minus from the input values.",
       position: 'top',
       visibilityTime: 3000,
       autoHide: true,
