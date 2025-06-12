@@ -9,6 +9,7 @@ import {
     View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
 
 
 export default function munaskha() {
@@ -71,6 +72,7 @@ let batanShares = new Map();
   const [askForDead, setAskForDead] = useState(false);
   const [showPrevBatans, setShowPrevBatans] = useState(false);
   const [lastBatan, setLastBatan] = useState(false);
+  const [pressed, setPressed] = useState(false);
 
   
 
@@ -1226,6 +1228,7 @@ function getMaff(index, level) {
 
 function handleFinalizeBatan() 
 {
+    setPressed(true);
     let m = new Map(); // Create a new Map to store counts
 
     batan.forEach((it) => {
@@ -1332,7 +1335,21 @@ if(lastBatan)
             />
             <TouchableOpacity
             className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl"
-            onPress={() => (Number(num_batans) > 0 ? setCurrentBatanIndex(0) : setCurrentBatanIndex(-1))} // Start entering batans
+            onPress={() => {
+                    if (Number(num_batans) > 0) {
+                        setCurrentBatanIndex(0);
+                    } else {
+                        setCurrentBatanIndex(-1);
+                        Toast.show({
+                        type: 'error',
+                        text1: 'Please enter a valid number of batans',
+                        position: 'top',
+                        visibilityTime: 2000,
+                        autoHide: true,
+                        topOffset: 40,
+                        });
+                    }
+                    }}
             >
             <Text className="text-white text-center font-semibold text-lg"> {t('addingBatans')} </Text>
             </TouchableOpacity>
@@ -1349,12 +1366,23 @@ if(lastBatan)
                 <View className="flex-row flex-wrap items-center justify-center mb-4 gap-3">
                 {people.map((p, index) => (
                     <TouchableOpacity
-                    key={index}
-                    className="bg-purple-600 hover:bg-purple-700 active:bg-purple-800 rounded-full px-4 py-2 mr-2 mb-2 shadow-md"
-                    onPress={() => setBatan((prev) => [...prev, { name: p, value: 0 }])} // Replace with your logic
-                    >
-                    <Text className="text-white font-medium">{t(p)}</Text>
-                    </TouchableOpacity>
+                        key={index}
+                        className={`rounded-full px-4 py-2 mr-2 mb-2 shadow-md ${
+                            pressed
+                            ? 'bg-gray-500' // Disabled state style
+                            : 'bg-purple-600 hover:bg-purple-700 active:bg-purple-800'
+                        }`}
+                        onPress={() => setBatan((prev) => [...prev, { name: p, value: 0 }])}
+                        disabled={pressed} // Disable the button when pressed is true
+                        >
+                        <Text
+                            className={`font-medium ${
+                            pressed ? 'text-gray-300' : 'text-white' // Change text color when disabled
+                            }`}
+                        >
+                            {t(p)}
+                        </Text>
+                        </TouchableOpacity>
                 ))}
                 </View>
 
@@ -1403,26 +1431,42 @@ if(lastBatan)
                 </ScrollView>
 
                 <TouchableOpacity
-                className="bg-red-600 hover:bg-red-700 active:bg-red-800 rounded-xl px-6 py-4 mt-10 shadow-lg"
-                onPress={() => {
-                    if (batan.length > 0) {
-                    setBatan((prev) => prev.slice(0, -1)); // Remove the last element from the array
-                    }
-                }} 
-                >
-                <Text className="text-white text-center font-semibold text-lg">
-                    {t('remove')}
-                </Text>
-                </TouchableOpacity>
+                    className={`rounded-xl px-6 py-4 mt-10 shadow-lg ${
+                        pressed ? 'bg-gray-500' : 'bg-red-600 hover:bg-red-700 active:bg-red-800'
+                    }`}
+                    onPress={() => {
+                        if (batan.length > 0) {
+                        setBatan((prev) => prev.slice(0, -1)); // Remove the last element from the array
+                        }
+                    }}
+                    disabled={pressed} // Disable the button when pressed is true
+                    >
+                    <Text
+                        className={`text-center font-semibold text-lg ${
+                        pressed ? 'text-gray-300' : 'text-white'
+                        }`}
+                    >
+                        {t('remove')}
+                    </Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-10 shadow-lg"
-                onPress={() => {handleFinalizeBatan()}} // Replace with your logic
-                >
-                <Text className="text-white text-center font-semibold text-lg">
-                    {t('finalizeBatan')} {currentBatanIndex + 1}
-                </Text>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                    className={`rounded-xl px-6 py-4 mt-10 shadow-lg ${
+                        pressed ? 'bg-gray-500' : 'bg-green-600 hover:bg-green-700 active:bg-green-800'
+                    }`}
+                    onPress={() => {
+                        handleFinalizeBatan();
+                    }}
+                    disabled={pressed} // Disable the button when pressed is true
+                    >
+                    <Text
+                        className={`text-center font-semibold text-lg ${
+                        pressed ? 'text-gray-300' : 'text-white'
+                        }`}
+                    >
+                        {t('finalizeBatan')} {currentBatanIndex + 1}
+                    </Text>
+                    </TouchableOpacity>
                  {askForDead && (
                     <View className="mt-8">
                         <Text className="text-white text-lg font-medium mb-6">{t('deceasedno')}:</Text>
