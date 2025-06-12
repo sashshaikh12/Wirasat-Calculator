@@ -39,7 +39,7 @@ export default function Index() {
 
   return (
     <LinearGradient
-        colors={['#0F172A', '#1E293B', '#334155']}
+        colors={['#1f4037', '#99f2c8']}
         className="flex-1 px-6"
       >
     <SafeAreaView className="flex-1">

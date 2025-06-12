@@ -159,10 +159,10 @@ function HandleData()
                 Rs. {TotalAmount}
                 </Text>
 
-                <Text className="text-white text-xl font-semibold mb-2 text-center">
+                <Text className="text-white text-2xl font-bold mb-4 text-center  pb-2">
                 🕌 Total Amount on Roza
                 </Text>
-                <Text className="text-emerald-300 text-2xl font-bold text-center mb-4">
+                <Text className="text-emerald-300 text-3xl font-bold text-center mb-4">
                 Rs. {TotalRoza}
                 </Text>
 
@@ -176,6 +176,8 @@ function HandleData()
                 </Text>
             </View>
             )}
+
+            <View className='mb-10'></View>
 
       </ScrollView>
     </SafeAreaView>

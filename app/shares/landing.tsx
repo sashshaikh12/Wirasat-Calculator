@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
 
 export default function landing() {
 const [totalAmount, setTotalAmount] = useState("");
@@ -19,7 +20,45 @@ const [wasiyat, setWasiyat] = useState("");
 
 const { t } = useTranslation();
 
+function CountDots(s)
+{
+  let count = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '.') {
+      count++;
+    }
+  }
+  return count > 1;
+}
+
 function HandleData(){
+
+  if(totalAmount.includes(',') || tajheez.includes(',') || qarza.includes(',') || wasiyat.includes(',') || totalAmount.includes('-') || tajheez.includes('-') || qarza.includes('-') || wasiyat.includes('-')){
+    Toast.show({
+      type: 'error',
+      text1: "Please remove commas or minus from the input values.",
+      position: 'top',
+      visibilityTime: 3000,
+      autoHide: true,
+      topOffset: 40,
+    });
+    return;
+  }
+
+  let count = false;
+  count = CountDots(totalAmount) || CountDots(tajheez) || CountDots(qarza) || CountDots(wasiyat);
+  if (count) {
+    Toast.show({
+      type: 'error',
+      text1: "Please enter a valid number without multiple decimal points.",
+      position: 'top',
+      visibilityTime: 3000,
+      autoHide: true,
+      topOffset: 40,
+    });
+    return;
+  }
+
   const remainingAmount = Number(totalAmount) - (Number(tajheez) + Number(qarza) + Math.min(Number(wasiyat), Number(totalAmount) / 3));
   
   if(remainingAmount < 0)
