@@ -1360,7 +1360,18 @@ if(lastBatan)
             <TouchableOpacity
             className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl"
             onPress={() => {
-                    if (Number(num_batans) > 0) {
+                    if(num_batans.includes('.') || num_batans.includes('-') || num_batans.includes(' ') || num_batans.includes(',')) {
+                        Toast.show({
+                        type: 'error',
+                        text1: 'Please enter a valid number of batans',
+                        position: 'top',
+                        visibilityTime: 2000,
+                        autoHide: true,
+                        topOffset: 40,
+                        });
+                        return;
+                    }
+                    else if (Number(num_batans) > 0) {
                         setCurrentBatanIndex(0);
                     } else {
                         setCurrentBatanIndex(-1);
@@ -1518,6 +1529,17 @@ if(lastBatan)
                                 Toast.show({
                                     type: 'error',
                                     text1: 'Please enter both level and index',
+                                    position: 'top',
+                                    visibilityTime: 2000,
+                                    autoHide: true,
+                                    topOffset: 40,
+                                });
+                                return;
+                            }
+                            if(level.includes('.') || level.includes('-') || level.includes(' ') || level.includes(',') || index.includes('.') || index.includes('-') || index.includes(' ') || index.includes(',')) {
+                                Toast.show({
+                                    type: 'error',
+                                    text1: 'Please enter valid level and index',
                                     position: 'top',
                                     visibilityTime: 2000,
                                     autoHide: true,
