@@ -121,7 +121,7 @@ export default function Shares() {
 
   return (
   <LinearGradient 
-    colors={['#0F172A', '#1E293B', '#334155']} 
+    colors={['#1f4037', '#99f2c8']} 
     className="flex-1"
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}
@@ -145,7 +145,7 @@ export default function Shares() {
             <View className="flex-row justify-between space-x-4 md:space-x-6">
               {/* Male Button */}
               <TouchableOpacity 
-                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md ${
+                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2  ${
                   isMale ? 'bg-blue-400/50' : 'bg-blue-600/80 active:bg-blue-700'
                 }`}
                 onPress={() => {
@@ -165,7 +165,7 @@ export default function Shares() {
               
               {/* Female Button */}
               <TouchableOpacity 
-                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md ${
+                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2  ${
                   isFemale ? 'bg-pink-400/50' : 'bg-pink-600/80 active:bg-pink-700'
                 }`}
                 onPress={() => {
@@ -193,13 +193,18 @@ export default function Shares() {
             </Text>
             <View className="space-y-5">
               {(isMale ? maleList : femaleList).map((person) => (
-                <View key={person} className="bg-slate-800/40 rounded-xl p-4 shadow">
+                <View key={person} className="rounded-xl p-4 shadow mb-6" style={{
+                        backgroundColor: '#07142B', // Set the background color here
+                      }}>
                   <Text className="text-white text-lg font-medium mb-3">
                     {t(person)}
                   </Text>
                   <TextInput
-                    className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 
+                    className="bg-slate-700/80 border rounded-lg px-4 py-3 
                       text-white"
+                      style={{
+                        borderColor: '#173C4C', // Set the background color here
+                      }}
                     placeholder="0"
                     placeholderTextColor="#94a3b8" 
                     value={personStateMap[person].value.toString()}
@@ -213,7 +218,7 @@ export default function Shares() {
 
           {/* Calculate Button */}
           <TouchableOpacity 
-            className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl mb-16"
+            className="mb-8 rounded-2xl overflow-hidden shadow-md"
             activeOpacity={0.8}
             onPress={() => {
               let entered = false;
@@ -313,9 +318,21 @@ export default function Shares() {
               });
             }}
           >
-            <Text className="text-white text-center font-semibold text-lg">
-              {t('calculateShares')}
-            </Text>
+            <View
+              className="flex-row items-center justify-center px-6 py-4"
+              style={{
+                backgroundColor: '#07142B', // Set the background color here
+                borderBottomWidth: 8,
+                borderBottomColor: '#000009', 
+                borderTopWidth: 12,
+                borderTopColor: '#123456',
+              }}
+            >
+              
+              <Text className="text-white text-lg font-semibold ml-1 px-12 py-3">
+                {t('calculateShares')}
+              </Text>
+            </View>
           </TouchableOpacity>
         </View>
       </ScrollView>

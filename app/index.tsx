@@ -21,7 +21,7 @@ const MenuButton = ({
     className="mb-8 rounded-2xl overflow-hidden shadow-md"
   >
     <View
-      className="flex-row items-center justify-start px-6 py-4  border-b-8 border-b-purple-950 border-t-8 border-t-purple-500"
+      className="flex-row items-center justify-start px-6 py-4"
       style={{
         backgroundColor: '#07142B', // Set the background color here
         borderBottomWidth: 8,

@@ -1095,7 +1095,7 @@ useEffect(() => {
   
     return (
     <LinearGradient
-        colors={['#0F172A', '#334155']}
+        colors={['#1f4037', '#99f2c8']} 
         className="flex-1"
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
@@ -1110,7 +1110,9 @@ useEffect(() => {
             </View>
             
             <View className="flex-1 p-2  flex-col justify-between items-center">
-                <View className="flex-1 w-full mb-6 bg-gray-800/90 rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm">
+                <View className="flex-1 w-full mb-6  rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm" style={{
+                    backgroundColor: '#173C4C', // Set the background color to #07142B
+                }}>
                     <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>{t('makhraj')} = {firstLcm}</Text>
                     {Aul > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>{t('aul')} = {Aul}</Text>}
                     {RaddValue > 0 && <Text className='text-white text-lg font-bold text-left mb-2'>{t('radd')} = {RaddValue}</Text>}
@@ -1119,13 +1121,17 @@ useEffect(() => {
                 
             {finalList.map((item, index) => (
                 <View
-                key={index}
-                className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full"
-                style={{
-                    elevation: 8,
-                    shadowColor: '#3b82f6'
-                }}
-                >
+                    key={index}
+                    className="p-5 m-2 rounded-2xl shadow-xl w-full"
+                    style={{
+                        backgroundColor: '#07142B', // Set the background color to #07142B
+                        elevation: 8, // Adds elevation for Android shadow
+                        shadowColor: '173C4C', // Shadow color from the palette
+                        shadowOffset: { width: 0, height: 4 }, // Adjust shadow offset
+                        shadowOpacity: 0.3, // Adjust shadow opacity
+                        shadowRadius: 6, // Adjust shadow radius
+                    }}
+                    >
                 <View className="mb-3">
                     <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
                         {t(item.name)}

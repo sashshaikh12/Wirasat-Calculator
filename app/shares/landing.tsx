@@ -79,7 +79,7 @@ function HandleData(){
 
   return (
   <LinearGradient 
-    colors={['#0F172A', '#1E293B', '#334155']} 
+    colors={['#1f4037', '#99f2c8']} 
     className="flex-1"
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}
@@ -95,69 +95,96 @@ function HandleData(){
           </Text>
 
           {/* Total Amount Section */}
-          <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5">
+          <View className="mb-12 rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5" style = {{
+            backgroundColor: '#07142B',
+          }}>
             <Text className="text-white text-md font-semibold mb-3">
               {t('totalAmountLeft')}
             </Text>
             <TextInput
-              className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
+              className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
               value={totalAmount.toString()}
               onChangeText={(text) => setTotalAmount(text)} 
               keyboardType="numeric"
+              style={{ 
+                borderColor: '#173C4C'
+              }}
             />
 
             <Text className="text-white text-md font-semibold mb-3">
               {t('tajheez')}
             </Text>
             <TextInput
-              className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
+              className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
               value={tajheez.toString()}
               onChangeText={(text) => setTajheez(text)}
               keyboardType="numeric"
+              style={{ 
+                borderColor: '#173C4C'
+              }}
             />
 
             <Text className="text-white text-md font-semibold mb-3">
               {t('qarza')}
             </Text>
             <TextInput
-              className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
+              className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
               value={qarza.toString()}
               onChangeText={(text) => setQarza(text)}
               keyboardType="numeric"
+              style={{ 
+                borderColor: '#173C4C'
+              }}
             />
 
             <Text className="text-white text-md font-semibold mb-3">
               {t('nifaz')}
             </Text>
             <TextInput
-              className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
+              className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
                 text-white text-lg shadow-sm mb-2"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
               value={wasiyat.toString()}
               onChangeText={(text) => setWasiyat(text)}
               keyboardType="numeric"
+              style={{ 
+                borderColor: '#173C4C'
+              }}
             />
           </View>
           <TouchableOpacity 
-                      className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl mb-16"
+                      className="mb-8 rounded-2xl overflow-hidden shadow-md"
                       activeOpacity={0.8}
                       onPress={() => {
                         HandleData();
                       }}
+                     
                     >
-                      <Text className="text-white text-center font-semibold text-xl">
+                      <View
+                        className="flex-row items-center justify-center px-6 py-4"
+                        style={{
+                          backgroundColor: '#07142B', // Set the background color here
+                          borderBottomWidth: 8,
+                          borderBottomColor: '#000009', 
+                          borderTopWidth: 12,
+                          borderTopColor: '#123456',
+                        }}
+                      >
+
+                      <Text className="text-white text-lg font-semibold ml-1 px-12 py-3">
                         {t('tarkah')}
                       </Text>
+                    </View>
                     </TouchableOpacity>
         </View>
       </ScrollView>
