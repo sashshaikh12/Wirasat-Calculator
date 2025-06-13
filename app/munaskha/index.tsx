@@ -1329,7 +1329,7 @@ if(lastBatan)
 
   return (
   <LinearGradient 
-    colors={['#0F172A', '#1E293B', '#334155']} 
+    colors={['#1f4037', '#99f2c8']}
     className="flex-1"
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}
@@ -1350,7 +1350,10 @@ if(lastBatan)
         <>
             <Text className="text-white text-lg font-medium mb-3">{t('numBatans')}:</Text>
             <TextInput
-            className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
+            className="bg-slate-700/80 border rounded-lg px-4 py-3 text-white"
+            style={{ 
+                borderColor: '#173C4C'
+              }}
             placeholder="0"
             placeholderTextColor="#94a3b8"
             value={num_batans.toString()} // Ensure the value is a string for TextInput
@@ -1358,7 +1361,10 @@ if(lastBatan)
             keyboardType="numeric"
             />
             <TouchableOpacity
-            className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl"
+            className="rounded-xl px-6 py-4 mt-6 shadow-xl"
+            style={{ 
+                backgroundColor: '#07142B'
+              }}
             onPress={() => {
                     if(num_batans.includes('.') || num_batans.includes('-') || num_batans.includes(' ') || num_batans.includes(',')) {
                         Toast.show({
@@ -1393,7 +1399,9 @@ if(lastBatan)
 
         {/* Input for Current Batan */}
         {currentBatanIndex >= 0 && currentBatanIndex < Number(num_batans) && (
-            <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg">
+            <View className="mb-8 rounded-2xl p-5 shadow-lg" style={{
+                backgroundColor: '#07142B',
+            }}>
                 <Text className="text-white text-lg font-medium mb-6 text-center">
                 {t('enterInBatan')} {currentBatanIndex + 1}:
                 </Text>
@@ -1402,11 +1410,10 @@ if(lastBatan)
                 {people.map((p, index) => (
                     <TouchableOpacity
                         key={index}
-                        className={`rounded-full px-4 py-2 mr-2 mb-2 shadow-md ${
-                            pressed
-                            ? 'bg-gray-500' // Disabled state style
-                            : 'bg-purple-600 hover:bg-purple-700 active:bg-purple-800'
-                        }`}
+                        className={`rounded-full px-4 py-2 mr-2 mb-2 shadow-md`} 
+                        style = {{
+                            backgroundColor: pressed ? '#6B7280' : '#568F7C',
+                        }}
                         onPress={() => setBatan((prev) => [...prev, { name: p, value: 0 }])}
                         disabled={pressed} // Disable the button when pressed is true
                         >
@@ -1439,9 +1446,13 @@ if(lastBatan)
                                     {level.map((person, j) => (
                                     <View
                                         key={j}
-                                        className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 shadow-md"
+                                        className=" border rounded-lg px-4 py-3 shadow-md flex-col justify-center items-center" style={{
+                                                borderColor: '#173C4C',
+                                                backgroundColor: (dead.has(Number(i)) && dead.get(Number(i)).includes(j))  ? '#EF4444' : '#374151',
+                                            }}
                                     >
                                         <Text className="text-white text-lg font-medium">{t(person.name)}</Text>
+                                        <Text className="text-white text-lg font-medium">{j + 1}</Text>
                                     </View>
                                     ))}
                                 </View>
@@ -1457,9 +1468,12 @@ if(lastBatan)
                         {batan.map((person, index) => (
                             <View
                             key={index}
-                            className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 shadow-md"
+                            className="bg-slate-700/80 border rounded-lg px-4 py-3 shadow-md flex-col justify-center items-center" style={{
+                                borderColor: '#173C4C',
+                            }}
                             >
                             <Text className="text-white text-lg font-medium">{t(person.name)}</Text>
+                             <Text className="text-white text-lg font-medium">{index + 1}</Text>
                             </View>
                         ))}
                     </View>
@@ -1467,7 +1481,7 @@ if(lastBatan)
 
                 <TouchableOpacity
                     className={`rounded-xl px-6 py-4 mt-10 shadow-lg ${
-                        pressed ? 'bg-gray-500' : 'bg-red-600 hover:bg-red-700 active:bg-red-800'
+                        pressed ? 'bg-gray-500' : 'bg-red-700 hover:bg-red-800 active:bg-red-900'
                     }`}
                     onPress={() => {
                         if (batan.length > 0) {
@@ -1486,9 +1500,10 @@ if(lastBatan)
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                    className={`rounded-xl px-6 py-4 mt-10 shadow-lg ${
-                        pressed ? 'bg-gray-500' : 'bg-green-600 hover:bg-green-700 active:bg-green-800'
-                    }`}
+                    className={`rounded-xl px-6 py-4 mt-10 shadow-lg`}
+                    style = {{
+                        backgroundColor: pressed ? '#6B7280' : '#326D6C',
+                    }}
                     onPress={() => {
                         handleFinalizeBatan();
                     }}
@@ -1506,24 +1521,33 @@ if(lastBatan)
                     <View className="mt-8">
                         <Text className="text-white text-lg font-medium mb-6">{t('deceasedno')}:</Text>
                         <TextInput
-                        className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white mb-7"
+                        className="bg-slate-700/80 border  rounded-lg px-4 py-3 text-white mb-7"
                         placeholder= {t('deceasedno')}
                         placeholderTextColor="#94a3b8"
                         value={level.toString()} // Ensure the value is a string for TextInput
                         onChangeText={(text) => setLevel(text)} // Convert input to a number
                         keyboardType="numeric"
+                        style={{ 
+                            borderColor: '#173C4C'
+                        }}
                         />
                         <Text className="text-white text-lg font-medium mb-6">{t('deceasedpos')}:</Text>
                         <TextInput
-                        className="bg-slate-700/80 border border-purple-500/30 rounded-lg px-4 py-3 text-white"
+                        className="bg-slate-700/80 border  rounded-lg px-4 py-3 text-white"
                         placeholder= {t('deceasedpos')}
                         placeholderTextColor="#94a3b8"
                         value={index.toString()} // Ensure the value is a string for TextInput
                         onChangeText={(text) => setIndex(text)} // Convert input to a number
                         keyboardType="numeric"
+                        style={{ 
+                            borderColor: '#173C4C'
+                        }}
                         />
                         <TouchableOpacity
-                        className="bg-green-600 hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-6 shadow-lg"
+                        className=" hover:bg-green-700 active:bg-green-800 rounded-xl px-6 py-4 mt-6 shadow-lg"
+                        style = {{
+                            backgroundColor: '#326D6C'
+                        }}
                         onPress={() => {
                             if (level === "" || index === "") {
                                 Toast.show({
@@ -1653,27 +1677,31 @@ if(lastBatan)
                             return null; // Skip rendering if the element is in the dead map
                             }
                             return (
-                            <View
-                                key={j}
-                                className="bg-gradient-to-br from-blue-600/90 to-indigo-600/90 p-5 m-2 rounded-2xl shadow-xl shadow-blue-900/30 w-full"
-                                style={{
-                                elevation: 8,
-                                shadowColor: '#3b82f6',
-                                }}
-                            >
-                                <View className="mb-3">
-                                <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
-                                    {t(person.name)}
-                                </Text>
-                                <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
+                                <View
+                                    key={j}
+                                    className="p-5 m-2 rounded-2xl shadow-xl w-full"
+                                    style={{
+                                    backgroundColor: '#07142B', // Match the background color of GetShares page
+                                    elevation: 8, // Adds elevation for Android shadow
+                                    shadowColor: '#173C4C', // Shadow color from the palette
+                                    shadowOffset: { width: 0, height: 4 }, // Adjust shadow offset
+                                    shadowOpacity: 0.3, // Adjust shadow opacity
+                                    shadowRadius: 6, // Adjust shadow radius
+                                    }}
+                                >
+                                    <View className="mb-3">
+                                        <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
+                                            {t(person.name)}
+                                        </Text>
+                                    <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
+                                    </View>
+                                    <View className="bg-white/10 rounded-lg p-3">
+                                        <Text className="text-blue-200 text-base text-center mt-1">
+                                            {t('share')}: <Text className="text-white font-medium">{sum}</Text>
+                                        </Text>
+                                    </View>
                                 </View>
-                                <View className="bg-white/10 rounded-lg p-3">
-                                <Text className="text-blue-200 text-base text-center mt-1">
-                                    {t('share')}: <Text className="text-white font-medium">{sum}</Text>
-                                </Text>
-                                </View>
-                            </View>
-                            );
+                                );
                         }
                         return null;
                     })}
