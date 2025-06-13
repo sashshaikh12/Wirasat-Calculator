@@ -36,13 +36,15 @@ export default function selectLanguages() {
                 activeOpacity={0.7}
                 className="rounded-xl overflow-hidden shadow-lg mb-10"
               >
-                <LinearGradient
-                  colors={['#7C3AED', '#6D28D9']}
+                <View
                   className="flex-row items-center justify-between px-6 py-5"
+                  style = {{
+                    backgroundColor: '#07142B', // Set the background color here
+                  }}
                 >
                   <Text className="text-white text-xl font-semibold">English</Text>
                   <AntDesign name="right" size={20} color="white" />
-                </LinearGradient>
+                </View>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -50,13 +52,13 @@ export default function selectLanguages() {
                 activeOpacity={0.7}
                 className="rounded-xl overflow-hidden shadow-lg mb-10"
               >
-                <LinearGradient
-                  colors={['#7C3AED', '#6D28D9']}
+                <View
+                  style={{ backgroundColor: '#07142B' }}
                   className="flex-row items-center justify-between px-6 py-5"
                 >
                   <Text className="text-white text-xl font-semibold">اردو</Text>
                   <AntDesign name="right" size={20} color="white" />
-                </LinearGradient>
+                </View>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -64,13 +66,13 @@ export default function selectLanguages() {
                 activeOpacity={0.7}
                 className="rounded-xl overflow-hidden shadow-lg mb-10"
               >
-                <LinearGradient
-                  colors={['#7C3AED', '#6D28D9']}
+                <View
+                  style={{ backgroundColor: '#07142B' }}
                   className="flex-row items-center justify-between px-6 py-5"
                 >
                   <Text className="text-white text-xl font-semibold">हिंदी</Text>
                   <AntDesign name="right" size={20} color="white" />
-                </LinearGradient>
+                </View>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -78,13 +80,13 @@ export default function selectLanguages() {
                 activeOpacity={0.7}
                 className="rounded-xl overflow-hidden shadow-lg"
               >
-                <LinearGradient
-                  colors={['#7C3AED', '#6D28D9']}
+                <View
+                  style={{ backgroundColor: '#07142B' }}
                   className="flex-row items-center justify-between px-6 py-5"
                 >
                   <Text className="text-white text-xl font-semibold">Roman Urdu</Text>
                   <AntDesign name="right" size={20} color="white" />
-                </LinearGradient>
+                </View>
               </TouchableOpacity>
             </View>
 
