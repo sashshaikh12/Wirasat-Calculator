@@ -99,7 +99,7 @@ function HandleData()
 
   return (
   <LinearGradient 
-    colors={['#0F172A', '#1E293B', '#334155']} 
+    colors={['#1f4037', '#99f2c8']}
     className="flex-1"
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }}
@@ -117,11 +117,11 @@ function HandleData()
               <Text className="text-white text-2xl font-bold mb-8 text-center">
               {t('gender')}
             </Text>
-          <View className="flex-row justify-between space-x-4 md:space-x-6 mb-10">
+          <View className="flex-row justify-between space-x-4 md:space-x-6 mb-16">
 
               {/* Male Button */}
               <TouchableOpacity 
-                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md ${
+                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2  ${
                   isMale ? 'bg-blue-400/50' : 'bg-blue-600/80 active:bg-blue-700'
                 }`}
                 onPress={() => {
@@ -139,7 +139,7 @@ function HandleData()
               
               {/* Female Button */}
               <TouchableOpacity 
-                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2 shadow-md ${
+                className={`rounded-lg px-4 py-3 w-36 md:w-40 flex-row items-center justify-center space-x-2  ${
                   isFemale ? 'bg-pink-400/50' : 'bg-pink-600/80 active:bg-pink-700'
                 }`}
                 onPress={() => {
@@ -157,13 +157,18 @@ function HandleData()
             </View>
 
           {/* Total Amount Section */}
-          <View className="mb-8 bg-slate-800/50 rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5">
+          <View className="mb-8  rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5" style = {{
+            backgroundColor: '#07142B',
+          }}>
             <Text className="text-white text-md font-semibold mb-3">
               Enter The Amount
             </Text>
             <TextInput
-              className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
+              className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
                 text-white text-lg shadow-sm mb-2"
+                style={{ 
+                borderColor: '#173C4C'
+              }}
                
               value={amount.toString()}
               onChangeText={(text) => setAmount(text)} 
@@ -174,8 +179,11 @@ function HandleData()
               Enter The Age
             </Text>
             <TextInput
-              className="bg-slate-700/80 border-2 border-purple-500/40 rounded-xl px-5 py-4 
+              className="bg-slate-700/80 border-2  rounded-xl px-5 py-4 
                 text-white text-lg shadow-sm mb-2"
+                style={{ 
+                borderColor: '#173C4C'
+              }}
                
               value={years.toString()}
               onChangeText={(text) => setYears(text)}
@@ -184,15 +192,28 @@ function HandleData()
 
           </View>
           <TouchableOpacity 
-                      className="bg-purple-600 rounded-xl px-6 py-4 mt-6 shadow-xl mb-16"
+                      className="mb-8 rounded-2xl overflow-hidden shadow-md"
                       activeOpacity={0.8}
                       onPress={() => {
                         HandleData();
                       }}
+                     
                     >
-                      <Text className="text-white text-center font-semibold text-xl">
+                      <View
+                        className="flex-row items-center justify-center px-6 py-4"
+                        style={{
+                          backgroundColor: '#07142B', // Set the background color here
+                          borderBottomWidth: 8,
+                          borderBottomColor: '#000009', 
+                          borderTopWidth: 12,
+                          borderTopColor: '#123456',
+                        }}
+                      >
+
+                      <Text className="text-white text-lg font-semibold ml-1 px-12 py-3">
                         {t('enter')}
                       </Text>
+                    </View>
                     </TouchableOpacity>
         </View>
         {showResult && (
@@ -213,7 +234,7 @@ function HandleData()
 
                 <View className="h-[1px] bg-slate-600 my-4" />
 
-                <Text className="text-white text-xl font-semibold text-center">
+                <Text className="text-white text-2xl font-semibold text-center">
                 🧾 Grand Total
                 </Text>
                 <Text className="text-yellow-300 text-3xl font-extrabold text-center mt-2">
