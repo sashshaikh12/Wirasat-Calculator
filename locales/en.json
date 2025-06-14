@@ -46,7 +46,8 @@
     "shohar": "Husband",
     "other": "Other",
     "calculateShares": "Calculate Shares",
-    "shareDistribution": "Share Distribution",
+    "shareDistribution": "Details of Inheritance Distribution",
+    "shareDistributionShort": "(Individual shares of each heir are listed below)",
     "makhraj": "Makhraj",
     "aul": "Aul",
     "tasheeh": "Tasheeh",
@@ -92,5 +93,6 @@
         "formula": "(Wealth left by the deceased × individual creditor’s total loan) ÷ total debt owed by the deceased",
         "para5": "In this case, executing the will is not possible, nor can the inheritance be distributed among the heirs.",
         "para6": "Important advice: If the heirs are financially capable, they should pay the remaining debt from their own pockets after partial repayment from the estate. This will be an act of kindness on their part toward the deceased. Otherwise, the creditors’ claim will remain for the Day of Judgment. Remember, acting upon this advice is virtuous and recommended, though not obligatory in Islamic law."
-    }
+    },
+    "printingIndividual": ""
 }

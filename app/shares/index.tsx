@@ -339,7 +339,7 @@ export default function Shares() {
             >
               
               <Text className="text-white text-lg font-semibold ml-1 px-12 py-3">
-                {t('calculateShares')}
+                {t('tarkah')}
               </Text>
             </View>
           </TouchableOpacity>
