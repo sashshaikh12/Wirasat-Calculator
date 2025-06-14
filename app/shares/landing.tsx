@@ -106,7 +106,7 @@ function HandleData(){
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
-                text-white text-lg shadow-sm mb-2"
+                text-white text-lg shadow-sm mb-5"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
               value={totalAmount.toString()}
@@ -122,7 +122,7 @@ function HandleData(){
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
-                text-white text-lg shadow-sm mb-2"
+                text-white text-lg shadow-sm mb-5"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
               value={tajheez.toString()}
@@ -138,7 +138,7 @@ function HandleData(){
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
-                text-white text-lg shadow-sm mb-2"
+                text-white text-lg shadow-sm mb-5"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
               value={qarza.toString()}
@@ -154,7 +154,7 @@ function HandleData(){
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
-                text-white text-lg shadow-sm mb-2"
+                text-white text-lg shadow-sm mb-5"
               placeholder="0"
               placeholderTextColor="#94a3b8" 
               value={wasiyat.toString()}
