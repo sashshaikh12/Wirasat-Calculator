@@ -1468,7 +1468,7 @@ if(lastBatan)
                         {batan.map((person, index) => (
                             <View
                             key={index}
-                            className="bg-slate-700/80 border rounded-lg px-4 py-3 shadow-md flex-col justify-center items-center" style={{
+                            className="bg-slate-700/80 border rounded-lg px-4 py-3 shadow-md flex-1 flex-col justify-center items-center" style={{
                                 borderColor: '#173C4C',
                             }}
                             >

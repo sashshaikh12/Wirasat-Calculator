@@ -91,10 +91,10 @@ function HandleData(){
       <ScrollView className="flex-1 p-6"  >
         <View className="mt-4 mb-8">
           <Text className="text-white text-3xl font-bold mb-2 text-center">
-            {t('islamic_inheritance_shares')}
+            {t('wirasat_app')}
           </Text>
           <Text className="text-slate-300 text-center mb-16">
-            {t('islamic_inheritance_shares_description')}
+            {t('caption')}
           </Text>
 
           {/* Total Amount Section */}

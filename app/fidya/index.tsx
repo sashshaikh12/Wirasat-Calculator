@@ -108,11 +108,19 @@ function HandleData()
       <ScrollView className="flex-1 p-6"  >
         <View className="mt-4 mb-8">
           <Text className="text-white text-3xl font-bold mb-2 text-center">
-            {t('islamic_inheritance_shares')}
+            {t('wirasat_app')}
           </Text>
           <Text className="text-slate-300 text-center mb-16">
-            {t('islamic_inheritance_shares_description')}
+            {t('caption')}
           </Text>
+
+          <View className='mb-12 rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5' style = {{
+            backgroundColor: '#173C4C',
+          }}>
+            <Text className="text-white text-lg font-bold mb-8 text-center">
+              {t('fidyaPara')}
+            </Text>
+          </View>
 
               <Text className="text-white text-2xl font-bold mb-8 text-center">
               {t('gender')}
