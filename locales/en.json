@@ -70,5 +70,27 @@
     "printTajheez": "Amount spent on funeral and burial (Tajheez o Takfeen):",
     "printQarza": "Outstanding debt owed by the deceased:",
     "printNifaz": "The total amount from which the will shall be executed:",
-    "fidyaPara": "If there are missed prayers or fasts owed by the deceased, the heirs should pay their fidya. If Hajj was obligatory on the deceased and they could not perform it for any reason, then Hajj-e-Badal should be arranged on their behalf. Remember, acting on this advice is better and virtuous, but not mandatory in Islamic law. However, if the deceased left behind wealth and had made a will regarding these matters, then after covering funeral and burial expenses and settling debts, it is obligatory to fulfill this will using up to one-third (1/3) of the remaining wealth."
+    "fidyaPara": "If there are missed prayers or fasts owed by the deceased, the heirs should pay their fidya. If Hajj was obligatory on the deceased and they could not perform it for any reason, then Hajj-e-Badal should be arranged on their behalf. Remember, acting on this advice is better and virtuous, but not mandatory in Islamic law. However, if the deceased left behind wealth and had made a will regarding these matters, then after covering funeral and burial expenses and settling debts, it is obligatory to fulfill this will using up to one-third (1/3) of the remaining wealth.",
+    "totalAmountZero": "Distribution of inheritance is not possible without the inheritance.",
+    "totalEqualTajheez": "The wealth left behind by the deceased is equal to or less than the expenses of funeral arrangements and burial. Therefore, this amount will only be used to cover these expenses. The repayment of debts, execution of the will, and distribution of inheritance among the heirs is not possible.",
+    "totalEqualTajheez_Qarza": "The wealth left behind by the deceased is equal to the expenses of funeral arrangements, burial, and the debt of the deceased. Therefore, this amount will be used to cover these expenses and repay the debt. However, the execution of the will and the distribution of inheritance among the heirs is not possible.",
+    "tajheezFullIncompleteQarza": {
+        "para1": "If the deceased has left behind enough wealth to cover funeral and burial expenses, but not enough to repay all debts in full, then the following method should be adopted:",
+        "para2": "1. If there is only one creditor: Then, after deducting the funeral and burial expenses, the remaining wealth will be given entirely to that creditor.",
+        "para3": "2. If there is more than one creditor: Then the remaining wealth will be distributed among all creditors in proportion to the debt owed to each. That is, in the same ratio as the total outstanding debt.",
+        "para4": "This can easily be calculated using the following formula:",
+        "formula": "(Remaining wealth after funeral and burial × Individual creditor's total loan) ÷ Total debt owed by the deceased",
+        "para5": "In such a case, it is not possible to execute the will or distribute the inheritance among the heirs.",
+        "para6": "Important Advice: If the heirs are financially capable, they should pay the remaining unpaid debt from their own pockets after partial payment from the deceased’s inheritance. This will be a form of goodwill on their part towards the deceased. Otherwise, the creditors’ claim will remain for the Day of Judgment. Remember, acting on this advice is virtuous and recommended, though not obligatory in Islamic law."
+    },
+    "totalEqualQarza": "The wealth left behind by the deceased is sufficient only for the repayment of debt. Executing the will or distributing the inheritance among the heirs is not possible.",
+    "totalLessQarza": {
+        "para1": "The full repayment of debt is not possible from the wealth left behind by the deceased. Therefore, the following method should be adopted:",
+        "para2": "1. If there is only one creditor: Then the entire remaining wealth will be given to that creditor.",
+        "para3": "2. If there is more than one creditor: Then the wealth of the deceased will be distributed among all creditors in proportion to the amount of debt owed to each. That is, in the same ratio as the total outstanding debt.",
+        "para4": "This can easily be calculated using the following formula:",
+        "formula": "(Wealth left by the deceased × individual creditor’s total loan) ÷ total debt owed by the deceased",
+        "para5": "In this case, executing the will is not possible, nor can the inheritance be distributed among the heirs.",
+        "para6": "Important advice: If the heirs are financially capable, they should pay the remaining debt from their own pockets after partial repayment from the estate. This will be an act of kindness on their part toward the deceased. Otherwise, the creditors’ claim will remain for the Day of Judgment. Remember, acting upon this advice is virtuous and recommended, though not obligatory in Islamic law."
+    }
 }

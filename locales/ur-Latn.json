@@ -70,5 +70,27 @@
     "printTajheez": "Tajheez o takfeen ke akhrajaat:",
     "printQarza": "Maiyyat ke zimme baqi rehne wala Qarz:",
     "printNifaz": "Kul raqam jis se wasiyyat ko nafiz kiya jayega:",
-    "fidyaPara": "Agar maiyyat par namaz rozay baqi hon, toh wurasa ko chahiye ki woh inka fidya ada kardein ya agar maiyyat par hajj farz tha aur kisi wajah se woh isay ada na kar saka, toh uski taraf se hajj e badal karwa lein. Yaad rahe is naseehat par amal karna behtar hai, lekin shar’an lazim o zaroori nahi.Haan agar maiyyat ne maal chorra ho aur in cheezon ki wasiyyat ki ho, toh tajheez o takfeen aur adaigi e qarz ke baad bache huye maal ke tihaai (1/3) hissay se is wasiyyat ko poora karna wajib hai."
+    "fidyaPara": "Agar maiyyat par namaz rozay baqi hon, toh wurasa ko chahiye ki woh inka fidya ada kardein ya agar maiyyat par hajj farz tha aur kisi wajah se woh isay ada na kar saka, toh uski taraf se hajj e badal karwa lein. Yaad rahe is naseehat par amal karna behtar hai, lekin shar’an lazim o zaroori nahi.Haan agar maiyyat ne maal chorra ho aur in cheezon ki wasiyyat ki ho, toh tajheez o takfeen aur adaigi e qarz ke baad bache huye maal ke tihaai (1/3) hissay se is wasiyyat ko poora karna wajib hai.",
+    "totalAmountZero": "Maal e Meeras ke bighair Taqseem e Tarkah mumkin nahi.",
+    "totalEqualTajheez": "Marhoom ki janib se chorra gaya maal, tajheez o takfeen ke akhrajat ke barabar..ya..kam hai, lihaza is raqam se faqat in akhrajat ko poora kiya jayega. Adaigi e Qarz, Nifaz e Wasiyyat aur wurusa ke maa bayn Taqseem e Tarkah mumkin nahi.",
+    "totalEqualTajheez_Qarza": "Marhoom ki janib se chorra gaya maal, tajheez o takfeen ke akhrajat aur marhoom ke zimme baaqi rehne wale qarz ke barabar hai. Lihaza is raqam se mazkoorah akhrajat aur qarz ki adaigi toh ki jayegi, lekin nifaz e wasiyyat aur wurusa ke maa bayn tarke ki taqseem karna mumkin nahi.",
+    "tajheezFullIncompleteQarza": {
+        "para1": "Marhoom ke chhoray gaye maal se tajheez o takfeen ke akhrajat poore kiye ja sakte hain, lekin mukammal qarz ki adaigi mumkin nahi. Lihaza darj-e-zeel tareeqa ikhtiyar kiya jaye:",
+        "para2": "1. Agar sirf ek qarz khwah ho: Toh tajheez o takfeen ke akhrajat nikaalne ke baad jo maal bach jaye, woh mukammal tor par usi qarz khwah ko de diya jaye ga.",
+        "para3": "2. Agar ek se zaaid qarz khwah hon: Toh bacha hua maal tamaam qarz khwahon mein un ke qarz ki nisbat se taqseem kiya jaye ga. Yani jis tanasub se kul qarz baqi hai, usi tanasub se har qarz khwah ko raqam milegi.",
+        "para4": "Isay aasani se maloom karne ka formula ye hai:",
+        "formula": "(Tajheez o takfeen ke baad bacha hua maal × qarz khwah ka mukammal qarz) ÷ Marhoom ke zimmah baqi rehne wala kul qarz",
+        "para5": "Is soorat mein wasiyyat par amal karna mumkin nahi aur na hi warisoon ke darmiyan tarkah taqseem kiya ja sakta hai.",
+        "para6": "Aham naseehat: Agar waris maali haisiyat rakhte hon, to unhein chahiye ke marhoom ke tarkay se qarz ki juzwi adaigi ke baad baqi raqam apni jeb se ada kar dein. Ye un ki taraf se marhoom ke sath husn-e-suluk hoga. Warna Qayamat ke din qarz khwahon ka mutalba baqi rahega. Yaad rahe, is naseehat par amal karna bais-e-sawab aur behtar hai, lekin shar'an laazim aur zaroori nahi."
+    },
+    "totalEqualQarza": "Marhoom ki janib se chorra gaya maal faqat adaigi e qarz ke liye kafi hai. Nifaz e wasiyyat ya wurusa ke maa bayn tarke ko taqseem karna mumkin nahi.",
+    "totalLessQarza": {
+        "para1": "Marhoom ke chhore gaye maal se mukammal qarz ki adaigi mumkin nahi. Lihaza darj-e-zeel tareeqa ikhtiyar kiya jaye:",
+        "para2": "1. Agar sirf ek qarz khwah ho: Toh mukammal maal usi qarz khwah ko de diya jaye ga.",
+        "para3": "2. Agar ek se zaaid qarz khwah hon: Toh marhoom ka maal tamaam qarz khwahon mein un ke qarz ki nisbat se taqseem kiya jaye ga. Yani jis tanasub se kul qarz baqi hai, usi tanasub se har qarz khwah ko raqam milegi.",
+        "para4": "Isay aasani se maloom karne ka formula ye hai:",
+        "formula": "(Marhoom ka chhora hua maal × qarz khwah ka mukammal qarz) ÷ marhoom ke zimmah baqi rehne wala kul qarz",
+        "para5": "Is soorat mein wasiyyat par amal karna mumkin nahi, aur na hi wurasa ke darmiyan tarkah taqseem kiya ja sakta hai.",
+        "para6": "Aham naseehat: Agar waris maali haisiyat rakhte hon, toh unhein chahiye ke marhoom ke tarke se qarz ki juzwi adaigi ke baad baqi raqam apni jeb se ada kar dein. Ye un ki taraf se marhoom ke saath husn-e-suluk hoga. Warna Qayamat ke din qarz khwahon ka mutalba baqi rahega. Yaad rahe, is naseehat par amal karna bais-e-sawab aur behtar hai, taaham shar'an laazim o zaroori nahi."
+    }
 }

@@ -59,11 +59,84 @@ function HandleData(){
     return;
   }
 
-  const remainingAmount = Number(totalAmount) - (Number(tajheez) + Number(qarza) + Math.min(Number(wasiyat), Number(totalAmount) / 3));
-  
-  if(remainingAmount < 0)
+  let temp = Number(totalAmount) - (Number(tajheez) + Number(qarza));
+
+  const remainingAmount = Number(totalAmount) - (Number(tajheez) + Number(qarza) + Math.min(Number(wasiyat), temp / 3));
+ 
+
+  if(Number(totalAmount) === 0 && Number(tajheez) === 0 && Number(qarza) === 0 && Number(wasiyat) === 0) 
   {
-    router.push('shares/message');
+    router.push({
+      pathname: 'shares',
+      params: {
+        remainingAmount,
+        tajheez: 0,
+        qarza: 0,
+        wasiyat: 0,
+      },
+    });
+    return;
+  }
+
+  else if(Number(totalAmount) === 0 && (Number(tajheez) !== 0 || Number(qarza) !== 0 || Number(wasiyat) !== 0)) 
+  {
+    router.push({
+      pathname: '/shares/message',
+      params: {
+        message: 'totalAmountZero',
+      },
+    });
+    return;
+  }
+  else if(Number(totalAmount) <= Number(tajheez))
+  {
+    router.push({
+      pathname: '/shares/message',
+      params: {
+        message: 'totalEqualTajheez',
+      },
+    });
+    return;
+  }
+  else if((Number(totalAmount) === (Number(tajheez) + Number(qarza))) && (Number(tajheez) !== 0))
+  {
+    router.push({
+      pathname: '/shares/message',
+      params: {
+        message: 'totalEqualTajheez_Qarza',
+      },
+    });
+    return;
+  }
+  else if((Number(totalAmount) > Number(tajheez)) && ((Number(totalAmount) - Number(tajheez)) < Number(qarza)) && Number(tajheez) !== 0)
+  {
+    router.push({
+      pathname: '/shares/message',
+      params: {
+        message: 'tajheezFullIncompleteQarza',
+      },
+    });
+    return;
+  }
+  else if((Number(totalAmount) === Number(qarza)) && (Number(tajheez) === 0))
+  {
+    router.push({
+      pathname: '/shares/message',
+      params: {
+        message: 'totalEqualQarza',
+      },
+    });
+    return;
+  }
+  else if((Number(totalAmount) < Number(qarza)) && (Number(tajheez) === 0))
+  {
+    router.push({
+      pathname: '/shares/message',
+      params: {
+        message: 'totalLessQarza',
+      },
+    });
+    return;
   }
   else 
   {
@@ -73,10 +146,11 @@ function HandleData(){
         remainingAmount,
         tajheez: Number(tajheez),
         qarza: Number(qarza),
-        wasiyat: Math.min(Number(wasiyat), Number(totalAmount) / 3),
+        wasiyat: Math.min(Number(wasiyat), temp / 3),
       },
     });
   }
+  
 };
 
 
