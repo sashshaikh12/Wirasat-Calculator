@@ -66,5 +66,8 @@
     "finalizeBatan": "Finalize Batan",
     "deceasedno": "Enter Batan Number Of The Deceased",
     "deceasedpos": "Enter Position Of The Deceased",
-    "enter": "Enter"
+    "enter": "Enter",
+    "printTajheez": "Amount spent on funeral and burial (Tajheez o Takfeen):",
+    "printQarza": "Outstanding debt owed by the deceased:",
+    "printNifaz": "The total amount from which the will shall be executed:"
 }

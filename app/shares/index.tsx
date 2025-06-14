@@ -17,6 +17,9 @@ import Toast from 'react-native-toast-message';
 
 export default function Shares() {
   const [totalAmount, setTotalAmount] = useState(0);
+  const [tajheez, setTajheez] = useState(0);
+  const [qarza, setQarza] = useState(0);
+  const [wasiyat, setWasiyat] = useState(0);
   const [baap, setBaap] = useState("");
   const [dada, setDada] = useState("");
   const [shohar, setShohar] = useState("");
@@ -114,6 +117,9 @@ export default function Shares() {
 
   useEffect(() => {
       setTotalAmount(Number(params.remainingAmount));
+      setTajheez(Number(params.tajheez));
+      setQarza(Number(params.qarza));
+      setWasiyat(Number(params.wasiyat));
   }, []);
 
                 
@@ -308,12 +314,15 @@ export default function Shares() {
                       });
                 return;
               }
-
+              
               router.push({
                 pathname: 'shares/getShares',
                 params: {
                   totalAmount,
-                  ...familyData
+                  ...familyData,
+                  tajheez,
+                  qarza,
+                  wasiyat
                 },
               });
             }}

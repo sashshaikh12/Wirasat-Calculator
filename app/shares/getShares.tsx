@@ -21,6 +21,9 @@ export default function GetShares() {
 
   const [finalList, setFinalList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [tajheez, setTajheez] = useState(0);
+  const [qarza, setQarza] = useState(0);
+  const [wasiyat, setWasiyat] = useState(0);
   const [finalLcm, setFinalLcm] = useState(0);
   const [firstLcm, setFirstLcm] = useState(0);
   const [Aul, setAul] = useState(0);
@@ -1029,10 +1032,9 @@ function FinalCollective() {
 
 useEffect(() => {
 
-    
     for (const [key, value] of Object.entries(params)) 
     {
-      if(value !== "0" && key !== "totalAmount") 
+      if(value !== "0" && key !== "totalAmount" && key !== "tajheez" && key !== "qarza" && key !== "wasiyat") 
       {
         person.push(key);
         personCount.set(key, Number(value));
@@ -1040,6 +1042,18 @@ useEffect(() => {
       else if( key === "totalAmount")
       {
         setTotalAmount(Number(value));
+      }
+      else if(key === "tajheez")
+      {
+        setTajheez(Number(value));
+      }
+      else if(key === "qarza")
+      {
+        setQarza(Number(value));
+      }
+      else if(key === "wasiyat")
+      {
+        setWasiyat(Number(value));
       }
     }
 
@@ -1110,6 +1124,16 @@ useEffect(() => {
             </View>
             
             <View className="flex-1 p-2  flex-col justify-between items-center">
+
+                {/* printing the values of qarza ,tajheez and wasiyat */}
+                <View className="flex-1 w-full mb-6  rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm" style={{
+                    backgroundColor: '#173C4C', // Set the background color to #07142B
+                }}>
+                    <Text className='text-white text-lg font-bold text-left mb-6'>{t('printTajheez')} = {tajheez}</Text>
+                    <Text className='text-white text-lg font-bold text-left mb-6'>{t('printQarza')} = {qarza}</Text>
+                    <Text className='text-white text-lg font-bold text-left mb-2'>{t('printNifaz')} = {wasiyat}</Text>
+                </View>
+
                 <View className="flex-1 w-full mb-6  rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm" style={{
                     backgroundColor: '#173C4C', // Set the background color to #07142B
                 }}>

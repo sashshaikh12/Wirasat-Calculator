@@ -71,6 +71,9 @@ function HandleData(){
       pathname: 'shares',
       params: {
         remainingAmount,
+        tajheez: Number(tajheez),
+        qarza: Number(qarza),
+        wasiyat: Math.min(Number(wasiyat), Number(totalAmount) / 3),
       },
     });
   }
