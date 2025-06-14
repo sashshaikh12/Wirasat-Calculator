@@ -1659,6 +1659,11 @@ if(lastBatan)
 
         {currentBatanIndex >= Number(num_batans) && (
             <>
+                <View className="flex-1 w-full mb-6  rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm" style={{
+                    backgroundColor: '#173C4C', // Set the background color to #07142B
+                }}>
+                    <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>Al-Mablagh = {topLcm}</Text>
+                </View>
                 {batans.map((level, i) => (
                 <View key={i} className="mb-6">
                     <Text className="text-white text-2xl font-bold text-center mb-4">
@@ -1677,6 +1682,7 @@ if(lastBatan)
                             return null; // Skip rendering if the element is in the dead map
                             }
                             return (
+                                
                                 <View
                                     key={j}
                                     className="p-5 m-2 rounded-2xl shadow-xl w-full"
@@ -1693,7 +1699,7 @@ if(lastBatan)
                                         <Text className="text-white text-2xl font-black text-center tracking-tight mt-2">
                                             {t(person.name)}
                                         </Text>
-                                    <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
+                                        <View className="h-0.5 bg-blue-300/50 rounded-full mx-6 my-1" />
                                     </View>
                                     <View className="bg-white/10 rounded-lg p-3">
                                         <Text className="text-blue-200 text-base text-center mt-1">
