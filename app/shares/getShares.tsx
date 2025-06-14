@@ -1126,7 +1126,7 @@ useEffect(() => {
             <View className="flex-1 p-2  flex-col justify-between items-center">
 
                 {/* printing the values of qarza ,tajheez and wasiyat */}
-                <View className="flex-1 w-full mb-6  rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm" style={{
+                <View className="flex-1 flex-col w-full mb-6  rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm" style={{
                     backgroundColor: '#173C4C', // Set the background color to #07142B
                 }}>
                     <Text className='text-white text-lg font-bold text-left mb-6'>{t('printTajheez')} = {tajheez}</Text>
