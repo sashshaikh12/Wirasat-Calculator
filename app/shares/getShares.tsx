@@ -1116,11 +1116,13 @@ useEffect(() => {
     >
         <SafeAreaView className="flex-1">
         <ScrollView className="flex-1 px-4">
-            <View className="py-6 mb-4">
-                <Text className="text-white text-4xl font-semibold text-center mb-2 mt-4" >
-                    {t('shareDistribution')}
+            <View className="mb-8">
+                <Text className="text-white text-4xl font-bold text-center mb-4 mt-4">
+                {t('shareDistribution')}
                 </Text>
-                <View className="h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-8" />
+                <Text className="text-gray-200 text-base text-center mb-6">
+                {t('shareDistributionShort')}
+                </Text>
             </View>
             
             <View className="flex-1 p-2  flex-col justify-between items-center">
