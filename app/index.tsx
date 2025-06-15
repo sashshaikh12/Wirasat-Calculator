@@ -1,4 +1,4 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import {FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { t } from 'i18next';
@@ -30,7 +30,11 @@ const MenuButton = ({
         borderTopColor: '#123456',
       }}
     >
-      <FontAwesome name={iconName} size={45} color="white" />
+      {title === t('button6') ? (
+        <FontAwesome5 name={iconName} size={45} color="white" />
+      ) : (
+        <FontAwesome name={iconName} size={45} color="white" />
+      )}
       <Text className="text-white text-lg font-semibold ml-1 px-12 py-3">
         {title}
       </Text>
@@ -53,7 +57,7 @@ export default function Index() {
     alignItems: 'center',
     flexGrow: 1,
   }}>
-          <View className=" p-8 w-full max-w-md 
+          <View className="p-8 w-full max-w-md 
                           my-auto"
                          >
           {/* App Header */}
@@ -75,7 +79,7 @@ export default function Index() {
           <MenuButton title={t('button5')} iconName="user-circle-o" />
           <MenuButton title={t('button7')} iconName="phone-square" />
           <MenuButton title={t('button9')} iconName="slideshare" />
-          <MenuButton title={t('button6')} iconName="heart" />
+          <MenuButton title={t('button6')} iconName="book" />
           <MenuButton title={t('button10')} iconName="thumbs-o-up" />
         </View>
       </ScrollView>
