@@ -169,7 +169,7 @@ function HandleData()
             backgroundColor: '#07142B',
           }}>
             <Text className="text-white text-md font-semibold mb-3">
-              Enter The Amount
+              {t('FidyaAmount')}
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
@@ -184,7 +184,7 @@ function HandleData()
             />
 
             <Text className="text-white text-md font-semibold mb-3">
-              Enter The Age
+              {t('FidyaAge')}
             </Text>
             <TextInput
               className="bg-slate-700/80 border-2  rounded-xl px-5 py-4 
@@ -226,15 +226,15 @@ function HandleData()
         </View>
         {showResult && (
             <View className="mb-8 rounded-3xl bg-slate-800/70 p-6 shadow-xl w-full max-w-md">
-                <Text className="text-white text-2xl font-bold mb-4 text-center  pb-2">
-                💳 Total Amount on Namaz
+                <Text className="text-white text-2xl font-bold mb-4 text-center pb-2">
+                🕌 {t('FidyaNamazAns')}
                 </Text>
                 <Text className="text-purple-300 text-3xl font-extrabold text-center mb-6 border-b border-slate-600 pb-2">
                 Rs. {TotalAmount}
                 </Text>
 
-                <Text className="text-white text-2xl font-bold mb-4 text-center  pb-2">
-                🕌 Total Amount on Roza
+                <Text className="text-white text-2xl font-bold mb-4 text-center pb-2">
+                🌙 {t('FidyaRozaAns')}
                 </Text>
                 <Text className="text-emerald-300 text-3xl font-bold text-center mb-4">
                 Rs. {TotalRoza}
@@ -242,8 +242,8 @@ function HandleData()
 
                 <View className="h-[1px] bg-slate-600 my-4" />
 
-                <Text className="text-white text-2xl font-semibold text-center">
-                🧾 Grand Total
+                <Text className="text-white text-2xl font-bold mb-4 text-center pb-2">
+                💵 {t('FidyaTotalAns')}
                 </Text>
                 <Text className="text-yellow-300 text-3xl font-extrabold text-center mt-2">
                 Rs. {TotalAmount + TotalRoza}

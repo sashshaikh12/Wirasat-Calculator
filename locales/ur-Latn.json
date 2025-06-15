@@ -95,5 +95,11 @@
         "para5": "Is soorat mein wasiyyat par amal karna mumkin nahi, aur na hi wurasa ke darmiyan tarkah taqseem kiya ja sakta hai.",
         "para6": "Aham naseehat: Agar waris maali haisiyat rakhte hon, toh unhein chahiye ke marhoom ke tarke se qarz ki juzwi adaigi ke baad baqi raqam apni jeb se ada kar dein. Ye un ki taraf se marhoom ke saath husn-e-suluk hoga. Warna Qayamat ke din qarz khwahon ka mutalba baqi rahega. Yaad rahe, is naseehat par amal karna bais-e-sawab aur behtar hai, taaham shar'an laazim o zaroori nahi."
     },
-    "AlMablagh": "Al-Mablagh"
+    "AlMablagh": "Al-Mablagh",
+    "FidyaAmount": "Ek sadqah e fitr ki raqam darj karein",
+    "FidyaAge": "Marhoom ki umr darj karein",
+    "FidyaEnter": "Hisaab Karein",
+    "FidyaNamazAns": "Namaz ka Fidya",
+    "FidyaRozaAns": "Rozay ka Fidya",
+    "FidyaTotalAns": "Kul Fidya"
 }
