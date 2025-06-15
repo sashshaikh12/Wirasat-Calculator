@@ -45,6 +45,7 @@
     "chacha": "Paternal Uncle",
     "shohar": "Husband",
     "other": "Other",
+    "Other": "Deceased",
     "calculateShares": "Calculate Shares",
     "shareDistribution": "Details of Inheritance Distribution",
     "shareDistributionShort": "(Individual shares of each heir are listed below)",
@@ -59,15 +60,15 @@
     "mahroom": "Mahroom",
     "Sulus Maa Baqiyah": "Sulus Maa Baqiyah",
     "asabaBy6": "1/6 + Asabah",
-    "numBatans": "Enter the number of Batans",
-    "addingBatans": "Start Adding Batans",
-    "enterInBatan" : "Enter the people in Batan",
+    "numBatans": "Enter the number of Butoon:",
+    "addingBatans": "First Batan",
+    "enterInBatan" : "Enter the members of the Batan:",
     "batan": "Batan",
     "remove": "Remove",
-    "finalizeBatan": "Finalize Batan",
-    "deceasedno": "Enter Batan Number Of The Deceased",
-    "deceasedpos": "Enter Position Of The Deceased",
-    "enter": "Enter",
+    "finalizeBatan": "Batan Complete",
+    "deceasedno": "Enter the batan number in which the next deceased appears first",
+    "deceasedpos": "Enter the position of the deceased in the batan number entered above",
+    "enter": "Next",
     "printTajheez": "Amount spent on funeral and burial (Tajheez o Takfeen):",
     "printQarza": "Outstanding debt owed by the deceased:",
     "printNifaz": "The total amount from which the will shall be executed:",
@@ -94,5 +95,5 @@
         "para5": "In this case, executing the will is not possible, nor can the inheritance be distributed among the heirs.",
         "para6": "Important advice: If the heirs are financially capable, they should pay the remaining debt from their own pockets after partial repayment from the estate. This will be an act of kindness on their part toward the deceased. Otherwise, the creditors’ claim will remain for the Day of Judgment. Remember, acting upon this advice is virtuous and recommended, though not obligatory in Islamic law."
     },
-    "printingIndividual": ""
+    "AlMablagh": "Al-Mablagh"
 }

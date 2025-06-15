@@ -67,15 +67,15 @@ export default function Index() {
           </View>
 
           {/* Menu Buttons */}
-          <MenuButton title={t('button1')} iconName="pie-chart" onPress={() => router.push('shares/landing')} />
           <MenuButton title={t('button2')} iconName="book" />
-          <MenuButton title={t('button3')} iconName="sitemap" onPress={() => router.push('munaskha')} />
           <MenuButton title={t('button4')} iconName="language" onPress={() => router.push('selectLanguages')}/>
-          <MenuButton title={t('button5')} iconName="user-circle-o" />
-          <MenuButton title={t('button6')} iconName="heart" />
-          <MenuButton title={t('button7')} iconName="phone-square" />
+          <MenuButton title={t('button1')} iconName="pie-chart" onPress={() => router.push('shares/landing')} />
+          <MenuButton title={t('button3')} iconName="sitemap" onPress={() => router.push('munaskha')} />
           <MenuButton title={t('button8')} iconName="calculator" onPress={() => router.push('fidya')} />
+          <MenuButton title={t('button5')} iconName="user-circle-o" />
+          <MenuButton title={t('button7')} iconName="phone-square" />
           <MenuButton title={t('button9')} iconName="slideshare" />
+          <MenuButton title={t('button6')} iconName="heart" />
           <MenuButton title={t('button10')} iconName="thumbs-o-up" />
         </View>
       </ScrollView>

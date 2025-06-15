@@ -49,7 +49,8 @@ let batanShares = new Map();
                 'allatibhateeja',
                 'chacha',
                 'shohar',
-                'other',];
+                'other',
+                'Other'];
 
   const [finalList, setFinalList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -1067,7 +1068,7 @@ function FinalCollective() {
                     };
                 }
             }
-            return item; // Keep the item unchanged if no share is found
+            return item; 
         });
     });
 }
@@ -1076,7 +1077,7 @@ function getSingleShares() {
     for (const [key, value] of sharesActual.entries()) {
         const numerator = personCount.get(key);
         const denominator = value;
-        // console.log(`${key}: ${denominator / numerator} shares`);
+       
         batanShares.set(key, denominator / numerator);
     }
 }
@@ -1163,52 +1164,12 @@ function getCollectiveShares() {
     }
 }
 
-// useEffect(() => {
-
-    
-//     for (const [key, value] of Object.entries(params)) 
-//     {
-//       if(value !== "0" && key !== "totalAmount") 
-//       {
-//         person.push(key);
-//         personCount.set(key, Number(value));
-//       }
-//     }
- 
-//     solve();
-
-//     getFractions();
-
-
-//     if(isRaddNeeded()) 
-//     {
-//         Radd();
-//         setRadd(Lcm);
-//     }
-
-    
-//     if(isTasheehNeeded()) 
-//     {
-//         Tasheeh();
-//         setTasheeh(Lcm);
-//     }
-
-//     Final();
-
-//     FinalCollective();
-
-//     setFinalLcm(Lcm);
-
-    
-//   }, []);
 
 function solveBatan()
 {
     solve();
     if(isRaddNeeded()) Radd();
     if(isTasheehNeeded()) Tasheeh();
-    // Final();
-    // FinalCollective();
     getSingleShares();
     getCollectiveShares();
     setFinalLcm(Lcm);
@@ -1339,16 +1300,16 @@ if(lastBatan)
 
       <View className="mt-4 mb-8">
           <Text className="text-white text-3xl font-bold mb-2 text-center">
-            {t('islamic_inheritance_shares')}
+            {t('wirasat_app')}
           </Text>
           <Text className="text-slate-300 text-center mb-16">
-            {t('islamic_inheritance_shares_description')}
+            {t('caption')}
           </Text>
 
           {/* Input for Number of Batans */}
         {currentBatanIndex === -1 && (
         <>
-            <Text className="text-white text-lg font-medium mb-3">{t('numBatans')}:</Text>
+            <Text className="text-white text-lg font-medium mb-3">{t('numBatans')}</Text>
             <TextInput
             className="bg-slate-700/80 border rounded-lg px-4 py-3 text-white"
             style={{ 
@@ -1403,7 +1364,7 @@ if(lastBatan)
                 backgroundColor: '#07142B',
             }}>
                 <Text className="text-white text-lg font-medium mb-6 text-center">
-                {t('enterInBatan')} {currentBatanIndex + 1}:
+                {t('enterInBatan')}
                 </Text>
 
                 <View className="flex-row flex-wrap items-center justify-center mb-4 gap-3">
@@ -1500,7 +1461,7 @@ if(lastBatan)
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                    className={`rounded-xl px-6 py-4 mt-10 shadow-lg`}
+                    className={`rounded-xl px-6 py-4 mt-10 shadow-lg mb-4`}
                     style = {{
                         backgroundColor: pressed ? '#6B7280' : '#326D6C',
                     }}
@@ -1514,7 +1475,7 @@ if(lastBatan)
                         pressed ? 'text-gray-300' : 'text-white'
                         }`}
                     >
-                        {t('finalizeBatan')} {currentBatanIndex + 1}
+                        {t('finalizeBatan')}
                     </Text>
                     </TouchableOpacity>
                  {askForDead && (
@@ -1522,8 +1483,6 @@ if(lastBatan)
                         <Text className="text-white text-lg font-medium mb-6">{t('deceasedno')}:</Text>
                         <TextInput
                         className="bg-slate-700/80 border  rounded-lg px-4 py-3 text-white mb-7"
-                        placeholder= {t('deceasedno')}
-                        placeholderTextColor="#94a3b8"
                         value={level.toString()} // Ensure the value is a string for TextInput
                         onChangeText={(text) => setLevel(text)} // Convert input to a number
                         keyboardType="numeric"
@@ -1533,9 +1492,7 @@ if(lastBatan)
                         />
                         <Text className="text-white text-lg font-medium mb-6">{t('deceasedpos')}:</Text>
                         <TextInput
-                        className="bg-slate-700/80 border  rounded-lg px-4 py-3 text-white"
-                        placeholder= {t('deceasedpos')}
-                        placeholderTextColor="#94a3b8"
+                        className="bg-slate-700/80 border  rounded-lg px-4 py-3 text-white mb-4"
                         value={index.toString()} // Ensure the value is a string for TextInput
                         onChangeText={(text) => setIndex(text)} // Convert input to a number
                         keyboardType="numeric"
@@ -1662,7 +1619,7 @@ if(lastBatan)
                 <View className="flex-1 w-full mb-6  rounded-xl shadow-xl p-6 border border-gray-700 backdrop-blur-sm" style={{
                     backgroundColor: '#173C4C', // Set the background color to #07142B
                 }}>
-                    <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>Al-Mablagh = {topLcm}</Text>
+                    <Text className='text-white text-lg font-bold text-left mb-2 mt-4'>{t('AlMablagh')} = {topLcm}</Text>
                 </View>
                 {batans.map((level, i) => (
                 <View key={i} className="mb-6">
