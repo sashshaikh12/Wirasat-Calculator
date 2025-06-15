@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons , Ionicons} from '@expo/vector-icons';
 
 export default function fidya() {
 
@@ -105,7 +105,7 @@ function HandleData()
     end={{ x: 1, y: 1 }}
   >
     <SafeAreaView className="flex-1">
-      <ScrollView className="flex-1 p-6"  >
+      <ScrollView className="flex-1 p-6" >
         <View className="mt-4 mb-8">
           <Text className="text-white text-3xl font-bold mb-2 text-center">
             {t('wirasat_app')}
@@ -164,48 +164,50 @@ function HandleData()
               </TouchableOpacity>
             </View>
 
-          {/* Total Amount Section */}
-          <View className="mb-8  rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5" style = {{
-            backgroundColor: '#07142B',
-          }}>
-            <Text className="text-white text-md font-semibold mb-3">
-              {t('FidyaAmount')}
-            </Text>
-            <TextInput
-              className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
-                text-white text-lg shadow-sm mb-2"
-                style={{ 
-                borderColor: '#173C4C'
-              }}
-               
-              value={amount.toString()}
-              onChangeText={(text) => setAmount(text)} 
-              keyboardType="numeric"
-            />
+          {!showResult && (
+            <>
+                {/* Total Amount Section */}
+                <View className="mb-8  rounded-2xl p-5 shadow-lg flex-1 flex-col gap-5" style = {{
+                  backgroundColor: '#07142B',
+                }}>
+                  <Text className="text-white text-md font-semibold mb-3">
+                    {t('FidyaAmount')}
+                  </Text>
+                  <TextInput
+                    className="bg-slate-700/80 border-2 rounded-xl px-5 py-4 
+                      text-white text-lg shadow-sm mb-2"
+                      style={{ 
+                      borderColor: '#173C4C'
+                    }}
+                    
+                    value={amount.toString()}
+                    onChangeText={(text) => setAmount(text)} 
+                    keyboardType="numeric"
+                  />
 
-            <Text className="text-white text-md font-semibold mb-3">
-              {t('FidyaAge')}
-            </Text>
-            <TextInput
-              className="bg-slate-700/80 border-2  rounded-xl px-5 py-4 
-                text-white text-lg shadow-sm mb-2"
-                style={{ 
-                borderColor: '#173C4C'
-              }}
-               
-              value={years.toString()}
-              onChangeText={(text) => setYears(text)}
-              keyboardType="numeric"
-            />
+                  <Text className="text-white text-md font-semibold mb-3">
+                    {t('FidyaAge')}
+                  </Text>
+                  <TextInput
+                    className="bg-slate-700/80 border-2  rounded-xl px-5 py-4 
+                      text-white text-lg shadow-sm mb-2"
+                      style={{ 
+                      borderColor: '#173C4C'
+                    }}
+                    
+                    value={years.toString()}
+                    onChangeText={(text) => setYears(text)}
+                    keyboardType="numeric"
+                  />
 
-          </View>
-          <TouchableOpacity 
+                </View>
+                <TouchableOpacity 
                       className="mb-8 rounded-2xl overflow-hidden shadow-md"
                       activeOpacity={0.8}
                       onPress={() => {
                         HandleData();
                       }}
-                     
+                    
                     >
                       <View
                         className="flex-row items-center justify-center px-6 py-4"
@@ -219,13 +221,17 @@ function HandleData()
                       >
 
                       <Text className="text-white text-lg font-semibold ml-1 px-12 py-3">
-                        {t('enter')}
+                        {t('FidyaEnter')}
                       </Text>
                     </View>
                     </TouchableOpacity>
+            </>
+          )}
+
+
         </View>
         {showResult && (
-            <View className="mb-8 rounded-3xl bg-slate-800/70 p-6 shadow-xl w-full max-w-md">
+            <View className="mb-8 rounded-3xl bg-slate-800/70 p-6 shadow-xl w-full max-w-md mx-auto flex-1 flex-col">
                 <Text className="text-white text-2xl font-bold mb-4 text-center pb-2">
                 🕌 {t('FidyaNamazAns')}
                 </Text>
@@ -245,13 +251,40 @@ function HandleData()
                 <Text className="text-white text-2xl font-bold mb-4 text-center pb-2">
                 💵 {t('FidyaTotalAns')}
                 </Text>
-                <Text className="text-yellow-300 text-3xl font-extrabold text-center mt-2">
+                <Text className="text-yellow-300 text-3xl font-extrabold text-center mt-2 mb-10">
                 Rs. {TotalAmount + TotalRoza}
                 </Text>
+
+                  <TouchableOpacity 
+                      className="mb-8 rounded-2xl overflow-hidden shadow-md  mt-auto"
+                      activeOpacity={0.8}
+                      onPress={() => {
+                        setShowResult(false);
+                      }}
+                    
+                    >
+                      <View
+                        className="flex-row items-center justify-center px-6 py-4"
+                        style={{
+                          backgroundColor: '#07142B', // Set the background color here
+                          borderBottomWidth: 8,
+                          borderBottomColor: '#000009', 
+                          borderTopWidth: 12,
+                          borderTopColor: '#123456',
+                        }}
+                      >
+
+                      <Ionicons name="play-back" size={40} color='white' />
+                    </View>
+                    </TouchableOpacity>
+         
+
             </View>
+
             )}
 
             <View className='mb-10'></View>
+
 
       </ScrollView>
     </SafeAreaView>
